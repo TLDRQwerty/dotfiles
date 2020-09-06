@@ -1,0 +1,37 @@
+[user]
+	email = charliecarolan1999@gmail.com
+	name = Charlie Carolan
+[color]
+  ui = auto
+[core]
+	editor = nvim
+[pull]
+	rebase = false
+	ff = only
+[log]
+  abbrevCommit = true
+[diff]
+  rename = true
+  submodule = log
+[grep]
+  lineNumber = true
+  heading = true
+  break = true
+  column = true
+[alias]
+	co = checkout
+  pl = pull
+  ps = push
+  c = commit -v
+  cm = commit -m
+  ap = add -p
+  r = restore
+  rs = restore --staged
+  s = status
+  sw = switch
+  f = fetch
+  m = merge
+  a = add
+  lg = log
+  lgp = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
+  b = branch
