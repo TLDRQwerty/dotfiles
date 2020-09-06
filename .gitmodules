@@ -7,3 +7,72 @@
 [submodule "zsh/.config/zsh/plugins/fzf"]
 	path = zsh/.config/zsh/plugins/fzf
 	url = git@github.com:junegunn/fzf.git
+[submodule "nvim/.config/nvim/pack/modules/opt/fzf.vim"]
+	path = nvim/.config/nvim/pack/modules/opt/fzf.vim
+	url = git@github.com:junegunn/fzf.vim.git
+[submodule "nvim/.config/nvim/pack/modules/opt/editorconfig-vim"]
+	path = nvim/.config/nvim/pack/modules/opt/editorconfig-vim
+	url = git@github.com:editorconfig/editorconfig-vim.git
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-fugitive"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-fugitive
+	url = git@github.com:tpope/vim-fugitive.git
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-ripgrep"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-ripgrep
+	url = git@github.com:jremmen/vim-ripgrep.git
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-tmux-navigator"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-tmux-navigator
+	url = git@github.com:christoomey/vim-tmux-navigator.git
+[submodule "nvim/.config/nvim/pack/modules/opt/undotree"]
+	path = nvim/.config/nvim/pack/modules/opt/undotree
+	url = git@github.com:mbbill/undotree.git
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-which-key"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-which-key
+	url = git@github.com:liuchengxu/vim-which-key.git
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-gitgutter"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-gitgutter
+	url = git@github.com:airblade/vim-gitgutter.git
+[submodule "nvim/.config/nvim/pack/modules/opt/nerdcommenter"]
+	path = nvim/.config/nvim/pack/modules/opt/nerdcommenter
+	url = git@github.com:preservim/nerdcommenter.git
+[submodule "nvim/.config/nvim/pack/modules/opt/spelunker"]
+	path = nvim/.config/nvim/pack/modules/opt/spelunker
+	url = git@github.com:kamykn/spelunker.vim.git
+[submodule "nvim/.config/nvim/pack/modules/opt/chadtree"]
+	path = nvim/.config/nvim/pack/modules/opt/chadtree
+	url = git@github.com:ms-jpq/chadtree.git
+[submodule "nvim/.config/nvim/pack/modules/opt/auto-pairs"]
+	path = nvim/.config/nvim/pack/modules/opt/auto-pairs
+	url = git@github.com:jiangmiao/auto-pairs.git
+[submodule "nvim/.config/nvim/pack/modules/opt/ale"]
+	path = nvim/.config/nvim/pack/modules/opt/ale
+	url = git@github.com:dense-analysis/ale.git
+[submodule "nvim/.config/nvim/pack/modules/opt/nvim-lspconfig"]
+	path = nvim/.config/nvim/pack/modules/opt/nvim-lspconfig
+	url = git@github.com:neovim/nvim-lspconfig.git
+[submodule "nvim/.config/nvim/pack/modules/opt/diagnostic-nvim"]
+	path = nvim/.config/nvim/pack/modules/opt/diagnostic-nvim
+	url = git@github.com:nvim-lua/diagnostic-nvim.git
+[submodule "nvim/.config/nvim/pack/modules/opt/lsp-status"]
+	path = nvim/.config/nvim/pack/modules/opt/lsp-status
+	url = git@github.com:nvim-lua/lsp-status.nvim.git
+[submodule "nvim/.config/nvim/pack/modules/opt/embark"]
+	path = nvim/.config/nvim/pack/modules/opt/embark
+	url = git@github.com:embark-theme/vim.git
+[submodule "nvim/.config/nvim/pack/modules/opt/papercolor-theme"]
+	path = nvim/.config/nvim/pack/modules/opt/papercolor-theme
+	url = git@github.com:NLKNguyen/papercolor-theme.git
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-paper"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-paper
+	url = git@github.com:YorickPeterse/vim-paper.git
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-javascript"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-javascript
+	url = git@github.com:pangloss/vim-javascript.git
+[submodule "nvim/.config/nvim/pack/modules/opt/typescript-vim"]
+	path = nvim/.config/nvim/pack/modules/opt/typescript-vim
+	url = git@github.com:leafgarland/typescript-vim.git
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-jsx-pretty"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-jsx-pretty
+	url = git@github.com:MaxMEllon/vim-jsx-pretty.git
+[submodule "nvim/.config/nvim/pack/modules/opt/completion-nvim"]
+	path = nvim/.config/nvim/pack/modules/opt/completion-nvim
+	url = git@github.com:nvim-lua/completion-nvim.git
