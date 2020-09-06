@@ -10,7 +10,7 @@ setopt autocd
 
 # FZF find + hidden files
 export FZF_DEFAULT_COMMAND="find . -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
-export PATH=~/dotfiles/plugins/fzf/bin:$PATH
+export PATH="$ZDOTDIR/plugins/fzf/bin":$PATH
 export PATH=~/.local/bin:$PATH
 
 # Basic auto/tab complete:
@@ -34,8 +34,8 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
-[[ -f "$HOME/dotfiles/plugins/fzf/shell/completion.zsh" ]] && source "$HOME/dotfiles/plugins/fzf/shell/completion.zsh"
-[[ -f "$HOME/dotfiles/plugins/fzf/shell/key-bindings.zsh" ]] && source "$HOME/dotfiles/plugins/fzf/shell/key-bindings.zsh"
+[[ -f "$ZDOTDIR/plugins/fzf/shell/completion.zsh" ]] && source "$ZDOTDIR/plugins/fzf/shell/completion.zsh"
+[[ -f "$ZDOTDIR/plugins/fzf/shell/key-bindings.zsh" ]] && source "$ZDOTDIR/plugins/fzf/shell/key-bindings.zsh"
 
 # vi mode
 bindkey -v
