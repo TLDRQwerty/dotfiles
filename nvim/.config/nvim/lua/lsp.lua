@@ -1,5 +1,7 @@
 local nvim_lsp = require('nvim_lsp')
 local lsp_status = require('lsp-status')
+local completion = require('completion')
+local diagnostic = require('diagnostic')
 
 lsp_status.config {
   kind_labels = vim.g.completion_customize_lsp_label,
@@ -22,6 +24,8 @@ local function make_on_attach(config)
     if config.before then config.before(client) end
 
     lsp_status.on_attach(client)
+    completion.on_attach(client)
+    diagnostic.on_attach(client)
 
     local mapper = function(mode, key, result)
       vim.fn.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
@@ -36,6 +40,10 @@ local function make_on_attach(config)
     mapper('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
     mapper('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
     mapper('n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+
+    mapper('n', 'dn', '<cmd>NextDiagnostic<CR>')
+    mapper('n', 'dp', '<cmd>PrevDiagnostic<CR>')
+    mapper('n', 'E', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>')
 
     if config.after then config.after(client) end
   end
@@ -102,9 +110,10 @@ local servers = {
     filetypes = {'vim'},
   },
   flow = {
-    cmd = {'npx', '--no-install', 'flow', 'lsp'},
+    cmd = {'./node_modules/.bin/flow', 'lsp', '--lazy-mode', 'ide'},
     filetypes = {'javascript', 'javascriptreact'},
     root_dir = nvim_lsp.util.root_pattern('package.json', '.git', '.flowconfig'),
+    capabilities = lsp_status.capabilities,
   },
   gopls = {
     cmd = {'gopls'},
