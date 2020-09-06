@@ -76,3 +76,6 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/completion-nvim"]
 	path = nvim/.config/nvim/pack/modules/opt/completion-nvim
 	url = git@github.com:nvim-lua/completion-nvim.git
+[submodule "nvim/.config/nvim/pack/modules/opt/photon"]
+	path = nvim/.config/nvim/pack/modules/opt/photon
+	url = https://github.com/axvr/photon.vim

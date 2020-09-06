@@ -15,7 +15,6 @@ packadd! chadtree
 packadd! auto-pairs
 packadd! ale
 
-" packadd! coc.nvim
 packadd! nvim-lspconfig
 packadd! diagnostic-nvim
 packadd! completion-nvim
@@ -24,6 +23,7 @@ packadd! completion-nvim
 packadd! embark
 packadd! vim-paper
 packadd! papercolor-theme
+packadd! photon
 
 " syntax
 packadd! vim-javascript
@@ -33,7 +33,7 @@ packadd! vim-jsx-pretty
 syntax on
 let mapleader = " "
 
-colorscheme embark
+colorscheme photon
 
 " filetypes
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
