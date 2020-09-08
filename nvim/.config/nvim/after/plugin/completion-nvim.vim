@@ -19,3 +19,7 @@ inoremap <silent><expr> <TAB>
   \ pumvisible() ? "\<C-n>" :
   \ <SID>check_back_space() ? "\<TAB>" :
   \ completion#trigger_completion()
+
+let g:completion_matching_strategy_list = ['fuzzy']
+
+" let g:completion_enable_auto_signature = 0
