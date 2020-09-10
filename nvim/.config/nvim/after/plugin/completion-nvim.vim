@@ -22,4 +22,3 @@ inoremap <silent><expr> <TAB>
 
 let g:completion_matching_strategy_list = ['fuzzy']
 
-" let g:completion_enable_auto_signature = 0
