@@ -124,6 +124,11 @@ local servers = {
     cmd = {'intelephense', '--stdio'},
     filetypes = {'php'},
     root_dir = nvim_lsp.util.root_pattern('.git')
+  },
+  bashls = {
+    cmd = {'bash-language-server', 'start'},
+    filetypes = {'sh', 'zsh'},
+    root_dir = nvim_lsp.util.root_pattern('.git')
   }
 }
 
