@@ -24,6 +24,7 @@ packadd! embark
 packadd! vim-paper
 packadd! papercolor-theme
 packadd! photon
+packadd! vim-mellow
 
 " syntax
 packadd! vim-javascript
@@ -33,7 +34,9 @@ packadd! vim-jsx-pretty
 syntax on
 let mapleader = " "
 
-colorscheme photon
+set termguicolors
+set background=dark
+colorscheme mellow 
 
 " filetypes
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx

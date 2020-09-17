@@ -79,3 +79,6 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/photon"]
 	path = nvim/.config/nvim/pack/modules/opt/photon
 	url = https://github.com/axvr/photon.vim
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-mellow"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-mellow
+	url = git@github.com:adigitoleo/vim-mellow.git
