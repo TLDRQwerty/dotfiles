@@ -109,12 +109,6 @@ local servers = {
     cmd = {'vim-language-server', '--stdio'},
     filetypes = {'vim'},
   },
-  flow = {
-    cmd = {'./node_modules/.bin/flow', 'lsp', '--lazy-mode', 'ide'},
-    filetypes = {'javascript', 'javascriptreact'},
-    root_dir = nvim_lsp.util.root_pattern('package.json', '.git', '.flowconfig'),
-    capabilities = lsp_status.capabilities,
-  },
   gopls = {
     cmd = {'gopls'},
     filetypes = {'go'},
