@@ -1,0 +1,8 @@
+# !/bin/sh
+
+bluetoothctl power on
+selectedDevice=$(bluetoothctl paired-devices | awk '{$1=""; print $0}' | dmenu | awk '{print $1}')
+
+echo "$selectedDevice"
+
+bluetoothctl connect "$selectedDevice"
