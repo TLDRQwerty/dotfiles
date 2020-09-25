@@ -6,9 +6,11 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 
-export NVM_DIR=$XDG_DATA_HOME/nvm
 export GOPATH=$XDG_DATA_HOME/go
 
 export EDITOR='nvim'
-export BROWSER='firefox-developer-edition'
+export BROWSER='firefox'
 export TERMINAL='alacritty'
+
+# I don't know why I need this however if I don't have it yarn "locates" a config file in ~/.config directory either thought there isn't any
+unset NPM_CONFIG_USERCONFIG

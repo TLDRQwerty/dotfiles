@@ -1,6 +1,8 @@
 # Zsh Config
 alias vim=nvim
 
+source "$ZDOTDIR/.zshenv"
+
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
