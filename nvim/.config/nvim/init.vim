@@ -111,3 +111,6 @@ if exists('##TextYankPost')
   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({})
 endif
 
+" Highlight any extra whitespace at the end of the line
+highlight RedundantSpaces ctermbg=red guibg=darkred
+match RedundantSpaces /\s\+$/
