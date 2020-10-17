@@ -1,0 +1,69 @@
+[bar]
+foreground = #ffffff
+background = #212529
+
+border = #ffffff
+
+[date]
+foreground = #ffffff
+background = #495057
+
+[battery]
+charging-foreground = #ffffff
+charging-background = #495057
+
+discharging-foreground = #ffffff
+discharging-background = #495057
+
+full-foreground = #ffffff
+full-background = #495057
+
+[bspwm]
+foreground = #ffffff
+background = #495057
+
+focused-foreground = #ffddff
+focused-background = #495057
+
+occupied-foreground = #ffff00
+occupied-background = #495057
+
+empty-foreground = #ffffff
+empty-background = #495057
+
+[cpu]
+foreground = #ffffff
+background = #495057
+
+[memory]
+foreground = #ffffff
+background = #495057
+
+[temperature]
+foreground = #ffffff
+background = #495057
+
+warn-foreground = #ff0000
+warn-background = #495057
+
+[backlight]
+foreground = #ffffff
+background = #495057
+
+[pulseaudio]
+muted-foreground = #ff0000
+muted-background = #495057
+
+volume-foreground = #ffffff
+volume-background = #495057
+
+[xwindow]
+foreground = #ffffff
+background = #495057
+
+[network]
+connected-foreground = #ffffff
+connected-background = #495057
+
+disconnected-foreground = #ff0000
+disconnected-background = #495057
