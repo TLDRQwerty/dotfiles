@@ -1,0 +1,27 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + {_,shift} + Return
+	{alacritty,cool-retro-term}
+
+{XF86MonBrightnessUp, XF86MonBrightnessDown}
+  xbacklight {+,-}2.5%
+
+{XF86AudioNext, XF86AudioPrev, XF86AudioPlay}
+  playerctl --player=playerctld {next, previous, play-pause}
+
+{XF86AudioRaiseVolume, XF86AudioLowerVolume}
+  volume_controls {+5,-5}
+# program launcher
+super + @space
+	dmenu_run
+
+# Screen shot tool
+super + shift + s
+  flameshot
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
