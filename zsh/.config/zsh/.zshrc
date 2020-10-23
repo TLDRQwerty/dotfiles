@@ -96,6 +96,9 @@ bindkey '^e' edit-command-line
 # Auto nvm
 autoload -U add-zsh-hook
 load-nvmrc() {
+  if ! command -v nvm &> /dev/null; then
+    return
+  fi
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     nvm use
   elif [[ $(nvm version) != $(nvm version default)  ]]; then

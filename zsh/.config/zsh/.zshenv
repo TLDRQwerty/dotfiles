@@ -1,3 +1,5 @@
+export ZDOTDIR=$HOME/.config/zsh
+
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 export DOTFILES=$HOME/dotfiles
