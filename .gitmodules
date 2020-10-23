@@ -82,3 +82,6 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/vim-mellow"]
 	path = nvim/.config/nvim/pack/modules/opt/vim-mellow
 	url = git@github.com:adigitoleo/vim-mellow.git
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-glsl"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-glsl
+	url = git@github.com:tikhomirov/vim-glsl.git

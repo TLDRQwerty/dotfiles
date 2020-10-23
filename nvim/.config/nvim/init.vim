@@ -30,6 +30,7 @@ packadd! vim-mellow
 packadd! vim-javascript
 packadd! typescript-vim
 packadd! vim-jsx-pretty
+packadd! vim-glsl
 
 syntax on
 let mapleader = " "
