@@ -76,3 +76,18 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/nvcode-color-schemes.vim"]
 	path = nvim/.config/nvim/pack/modules/opt/nvcode-color-schemes.vim
 	url = git@github.com:ChristianChiarulli/nvcode-color-schemes.vim.git
+[submodule "nvim/.config/nvim/pack/modules/opt/blue-moon"]
+	path = nvim/.config/nvim/pack/modules/opt/blue-moon
+	url = https://github.com/kyazdani42/blue-moon
+[submodule "nvim/.config/nvim/pack/modules/opt/sonokai"]
+	path = nvim/.config/nvim/pack/modules/opt/sonokai
+	url = https://github.com/sainnhe/sonokai
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-moonfly-colors"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-moonfly-colors
+	url = https://github.com/bluz71/vim-moonfly-colors
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-nightfly-guicolors"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-nightfly-guicolors
+	url = https://github.com/bluz71/vim-nightfly-guicolors
+[submodule "nvim/.config/nvim/pack/modules/opt/nvim-highlite"]
+	path = nvim/.config/nvim/pack/modules/opt/nvim-highlite
+	url = https://github.com/Iron-E/nvim-highlite
