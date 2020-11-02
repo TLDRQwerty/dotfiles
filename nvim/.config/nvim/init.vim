@@ -21,11 +21,7 @@ packadd! completion-nvim
 packadd! nvim-treesitter
 
 " themes
-packadd! embark
-packadd! vim-paper
-packadd! papercolor-theme
-packadd! photon
-packadd! vim-mellow
+packadd! nvcode-color-schemes.vim
 
 " syntax
 packadd! vim-javascript
@@ -116,3 +112,12 @@ endif
 " Highlight any extra whitespace at the end of the line
 highlight RedundantSpaces ctermbg=red guibg=darkred
 match RedundantSpaces /\s\+$/
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",
+  highlight = {
+    enable = false,
+  }
+}
+

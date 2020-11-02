@@ -55,15 +55,6 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/lsp-status"]
 	path = nvim/.config/nvim/pack/modules/opt/lsp-status
 	url = git@github.com:nvim-lua/lsp-status.nvim.git
-[submodule "nvim/.config/nvim/pack/modules/opt/embark"]
-	path = nvim/.config/nvim/pack/modules/opt/embark
-	url = git@github.com:embark-theme/vim.git
-[submodule "nvim/.config/nvim/pack/modules/opt/papercolor-theme"]
-	path = nvim/.config/nvim/pack/modules/opt/papercolor-theme
-	url = git@github.com:NLKNguyen/papercolor-theme.git
-[submodule "nvim/.config/nvim/pack/modules/opt/vim-paper"]
-	path = nvim/.config/nvim/pack/modules/opt/vim-paper
-	url = git@github.com:YorickPeterse/vim-paper.git
 [submodule "nvim/.config/nvim/pack/modules/opt/vim-javascript"]
 	path = nvim/.config/nvim/pack/modules/opt/vim-javascript
 	url = git@github.com:pangloss/vim-javascript.git
@@ -76,12 +67,6 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/completion-nvim"]
 	path = nvim/.config/nvim/pack/modules/opt/completion-nvim
 	url = git@github.com:nvim-lua/completion-nvim.git
-[submodule "nvim/.config/nvim/pack/modules/opt/photon"]
-	path = nvim/.config/nvim/pack/modules/opt/photon
-	url = https://github.com/axvr/photon.vim
-[submodule "nvim/.config/nvim/pack/modules/opt/vim-mellow"]
-	path = nvim/.config/nvim/pack/modules/opt/vim-mellow
-	url = git@github.com:adigitoleo/vim-mellow.git
 [submodule "nvim/.config/nvim/pack/modules/opt/vim-glsl"]
 	path = nvim/.config/nvim/pack/modules/opt/vim-glsl
 	url = git@github.com:tikhomirov/vim-glsl.git
