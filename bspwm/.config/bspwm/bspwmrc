@@ -2,7 +2,8 @@
 
 sxhkd -c $HOME/.config/sxhkd/bspwm-hotkeys &
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor HDMI-0 -d I II III IV V VI VII VIII IX X
+bspc monitor DP-0 -d I II III IV V VI VII VIII IX X
 
 bspc config border_width 4
 bspc config window_gap   0
@@ -28,3 +29,5 @@ function merge_borders {
     bspc config ${side}_padding $BW
   done
 }
+
+sxhkd -c $HOME/config/sxhkd/bspwm-hotkeys

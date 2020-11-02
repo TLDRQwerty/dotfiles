@@ -7,6 +7,7 @@ source "$ZDOTDIR/.zshenv"
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=$HOME/.cache/zsh/history
+setopt APPEND_HISTORY
 
 setopt autocd
 

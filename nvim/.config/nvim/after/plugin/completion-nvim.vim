@@ -20,5 +20,5 @@ inoremap <silent><expr> <TAB>
   \ <SID>check_back_space() ? "\<TAB>" :
   \ completion#trigger_completion()
 
-let g:completion_matching_strategy_list = ['fuzzy']
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 

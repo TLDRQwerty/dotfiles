@@ -18,6 +18,7 @@ packadd! ale
 packadd! nvim-lspconfig
 packadd! diagnostic-nvim
 packadd! completion-nvim
+packadd! nvim-treesitter
 
 " themes
 packadd! embark
@@ -37,7 +38,7 @@ let mapleader = " "
 
 set termguicolors
 set background=dark
-colorscheme mellow 
+colorscheme mellow
 
 " filetypes
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx

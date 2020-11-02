@@ -39,7 +39,7 @@ local function make_on_attach(config)
     mapper('n', 'gTD', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
     mapper('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
     mapper('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-    mapper('n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+    mapper('n', 'ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
 
     mapper('n', 'dn', '<cmd>NextDiagnostic<CR>')
     mapper('n', 'dp', '<cmd>PrevDiagnostic<CR>')
@@ -123,7 +123,7 @@ local servers = {
     cmd = {'bash-language-server', 'start'},
     filetypes = {'sh', 'zsh'},
     root_dir = nvim_lsp.util.root_pattern('.git')
-  }
+  },
 }
 
 for server, config in pairs(servers) do

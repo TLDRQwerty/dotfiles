@@ -85,3 +85,6 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/vim-glsl"]
 	path = nvim/.config/nvim/pack/modules/opt/vim-glsl
 	url = git@github.com:tikhomirov/vim-glsl.git
+[submodule "nvim/.config/nvim/pack/modules/opt/nvim-treesitter"]
+	path = nvim/.config/nvim/pack/modules/opt/nvim-treesitter
+	url = git@github.com:nvim-treesitter/nvim-treesitter.git

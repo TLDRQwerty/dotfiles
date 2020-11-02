@@ -20,7 +20,7 @@ super + @space
 
 # Screen shot tool
 super + shift + s
-  flameshot
+  flameshot gui
 
 # make sxhkd reload its configuration files:
 super + Escape
