@@ -88,3 +88,6 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/nvim-treesitter"]
 	path = nvim/.config/nvim/pack/modules/opt/nvim-treesitter
 	url = git@github.com:nvim-treesitter/nvim-treesitter.git
+[submodule "nvim/.config/nvim/pack/modules/opt/nvcode-color-schemes.vim"]
+	path = nvim/.config/nvim/pack/modules/opt/nvcode-color-schemes.vim
+	url = git@github.com:ChristianChiarulli/nvcode-color-schemes.vim.git
