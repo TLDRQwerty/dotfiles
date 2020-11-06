@@ -18,6 +18,7 @@ packadd! ale
 packadd! nvim-lspconfig
 packadd! diagnostic-nvim
 packadd! completion-nvim
+packadd! completion-buffers
 packadd! nvim-treesitter
 
 " themes

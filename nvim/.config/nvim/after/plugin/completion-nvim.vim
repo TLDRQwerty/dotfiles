@@ -10,6 +10,8 @@ set shortmess+=c
 
 let g:completion_enable_auto_popup = 1
 
+set pumblend=20
+
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
@@ -21,4 +23,10 @@ inoremap <silent><expr> <TAB>
   \ completion#trigger_completion()
 
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+
+let g:completion_chain_complete_list = [
+    \{'complete_items': ['lsp', 'buffers']},
+    \{'mode': '<c-p>'},
+    \{'mode': '<c-n>'}
+\]
 

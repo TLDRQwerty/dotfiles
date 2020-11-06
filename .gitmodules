@@ -91,3 +91,6 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/nvim-highlite"]
 	path = nvim/.config/nvim/pack/modules/opt/nvim-highlite
 	url = https://github.com/Iron-E/nvim-highlite
+[submodule "nvim/.config/nvim/pack/modules/opt/completion-buffers"]
+	path = nvim/.config/nvim/pack/modules/opt/completion-buffers
+	url = https://github.com/steelsojka/completion-buffers
