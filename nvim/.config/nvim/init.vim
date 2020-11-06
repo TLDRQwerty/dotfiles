@@ -39,7 +39,7 @@ let mapleader = " "
 
 set termguicolors
 set background=dark
-colorscheme blue-moon
+colorscheme sonokai
 
 " filetypes
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
