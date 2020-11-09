@@ -102,7 +102,7 @@ local servers = {
 
   tsserver = {
     cmd = {'typescript-language-server', '--stdio'},
-    filetypes = {'typescript', 'typescriptreact'},
+    filetypes = {'javascript', 'javascriptreact', 'typescript', 'typescriptreact'},
     root_dir = nvim_lsp.util.root_pattern('package.json', 'tsconfig.json', '.git'),
   },
   vimls = {
