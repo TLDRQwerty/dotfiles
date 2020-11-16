@@ -1,37 +1,41 @@
-setopt prompt_subst
+autoload -Uz vcs_info
 
-preexec() {
-  cmdStart="$SECONDS"
+zstyle ':vcs_info:*' enable git
 
-  # Set the title
-  print -Pn "\e]0;| $(pwd) |\a"
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' formats "(%b) %m %u %c"
+zstyle ':vcs_info:*' unstagedstr '⛌'
+zstyle ':vcs_info:*' stagedstr '●'
+
+zstyle ':vcs_info:*+*:*' debug  false
+
+
+zstyle ':vcs_info:git+post-backend:*' hooks git-post-backend-updown
+
++vi-git-post-backend-updown() {
+	git rev-parse @{upstream} >/dev/null 2>&1 || return
+	local -a x; x=( $(git rev-list --left-right --count HEAD...@{upstream} ) )
+	hook_com[branch]+="%f" # end coloring
+	(( x[2] )) && hook_com[branch]+=" $x[2]˅"
+	(( x[1] )) && hook_com[branch]+=" $x[1]˄"
+	return 0
+}
+
+# Show untracked files
+
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+
++vi-git-untracked(){
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep '??' &> /dev/null ; then
+        hook_com[staged]+='T'
+    fi
 }
 
 precmd() {
-  local cmdEnd="$SECONDS"
-  elapsed=$((cmdEnd-cmdStart))
+	vcs_info
 }
 
-function getExecutionTime() {
-  [[ $elapsed -gt 0 ]] && echo "$elapsed"
-}
+setopt prompt_subst
 
-function getPrompt() {
-  [[ -d '.git' ]] && echo "[$(git branch --show-current)]"
-}
-
-function getNVM() {
-  [[ -f '.nvmrc' ]] && echo "Node: $(nvm current)"
-}
-
-function getErrorCode() {
-  echo '%(?..%?)'
-}
-
-function getJobs() {
-  echo " $(jobs | awk '{ print $1 }')"
-}
-
-PROMPT='$(getPrompt)$(getJobs)%~>'
-RPROMPT='$(getExecutionTime) $(getNVM) $(getErrorCode)'
-
+PROMPT='%~ ${vcs_info_msg_0_}| '
