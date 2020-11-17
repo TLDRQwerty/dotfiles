@@ -49,9 +49,6 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/nvim-lspconfig"]
 	path = nvim/.config/nvim/pack/modules/opt/nvim-lspconfig
 	url = git@github.com:neovim/nvim-lspconfig.git
-[submodule "nvim/.config/nvim/pack/modules/opt/diagnostic-nvim"]
-	path = nvim/.config/nvim/pack/modules/opt/diagnostic-nvim
-	url = git@github.com:nvim-lua/diagnostic-nvim.git
 [submodule "nvim/.config/nvim/pack/modules/opt/lsp-status"]
 	path = nvim/.config/nvim/pack/modules/opt/lsp-status
 	url = git@github.com:nvim-lua/lsp-status.nvim.git

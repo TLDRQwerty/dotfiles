@@ -25,7 +25,7 @@ inoremap <silent><expr> <TAB>
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 let g:completion_chain_complete_list = [
-    \{'complete_items': ['lsp', 'buffers']},
+    \{'complete_items': ['lsp', 'buffers', 'path']},
     \{'mode': '<c-p>'},
     \{'mode': '<c-n>'}
 \]
