@@ -91,3 +91,12 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/completion-buffers"]
 	path = nvim/.config/nvim/pack/modules/opt/completion-buffers
 	url = https://github.com/steelsojka/completion-buffers
+[submodule "nvim/.config/nvim/pack/modules/opt/popup.nvim"]
+	path = nvim/.config/nvim/pack/modules/opt/popup.nvim
+	url = https://github.com/nvim-lua/popup.nvim
+[submodule "nvim/.config/nvim/pack/modules/opt/plenary.nvim"]
+	path = nvim/.config/nvim/pack/modules/opt/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim
+[submodule "nvim/.config/nvim/pack/modules/opt/telescope.nvim"]
+	path = nvim/.config/nvim/pack/modules/opt/telescope.nvim
+	url = https://github.com/nvim-telescope/telescope.nvim

@@ -1,4 +1,5 @@
 local nvim_lsp = require('lspconfig')
+local configs = require('lspconfig/configs')
 local lsp_status = require('lsp-status')
 local completion = require('completion')
 
@@ -42,7 +43,7 @@ local function make_on_attach(config)
 		mapper('n', 'dn', '<cmd>vim.lsp.diagnostic.goto_next()CR>')
 		mapper('n', 'dp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
 		mapper('n', 'do', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
-		mapper('n', 'E', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>')
+		mapper('n', 'E', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
 
 		if config.after then config.after(client) end
 	end
@@ -148,8 +149,9 @@ local servers = {
 				}
 			}
 		}
-	}
+	},
 }
+
 
 for server, config in pairs(servers) do
 	config.on_attach = make_on_attach(config)

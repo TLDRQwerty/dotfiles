@@ -20,6 +20,10 @@ packadd! completion-nvim
 packadd! completion-buffers
 packadd! nvim-treesitter
 
+packadd! popup.nvim
+packadd! plenary.nvim
+packadd! telescope.nvim
+
 " themes
 packadd! nvim-highlite
 packadd! vim-nightfly-guicolors
