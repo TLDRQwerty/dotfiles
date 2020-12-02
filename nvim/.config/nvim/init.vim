@@ -19,6 +19,7 @@ packadd! nvim-lspconfig
 packadd! completion-nvim
 packadd! completion-buffers
 packadd! nvim-treesitter
+packadd! completion-treesitter
 
 packadd! popup.nvim
 packadd! plenary.nvim
@@ -43,7 +44,7 @@ let mapleader = " "
 
 set termguicolors
 set background=dark
-colorscheme sonokai
+colorscheme moonfly 
 
 " filetypes
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx

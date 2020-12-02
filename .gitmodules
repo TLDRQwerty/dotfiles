@@ -100,3 +100,6 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/telescope.nvim"]
 	path = nvim/.config/nvim/pack/modules/opt/telescope.nvim
 	url = https://github.com/nvim-telescope/telescope.nvim
+[submodule "nvim/.config/nvim/pack/modules/opt/completion-treesitter"]
+	path = nvim/.config/nvim/pack/modules/opt/completion-treesitter
+	url = https://github.com/nvim-treesitter/completion-treesitter
