@@ -3,11 +3,7 @@
 alias rzsh="source $HOME/.config/zsh/.zshrc"
 alias startx="startx $HOME/.xinitrc"
 
-# Add programs
-alias gh="~/Documents/Code/gh-cli/bin/gh"
-
 ## Git
-
 alias g="git"
 
 # Useful stuff
