@@ -5,6 +5,7 @@ alias startx="startx $HOME/.xinitrc"
 
 ## Git
 alias g="git"
+alias lg="lazygit"
 
 # Useful stuff
 alias vg="vagrant"
