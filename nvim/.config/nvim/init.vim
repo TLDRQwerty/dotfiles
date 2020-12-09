@@ -39,6 +39,8 @@ packadd! typescript-vim
 packadd! vim-jsx-pretty
 packadd! vim-glsl
 
+packadd! lazygit.nvim
+
 syntax on
 let mapleader = " "
 
