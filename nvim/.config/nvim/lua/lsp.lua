@@ -90,16 +90,24 @@ local servers = {
 	},
 	sumneko_lua = {
 		cmd = {'lua-language-server'},
-		filetypes = {'lua'},
 		settings = {
 			Lua = {
 				diagnostics = {globals = {'vim'}},
 				completion = {keywordSnippet = 'Disable'},
-				runtime = {version = 'LuaJIT'}
+				runtime = {
+					version = 'LuaJIT',
+					path = vim.split(package.path, ';'),
+				},
+				workspace = {
+					-- Make the server aware of Neovim runtime files
+					library = {
+						[vim.fn.expand('$VIMRUNTIME/lua')] = true,
+						[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+					},
+				},
 			}
 		},
 	},
-
 	tsserver = {
 		cmd = {'typescript-language-server', '--stdio'},
 		filetypes = {'javascript', 'javascriptreact', 'typescript', 'typescriptreact'},

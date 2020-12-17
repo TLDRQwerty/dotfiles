@@ -16,6 +16,7 @@ packadd! auto-pairs
 packadd! ale
 
 packadd! nvim-lspconfig
+packadd! lsp-status
 packadd! completion-nvim
 packadd! completion-buffers
 packadd! nvim-treesitter
@@ -125,3 +126,5 @@ endif
 highlight RedundantSpaces ctermbg=darkgray guibg=darkgray
 match RedundantSpaces /\s\+$/
 
+lua require('init')
+execute 'luafile ' . stdpath('config') . '/lua/lsp.lua'
