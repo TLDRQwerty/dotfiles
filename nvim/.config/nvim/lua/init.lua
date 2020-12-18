@@ -41,4 +41,3 @@ require('telescope').setup{
   }
 }
 
-print('foobar')
