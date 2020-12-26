@@ -21,6 +21,7 @@ packadd! completion-nvim
 packadd! completion-buffers
 packadd! nvim-treesitter
 packadd! completion-treesitter
+packadd! nlua.nvim
 
 packadd! popup.nvim
 packadd! plenary.nvim
@@ -126,5 +127,4 @@ endif
 highlight RedundantSpaces ctermbg=darkgray guibg=darkgray
 match RedundantSpaces /\s\+$/
 
-lua require('init')
 execute 'luafile ' . stdpath('config') . '/lua/lsp.lua'
