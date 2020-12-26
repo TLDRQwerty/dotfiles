@@ -27,6 +27,8 @@ packadd! popup.nvim
 packadd! plenary.nvim
 packadd! telescope.nvim
 
+packadd! vim-smoothie
+
 " themes
 packadd! nvim-highlite
 packadd! vim-nightfly-guicolors
@@ -62,7 +64,7 @@ set cursorline    " Show the line the cursor is on
 set mouse=a       " Enable mouse
 set clipboard+=unnamedplus " Use system clipboard
 set list
-set listchars=trail:-,tab:‣\ ,eol:¬ " Give whitespace characters
+set listchars=trail:-,tab:·\ ,eol:¬ " Give whitespace characters
 set colorcolumn=120 " Set column at end of line
 set fillchars+=vert:\| " Change vertical split symbol
 

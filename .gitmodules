@@ -109,3 +109,6 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/nlua.nvim"]
 	path = nvim/.config/nvim/pack/modules/opt/nlua.nvim
 	url = https://github.com/tjdevries/nlua.nvim
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-smoothie"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-smoothie
+	url = git@github.com:psliwka/vim-smoothie.git
