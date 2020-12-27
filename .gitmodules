@@ -112,3 +112,6 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/vim-smoothie"]
 	path = nvim/.config/nvim/pack/modules/opt/vim-smoothie
 	url = git@github.com:psliwka/vim-smoothie.git
+[submodule "nvim/.config/nvim/pack/modules/opt/simple-dark"]
+	path = nvim/.config/nvim/pack/modules/opt/simple-dark
+	url = https://github.com/tek256/simple-dark

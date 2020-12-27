@@ -30,12 +30,17 @@ packadd! telescope.nvim
 packadd! vim-smoothie
 
 " themes
+
+"" Treesitter
 packadd! nvim-highlite
 packadd! vim-nightfly-guicolors
 packadd! vim-moonfly-colors
 packadd! sonokai
 packadd! blue-moon
 packadd! nvcode-color-schemes.vim
+
+"" Normal
+packadd! simple-dark
 
 " syntax
 packadd! vim-javascript
@@ -130,3 +135,4 @@ highlight RedundantSpaces ctermbg=darkgray guibg=darkgray
 match RedundantSpaces /\s\+$/
 
 execute 'luafile ' . stdpath('config') . '/lua/lsp.lua'
+execute 'luafile ' . stdpath('config') . '/lua/treesitter.lua'
