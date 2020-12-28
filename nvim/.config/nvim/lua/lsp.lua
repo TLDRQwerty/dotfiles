@@ -43,4 +43,3 @@ require('nlua.lsp.nvim').setup(lspconfig, {
 	}
 })
 
-print('lsp loaded')

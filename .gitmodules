@@ -115,3 +115,27 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/simple-dark"]
 	path = nvim/.config/nvim/pack/modules/opt/simple-dark
 	url = https://github.com/tek256/simple-dark
+[submodule "nvim/.config/nvim/pack/modules/opt/boo-colorscheme-nvim"]
+	path = nvim/.config/nvim/pack/modules/opt/boo-colorscheme-nvim
+	url = git@github.com:rockerBOO/boo-colorscheme-nvim
+[submodule "nvim/.config/nvim/pack/modules/opt/ariake-vim-colors"]
+	path = nvim/.config/nvim/pack/modules/opt/ariake-vim-colors
+	url = git@github.com:jim-at-jibba/ariake-vim-colors
+[submodule "nvim/.config/nvim/pack/modules/opt/oceanic-next"]
+	path = nvim/.config/nvim/pack/modules/opt/oceanic-next
+	url = git@github.com:mhartington/oceanic-next
+[submodule "nvim/.config/nvim/pack/modules/opt/onebuddy"]
+	path = nvim/.config/nvim/pack/modules/opt/onebuddy
+	url = git@github.com:Th3Whit3Wolf/onebuddy
+[submodule "nvim/.config/nvim/pack/modules/opt/modus-theme-vim"]
+	path = nvim/.config/nvim/pack/modules/opt/modus-theme-vim
+	url = git@github.com:ishan9299/modus-theme-vim
+[submodule "nvim/.config/nvim/pack/modules/opt/edge"]
+	path = nvim/.config/nvim/pack/modules/opt/edge
+	url = git@github.com:sainnhe/edge
+[submodule "nvim/.config/nvim/pack/modules/opt/oak"]
+	path = nvim/.config/nvim/pack/modules/opt/oak
+	url = git@github.com:vigoux/oak
+[submodule "nvim/.config/nvim/pack/modules/opt/colorbuddy.nvim"]
+	path = nvim/.config/nvim/pack/modules/opt/colorbuddy.nvim
+	url = git@github.com:tjdevries/colorbuddy.nvim

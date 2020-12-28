@@ -30,6 +30,7 @@ packadd! telescope.nvim
 packadd! vim-smoothie
 
 " themes
+packadd! colorbuddy.nvim
 
 "" Treesitter
 packadd! nvim-highlite
@@ -38,6 +39,13 @@ packadd! vim-moonfly-colors
 packadd! sonokai
 packadd! blue-moon
 packadd! nvcode-color-schemes.vim
+packadd! boo-colorscheme-nvim " lua require('boo-colorscheme-nvim').setup{}
+packadd! ariake-vim-colors
+packadd! oceanic-next
+packadd! onebuddy
+packadd! modus-theme-vim
+packadd! edge
+packadd! oak
 
 "" Normal
 packadd! simple-dark
