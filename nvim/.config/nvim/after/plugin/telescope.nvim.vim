@@ -1,4 +1,4 @@
-noremap <leader>ff :Telescope find_files<CR>
+nnoremap <leader>ff :Telescope find_files<CR>
 noremap <leader>fF :Telescope git_files<CR>
 noremap <leader>fg :Telescope live_grep<CR>
 noremap <leader>fb :Telescope buffers<CR>

@@ -36,6 +36,14 @@ lspconfig.html.setup{
 	on_attach=lsp_attach
 }
 
+lspconfig.texlab.setup{
+	on_attach=lsp_attach
+}
+
+lspconfig.clangd.setup{
+	on_attach=lsp_attach,
+}
+
 require('nlua.lsp.nvim').setup(lspconfig, {
 	on_attach = lsp_attach,
 	globals = {

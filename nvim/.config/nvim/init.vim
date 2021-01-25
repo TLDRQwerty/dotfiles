@@ -70,8 +70,6 @@ autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
 autocmd BufNewFile,BufRead *.js set filetype=javascriptreact
 
-set rtp+=~/dotfiles/zsh/.config/zsh/plugins/fzf
-
 set termguicolors " Enable true color
 set cursorline    " Show the line the cursor is on
 set mouse=a       " Enable mouse
