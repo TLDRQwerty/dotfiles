@@ -19,7 +19,7 @@ local lsp_attach = function(client)
 	mapper('n', 'dn', 'vim.lsp.diagnostic.goto_next()')
 	mapper('n', 'dp', 'vim.lsp.diagnostic.goto_prev()')
 	mapper('n', 'do', 'vim.lsp.diagnostic.set_loclist()')
-	mapper('n', 'E', 'vim.lsp.diagnostic.show_line_diagnostics()')
+	mapper('n', '<leader>e', 'vim.lsp.diagnostic.show_line_diagnostics()')
 
 	completion.on_attach(client)
 end
@@ -29,7 +29,7 @@ lspconfig.vimls.setup{
 }
 
 lspconfig.tsserver.setup{
-	on_attach=lsp_attach
+	on_attach=lsp_attach,
 }
 
 lspconfig.html.setup{
@@ -42,6 +42,68 @@ lspconfig.texlab.setup{
 
 lspconfig.clangd.setup{
 	on_attach=lsp_attach,
+}
+
+lspconfig.diagnosticls.setup{
+	on_attach=lsp_attach,
+	cmd = { 'diagnostic-languageserver', '--stdio' },
+	filetypes = {'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css', 'json', 'scss'},
+	init_options = {
+		linters = {
+			eslint = {
+				sourceName = 'eslint',
+				command = './node_modules/.bin/eslint',
+				rootPatterns = { '.git' },
+				debounce = 100,
+				args = {
+					'--stdin',
+					'--stdin-filename',
+					'%filepath',
+					'--format',
+					'json'
+				},
+				parseJson = {
+					errorsRoot = '[0].messages',
+					line = 'line',
+					column = 'column',
+					endLine = 'endLine',
+					endColumn = 'endColumn',
+					message = '[eslint] ${message} [${ruleId}]',
+					security = 'severity'
+				},
+				securities = {
+					[2] = 'error',
+					[1] = 'warning'
+				}
+			}
+		},
+		filetypes = {
+			javascript = 'eslint',
+			javascriptreact = 'eslint',
+			typescript = 'eslint',
+			typescriptreact = 'eslint'
+		},
+		formatters = {
+			prettierEslint = {
+				command = 'prettier-eslint',
+				args = { '--stdin' },
+				rootPatterns = { '.git' },
+			},
+			prettier = {
+				command = 'prettier',
+				args = { '--stdin-filepath', '%filename' }
+			}
+		},
+		formatFiletypes = {
+			css = 'prettier',
+			javascript = 'prettierEslint',
+			javascriptreact = 'prettierEslint',
+			json = 'prettier',
+			scss = 'prettier',
+			typescript = 'prettierEslint',
+			typescriptreact = 'prettierEslint'
+		}
+	}
 }
 
 require('nlua.lsp.nvim').setup(lspconfig, {
