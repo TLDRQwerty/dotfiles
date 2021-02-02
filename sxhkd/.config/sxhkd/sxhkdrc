@@ -15,8 +15,11 @@ super + {_,shift} + Return
 {XF86AudioRaiseVolume, XF86AudioLowerVolume}
   volume_controls {+5,-5}
 # program launcher
-super + @space
-	dmenu_run
+super + {_,shift}+@space
+	{dmenu_run,rofi -show drun}
+
+super + p
+	1password
 
 # Screen shot tool
 super + shift + s

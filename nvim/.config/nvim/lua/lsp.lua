@@ -106,6 +106,18 @@ lspconfig.diagnosticls.setup{
 	}
 }
 
+lspconfig.cssls.setup{
+	on_attach=lsp_attach
+}
+
+lspconfig.cmake.setup{
+	on_attach=lsp_attach
+}
+
+lspconfig.bashls.setup{
+	on_attach=lsp_attach
+}
+
 require('nlua.lsp.nvim').setup(lspconfig, {
 	on_attach = lsp_attach,
 	globals = {
