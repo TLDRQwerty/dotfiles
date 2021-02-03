@@ -118,10 +118,10 @@ lspconfig.bashls.setup{
 	on_attach=lsp_attach
 }
 
-require('nlua.lsp.nvim').setup(lspconfig, {
-	on_attach = lsp_attach,
-	globals = {
-		"Color", "c", "Group", "g", "s",
-	}
-})
+-- require('nlua.lsp.nvim').setup(lspconfig, {
+--   on_attach = lsp_attach,
+--   globals = {
+--     "Color", "c", "Group", "g", "s",
+--   }
+-- })
 
