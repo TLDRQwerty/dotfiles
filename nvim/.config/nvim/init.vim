@@ -63,7 +63,8 @@ let mapleader = " "
 
 set termguicolors
 set background=dark
-colorscheme moonfly 
+" colorscheme moonfly
+lua require'boo-colorscheme'.use{}
 
 " filetypes
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
