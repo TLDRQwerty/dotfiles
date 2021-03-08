@@ -1,0 +1,13 @@
+# !/bin/sh
+
+while true; do
+	battery="$(cat /sys/class/power_supply/BAT0/capacity)"
+	date="$(date)"
+	cpu="$(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage "%"}')"
+	brightness="$(xbacklight)"
+	playing="$(playerctl metadata title) $(playerctl metadata artist)"
+	s="|"
+
+	xsetroot -name "${playing} $s b: ${brightness%.*} $s C: ${cpu%.2} $s B: $battery% $s D: $date"
+	sleep 2
+done
