@@ -30,6 +30,7 @@ lspconfig.vimls.setup{
 
 lspconfig.tsserver.setup{
 	on_attach=lsp_attach,
+	root_pattern=lspconfig.util.root_pattern('.tsconfig')
 }
 
 lspconfig.html.setup{
@@ -116,6 +117,15 @@ lspconfig.cmake.setup{
 
 lspconfig.bashls.setup{
 	on_attach=lsp_attach
+}
+
+lspconfig.flow.setup{
+	on_attach=lsp_attach,
+	settings = {
+		flow = {
+			useNPMPackagedFlow=true
+		}
+	}
 }
 
 -- require('nlua.lsp.nvim').setup(lspconfig, {
