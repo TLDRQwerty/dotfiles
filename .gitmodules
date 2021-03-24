@@ -136,3 +136,12 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/colorbuddy.nvim"]
 	path = nvim/.config/nvim/pack/modules/opt/colorbuddy.nvim
 	url = git@github.com:tjdevries/colorbuddy.nvim
+[submodule "nvim/.config/nvim/pack/modules/opt/gloombuddy"]
+	path = nvim/.config/nvim/pack/modules/opt/gloombuddy
+	url = git@github.com:bkegley/gloombuddy
+[submodule "nvim/.config/nvim/pack/modules/opt/omni.vim"]
+	path = nvim/.config/nvim/pack/modules/opt/omni.vim
+	url = git@github.com:yonlu/omni.vim
+[submodule "nvim/.config/nvim/pack/modules/opt/aurora"]
+	path = nvim/.config/nvim/pack/modules/opt/aurora
+	url = git@github.com:ray-x/aurora

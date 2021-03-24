@@ -46,6 +46,9 @@ packadd! onebuddy
 packadd! modus-theme-vim
 packadd! edge
 packadd! oak
+packadd! gloombuddy
+packadd! omni.vim
+packadd! aurora
 
 "" Normal
 packadd! simple-dark
