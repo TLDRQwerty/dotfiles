@@ -36,6 +36,10 @@ precmd() {
 	vcs_info
 }
 
+short_prompt() {
+	echo ${${:-/${(j:/:)${(M)${(s:/:)${(D)PWD:h}}#(|.)[^.]}}/${PWD:t}}//\/~/\~}
+}
+
 setopt prompt_subst
 
 PROMPT='%~ ${vcs_info_msg_0_}| '

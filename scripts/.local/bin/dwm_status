@@ -7,7 +7,8 @@ while true; do
 	brightness="$(xbacklight)"
 	playing="$(playerctl metadata title) $(playerctl metadata artist)"
 	s="|"
+	volume="$(volume_controls)"
 
-	xsetroot -name "${playing} $s b: ${brightness%.*} $s C: ${cpu%.2} $s B: $battery% $s D: $date"
+	xsetroot -name "${playing} $s v: ${volume} $s b: ${brightness%.*} $s C: ${cpu%.2} $s B: $battery% $s D: $date"
 	sleep 2
 done

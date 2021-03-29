@@ -67,7 +67,7 @@ let mapleader = " "
 set termguicolors
 set background=dark
 " colorscheme moonfly
-lua require'boo-colorscheme'.use{}
+colorscheme gloombuddy
 
 " filetypes
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
@@ -91,6 +91,8 @@ set ruler
 set nu
 set noswapfile nobackup
 let g:netrw_dirhistmax = 0 " Disable .netrwhist file
+
+set backupcopy=yes " For hot replaceable modules
 
 " Line numbers
 :augroup numbertoggle

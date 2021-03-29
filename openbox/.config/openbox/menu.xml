@@ -205,6 +205,12 @@
 			<prompt>yes</prompt>
 		</action>
 	</item>
+	<item label="Poweroff">
+		<action name="Execute">
+			<command>poweroff</command>
+			<prompt>yes</prompt>
+		</action>
+	</item>
 </menu>
 
 </openbox_menu>

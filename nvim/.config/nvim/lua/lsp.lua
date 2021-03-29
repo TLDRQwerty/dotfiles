@@ -30,7 +30,8 @@ lspconfig.vimls.setup{
 
 lspconfig.tsserver.setup{
 	on_attach=lsp_attach,
-	root_pattern=lspconfig.util.root_pattern('.tsconfig')
+	root_pattern=lspconfig.util.root_pattern('.tsconfig'),
+	filetypes={"typescript", "typescriptreact"}
 }
 
 lspconfig.html.setup{
@@ -128,10 +129,14 @@ lspconfig.flow.setup{
 	}
 }
 
--- require('nlua.lsp.nvim').setup(lspconfig, {
---   on_attach = lsp_attach,
---   globals = {
---     "Color", "c", "Group", "g", "s",
---   }
--- })
+lspconfig.rust_analyzer.setup{
+	on_attach=lsp_attach
+}
+
+require('nlua.lsp.nvim').setup(lspconfig, {
+	on_attach = lsp_attach,
+	globals = {
+		"Color", "c", "Group", "g", "s", "awesome",
+	}
+})
 

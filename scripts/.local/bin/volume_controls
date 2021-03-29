@@ -4,6 +4,12 @@ SINK=$( pactl list sinks short | grep "RUNNING" | sed -e 's,^\([0-9][0-9]*\)[^0-
 
 NOW=$( pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' )
 
+if [ $# -eq 0 ]
+  then
+		echo $NOW && exit
+fi
+
+
 # Get the new volume and check if we are increasing the volume. If we are then exit
 [[ $(($NOW + $1)) -gt 100 ]] && [[ "$1" == *"+"* ]] && exit
 
