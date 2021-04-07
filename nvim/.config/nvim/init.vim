@@ -10,6 +10,7 @@ packadd! vim-gitgutter
 packadd! nerdcommenter
 
 packadd! spelunker
+packadd! vim-grammarous
 
 packadd! chadtree
 packadd! auto-pairs

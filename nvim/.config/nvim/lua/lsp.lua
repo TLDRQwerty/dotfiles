@@ -140,3 +140,7 @@ require('nlua.lsp.nvim').setup(lspconfig, {
 	}
 })
 
+lspconfig.cssls.setup{
+	on_attach=lsp_attach
+}
+

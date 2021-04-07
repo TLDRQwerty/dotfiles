@@ -145,3 +145,6 @@
 [submodule "nvim/.config/nvim/pack/modules/opt/aurora"]
 	path = nvim/.config/nvim/pack/modules/opt/aurora
 	url = git@github.com:ray-x/aurora
+[submodule "nvim/.config/nvim/pack/modules/opt/vim-grammarous"]
+	path = nvim/.config/nvim/pack/modules/opt/vim-grammarous
+	url = git@github.com:rhysd/vim-grammarous.git
