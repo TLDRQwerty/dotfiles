@@ -4,3 +4,12 @@
 [submodule "zsh/.config/zsh/plugins/zsh-autosuggestions"]
 	path = zsh/.config/zsh/plugins/zsh-autosuggestions
 	url = git@github.com:zsh-users/zsh-autosuggestions.git
+[submodule "nvim/.config/nvim/pack/modules/opt/lsp/nlua.nvim"]
+	path = nvim/.config/nvim/pack/modules/opt/nlua.nvim
+	url = git@github.com:tjdevries/nlua.nvim.git
+[submodule "nvim/.config/nvim/pack/modules/opt/lsp/nvim-lspconfig"]
+	path = nvim/.config/nvim/pack/modules/opt/nvim-lspconfig
+	url = git@github.com:neovim/nvim-lspconfig.git
+[submodule "nvim/.config/nvim/pack/modules/opt/lsp/completion-nvim"]
+	path = nvim/.config/nvim/pack/modules/opt/completion-nvim
+	url = git@github.com:nvim-lua/completion-nvim.git

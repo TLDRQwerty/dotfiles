@@ -1,0 +1,10 @@
+require('tldrqwerty.packer').init();
+require('tldrqwerty.vim');
+require('tldrqwerty.lsp');
+require('tldrqwerty.completion');
+require('tldrqwerty.telescope');
+require('tldrqwerty.treesitter');
+require('tldrqwerty.lualine');
+require('tldrqwerty.gitsigns');
+require('tldrqwerty.spellsitter');
+require('aurora');

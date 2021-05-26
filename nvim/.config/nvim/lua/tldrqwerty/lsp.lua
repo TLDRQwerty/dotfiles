@@ -1,28 +1,41 @@
 local lspconfig = require('lspconfig');
+local configs = require('lspconfig/configs');
 local completion = require('completion');
+local lspsignature = require('lsp_signature');
 
-local mapper = function(mode, key, cmd)
-	vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. cmd .. "<CR>", { noremap = true, silent = true })
-end
+local mapper = require('tldrqwerty.utils').mapper;
 
 local lsp_attach = function(client)
-	mapper('n', 'gD', 'vim.lsp.buf.declaration()')
-	mapper('n', 'gd', 'vim.lsp.buf.definition()')
-	mapper('n', 'K', 'vim.lsp.buf.hover()')
-	mapper('n', 'gi', 'vim.lsp.buf.implementation()')
-	mapper('n', '<c-s>', 'vim.lsp.buf.signature_help()')
-	mapper('n', 'gTD', 'vim.lsp.buf.type_definition()')
-	mapper('n', '<leader>rn', 'vim.lsp.buf.rename()')
-	mapper('n', 'gr', 'vim.lsp.buf.references()')
-	mapper('n', 'ca', 'vim.lsp.buf.code_action()')
+	mapper('n', 'gD', 'vim.lsp.buf.declaration()', true);
+	mapper('n', 'gd', 'vim.lsp.buf.definition()', true);
+	mapper('n', 'K', 'vim.lsp.buf.hover()', true);
+	mapper('n', 'gi', 'vim.lsp.buf.implementation()', true);
+	mapper('n', '<c-s>', 'vim.lsp.buf.signature_help()', true);
+	mapper('n', 'gTD', 'vim.lsp.buf.type_definition()', true);
+	mapper('n', '<leader>rn', 'vim.lsp.buf.rename()', true);
+	mapper('n', 'gr', 'vim.lsp.buf.references()', true);
+	mapper('n', 'ca', 'vim.lsp.buf.code_action()', true);
 
-	mapper('n', 'dn', 'vim.lsp.diagnostic.goto_next()')
-	mapper('n', 'dp', 'vim.lsp.diagnostic.goto_prev()')
-	mapper('n', 'do', 'vim.lsp.diagnostic.set_loclist()')
-	mapper('n', '<leader>e', 'vim.lsp.diagnostic.show_line_diagnostics()')
+	mapper('n', 'dn', 'vim.lsp.diagnostic.goto_next()', true);
+	mapper('n', 'dp', 'vim.lsp.diagnostic.goto_prev()', true);
+	mapper('n', 'do', 'vim.lsp.diagnostic.set_loclist()', true);
+	mapper('n', '<leader>f', 'vim.lsp.buf.formatting()', true);
 
-	completion.on_attach(client)
+	mapper('n', '<leader>e', 'vim.lsp.diagnostic.show_line_diagnostics()', true)
+
+	completion.on_attach(client);
+
+	lspsignature.on_attach({ 
+		bind = true,
+		handler_opts = {
+			border = "none",
+		}
+	});
 end
+
+require('nlua.lsp.nvim').setup(lspconfig, {
+	on_attach = lsp_attach,
+})
 
 lspconfig.vimls.setup{
 	on_attach=lsp_attach
@@ -133,14 +146,10 @@ lspconfig.rust_analyzer.setup{
 	on_attach=lsp_attach
 }
 
-require('nlua.lsp.nvim').setup(lspconfig, {
-	on_attach = lsp_attach,
-	globals = {
-		"Color", "c", "Group", "g", "s", "awesome",
-	}
-})
-
 lspconfig.cssls.setup{
 	on_attach=lsp_attach
 }
 
+lspconfig.intelephense.setup{
+	on_attach=lsp_attach
+}
