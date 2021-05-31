@@ -20,4 +20,5 @@ vim.g.completion_chain_complete_list = {
 };
 
 vim.g.completion_matching_strategy_list = { "exact", "substring", "fuzzy" };
+vim.g.compeltion_trigger_on_delete = 1;
 
