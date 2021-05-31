@@ -88,6 +88,8 @@ bindkey -s '^o' 'lfcd\n'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+bindkey '^r' history-incremental-search-backward
+
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 [ -s "$ZDOTDIR/aliasrc.zsh" ] && source "$ZDOTDIR/aliasrc.zsh"
