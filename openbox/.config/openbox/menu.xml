@@ -43,9 +43,9 @@
 </menu>
 
 <menu id="apps-net-menu" label="Internet">
-	<item label="Firefox">
+	<item label="Firefox Developer Edition">
 		<action name="Execute">
-			<command>firefox</command>
+			<command>firefox-developer-edition</command>
 			<startupnotify>
 				<enabled>yes</enabled>
 				<wmclass>Firefox</wmclass>
@@ -155,31 +155,16 @@
 			<startupnotify><enabled>yes</enabled></startupnotify>
 		</action>
 	</item>
-	<item label="Gnome Control Center">
+	<item label="1Password">
 		<action name="Execute">
-			<command>gnome-control-center</command>
+			<command>1password</command>
 			<startupnotify><enabled>yes</enabled></startupnotify>
 		</action>
 	</item>
-	<item label="KDE Control Center">
+	<item label="Audio Mixer">
 		<action name="Execute">
-			<command>kcontrol</command>
+			<command>pavucontrol</command>
 			<startupnotify><enabled>yes</enabled></startupnotify>
-		</action>
-	</item>
-	<item label="Xfce Settings">
-		<action name="Execute">
-			<command>xfce-setting-show</command>
-			<startupnotify><enabled>yes</enabled></startupnotify>
-		</action>
-	</item>
-	<item label="Manage Cups Printers">
-		<action name="Execute">
-			<command>xdg-open http://localhost:631/</command>
-			<startupnotify>
-				<enabled>no</enabled>
-				<icon>cups</icon>
-			</startupnotify>
 		</action>
 	</item>
 	<separator />
