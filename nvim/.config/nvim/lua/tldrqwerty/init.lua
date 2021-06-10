@@ -7,4 +7,6 @@ require('tldrqwerty.treesitter');
 require('tldrqwerty.lualine');
 require('tldrqwerty.gitsigns');
 require('tldrqwerty.spellsitter');
+require('tldrqwerty.ale');
+require('tldrqwerty.lazygit');
 require('aurora');

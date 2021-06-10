@@ -1,2 +1,3 @@
 .zcompdump
-lazygit/.config/jesseduffield/lazygit/state.yml
+lazygit/.config/lazygit/state.yml
+lazygit/.config/lazygit/**/*.patch

@@ -14,14 +14,32 @@ local lsp_attach = function(client)
 	mapper('n', 'gTD', 'vim.lsp.buf.type_definition()', true);
 	mapper('n', '<leader>rn', 'vim.lsp.buf.rename()', true);
 	mapper('n', 'gr', 'vim.lsp.buf.references()', true);
+
 	mapper('n', 'ca', 'vim.lsp.buf.code_action()', true);
 
 	mapper('n', 'dn', 'vim.lsp.diagnostic.goto_next()', true);
 	mapper('n', 'dp', 'vim.lsp.diagnostic.goto_prev()', true);
 	mapper('n', 'do', 'vim.lsp.diagnostic.set_loclist()', true);
-	mapper('n', '<leader>f', 'vim.lsp.buf.formatting()', true);
 
 	mapper('n', '<leader>e', 'vim.lsp.diagnostic.show_line_diagnostics()', true)
+
+	if client.resolved_capabilities.document_formatting then
+		mapper('n', '<leader>f', 'vim.lsp.buf.formatting()', true);
+	end
+
+	if client.resolved_capabilities.document_range_formatting then
+		mapper('v', '<leader>f', 'vim.lsp.buf.range_formatting()', true);
+	end
+
+	if client.resolved_capabilities.document_highlight then
+		vim.api.nvim_exec([[
+		augroup lsp_document_highlight
+			autocmd! * <buffer>
+			autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+			autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+		augroup END
+		]], false)
+	end
 
 	completion.on_attach(client);
 
@@ -135,11 +153,7 @@ lspconfig.bashls.setup{
 
 lspconfig.flow.setup{
 	on_attach=lsp_attach,
-	settings = {
-		flow = {
-			useNPMPackagedFlow=true
-		}
-	}
+	cmd = { "./node_modules/.bin/flow", "lsp", "--lazy-mode=ide" }
 }
 
 lspconfig.rust_analyzer.setup{
@@ -151,5 +165,13 @@ lspconfig.cssls.setup{
 }
 
 lspconfig.intelephense.setup{
+ on_attach=lsp_attach
+}
+
+lspconfig.cssls.setup{
 	on_attach=lsp_attach
 }
+
+-- lspconfig.phpactor.setup{
+--	on_attach=lsp_attach
+-- }

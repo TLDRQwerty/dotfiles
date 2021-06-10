@@ -7,9 +7,8 @@ end
 
 vim.g.mapleader = ' ';
 
-vim.g.swap = false;
-vim.g.backup = false;
-vim.g.mouse = 'a';
+vim.api.nvim_command('set noswapfile');
+vim.api.nvim_command('set nobackup');
 
 -- not sure if working
 vim.g.splitright = true;
@@ -41,6 +40,11 @@ vim.o.shiftwidth = 2;
 vim.o.tabstop = 2;
 vim.o.smarttab = true;
 vim.o.listchars = 'trail:-,tab:· ,eol:¬'
+vim.o.mouse = 'a'
+
+vim.api.nvim_command('set splitright splitbelow')
+
+vim.api.nvim_command('set inccommand=split')
 
 vim.wo.list = true;
 vim.wo.cursorline = true;
@@ -51,9 +55,17 @@ map('i', 'jj', '<esc>')
 map('n', 'j', 'gj');
 map('n', 'k', 'gk');
 
+vim.api.nvim_command("set ignorecase incsearch smartcase")
+
+vim.api.nvim_command("set clipboard=unnamedplus")
+
 -- Set numbers dependent on mode
 vim.api.nvim_command(":augroup numbertoggle")
 vim.api.nvim_command(":  autocmd!")
 vim.api.nvim_command(":  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber")
 vim.api.nvim_command(":  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber")
 vim.api.nvim_command(":augroup END")
+
+vim.api.nvim_command("autocmd BufNewFile,BufRead,BufEnter *.js set filetype=javascriptreact")
+
+vim.g.javascript_plugin_flow = 1;

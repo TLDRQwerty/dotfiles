@@ -88,7 +88,7 @@ bindkey -s '^o' 'lfcd\n'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+source /usr/share/nvm/init-nvm.sh
 
 [ -s "$ZDOTDIR/aliasrc.zsh" ] && source "$ZDOTDIR/aliasrc.zsh"
 
