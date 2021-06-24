@@ -14,5 +14,7 @@ export EDITOR='nvim'
 export BROWSER='firefox'
 export TERMINAL='alacritty'
 
+export ANDROID_SDK_ROOT=/opt/android-sdk
+
 # I don't know why I need this however if I don't have it yarn "locates" a config file in ~/.config directory either thought there isn't any
 unset NPM_CONFIG_USERCONFIG
