@@ -49,15 +49,15 @@ require('telescope').setup{
 	}
 }
 
-mapper('n', '<leader>ff', 'require("telescope.builtin").find_files()');
-mapper('n', '<leader>fF', 'require("telescope.builtin").git_files()');
-mapper('n', '<leader>fg', 'require("telescope.builtin").live_grep()');
-mapper('n', '<leader>fb', 'require("telescope.builtin").buffers()');
-mapper('n', '<leader>fls', 'require("telescope.builtin").lsp_document_symbols()');
-mapper('n', '<leader>flc', 'require("telescope.builtin").lsp_code_actions()');
-mapper('n', '<leader>flw', 'require("telescope.builtin").lsp_workspace_symbols()');
+mapper('n', '<leader>ff', ':Telescope find_files');
+mapper('n', '<leader>fF', ':Telescope git_files');
+mapper('n', '<leader>fg', ':Telescope live_grep');
+mapper('n', '<leader>fb', ':Telescope buffers');
+mapper('n', '<leader>fls', ':Telescope lsp_document_symbols');
+mapper('n', '<leader>flc', ':Telescope lsp_code_actions');
+mapper('n', '<leader>flw', ':Telescope lsp_workspace_symbols');
 
-mapper('n', '<leader>gb', 'require("telescope.builtin").git_branches()');
-mapper('n', '<leader>gc', 'require("telescope.builtin").git_commits()');
-mapper('n', '<leader>gbc', 'require("telescope.builtin").git_bcommits()');
-mapper('n', '<leader>gs', 'require("telescope.builtin").git_status()');
+mapper('n', '<leader>gb', ':Telescope git_branches');
+mapper('n', '<leader>gc', ':Telescope git_commits');
+mapper('n', '<leader>gbc', ':Telescope git_bcommits');
+mapper('n', '<leader>gs', ':Telescope git_status');

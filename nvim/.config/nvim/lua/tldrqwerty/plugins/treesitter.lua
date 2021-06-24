@@ -2,11 +2,12 @@ require('nvim-treesitter.configs').setup {
 	ensure_installed = 'maintained',
 	ignore_install = { 'php' },
 	highlight = {
+		disable = { "php" },
 		enable = true,
 	},
 	indent = {
 		enable = false,
-		disable = { "javascriptreact", "javascript" }
+		disable = { "javascriptreact", "javascript", "php" }
 	}
 }
 

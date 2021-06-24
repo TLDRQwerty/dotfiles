@@ -1,12 +1,6 @@
 require('tldrqwerty.packer').init();
 require('tldrqwerty.vim');
-require('tldrqwerty.lsp');
-require('tldrqwerty.completion');
-require('tldrqwerty.telescope');
-require('tldrqwerty.treesitter');
-require('tldrqwerty.lualine');
-require('tldrqwerty.gitsigns');
-require('tldrqwerty.spellsitter');
-require('tldrqwerty.ale');
-require('tldrqwerty.lazygit');
-require('aurora');
+require('tldrqwerty.hotkeys');
+require('tldrqwerty.plugins.init');
+
+vim.api.nvim_command('colorscheme pinkmare');

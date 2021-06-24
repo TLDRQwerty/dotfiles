@@ -16,10 +16,12 @@ end
 local function install()
 	vim.cmd [[packadd packer.nvim]]
 	require('packer').startup(function(use)
-		use 'wbthomason/packer.nvim';
-		use 'neovim/nvim-lspconfig';
-		use 'tjdevries/nlua.nvim';
-		use 'nvim-lua/completion-nvim';
+		use { 'glepnir/lspsaga.nvim' }
+		use { 'wbthomason/packer.nvim' };
+		use { 'neovim/nvim-lspconfig' };
+		use { 'tjdevries/nlua.nvim' };
+		use { 'creativenull/diagnosticls-nvim' };
+		use { 'hrsh7th/nvim-compe' }
 		use {
 			'nvim-telescope/telescope.nvim',
 			requires = {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}
@@ -28,7 +30,8 @@ local function install()
 		use { 'nvim-treesitter/nvim-treesitter', run = ":TSUpdate" }
 		use { 'ray-x/lsp_signature.nvim' }
 		use { 'christoomey/vim-tmux-navigator' }
-		use { 'dense-analysis/ale' }
+		-- use { 'dense-analysis/ale' }
+		use { 'prettier/vim-prettier', run = "yarn install" }
 		use { 
 			'hoob3rt/lualine.nvim',
 			-- requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -42,15 +45,17 @@ local function install()
 		use { 'lewis6991/spellsitter.nvim' }
 
 		-- JavaScript
-		use { 'pangloss/vim-javascript' }
-		use { 'MaxMEllon/vim-jsx-pretty' }
+		-- use { 'pangloss/vim-javascript' }
+		-- use { 'MaxMEllon/vim-jsx-pretty' }
 		-- use { 'yuezk/vim-js' }
 
 		-- TypeScript
-		use { 'leafgarland/typescript-vim' }
+		-- use { 'leafgarland/typescript-vim' }
 
 		-- PHP
 		-- use { '2072/PHP-Indenting-for-VIm' }
+
+		use { 'sheerun/vim-polyglot' }
 
 		use { 'kdheepak/lazygit.nvim' }
 
@@ -73,14 +78,20 @@ local function install()
 		use { 'marko-cerovac/material.nvim',
 			requires = 'tjdevries/colorbuddy.vim' }
 		use { 'bluz71/vim-moonfly-colors' }
+		use { 'jim-at-jibba/ariake-vim-colors' }
+		use { 'Matsuuu/pinkmare' }
+		use { 'shaunsingh/solarized.nvim' }
+		use { 'Mofiqul/dracula.nvim' }
 
---[[
-		use {
-			'romgrk/nvim-treesitter-context',
-			requires = { 'nvim-treesitter/nvim-treesitter' }
+		-- File manu
+		use { 'ms-jpq/chadtree',
+			branch = 'chad',
+			run = 'python3 -m chadtree deps'
 		}
-]]--
 
+	use { 'tiagofumo/vim-nerdtree-syntax-highlight',
+		requires = 'ms-jpq/chadtree'
+	}
 	end)
 end
 
