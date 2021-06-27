@@ -87,7 +87,8 @@ lspconfig.cmake.setup{
 }
 
 lspconfig.bashls.setup{
-	on_attach=lsp_attach
+	on_attach=lsp_attach,
+	filetypes = { "sh", "zsh" }
 }
 
 lspconfig.flow.setup{
