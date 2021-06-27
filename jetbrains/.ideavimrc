@@ -1,0 +1,22 @@
+let mapleader = " "
+
+set incsearch
+set nu
+
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+inoremap jj <esc>
+
+map <leader>w :w<CR>
+map <leader>q :q<CR>
+
+inoremap <c-s> :action ExpressionTypeInfo<CR>
+
+map <C-l> <C-w>l
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-h> <C-w>h
+
+map <leader>rn :action RenameElement<CR>
