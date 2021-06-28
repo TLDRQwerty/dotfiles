@@ -82,6 +82,7 @@ local function install()
 		use { 'Matsuuu/pinkmare' }
 		use { 'shaunsingh/solarized.nvim' }
 		use { 'Mofiqul/dracula.nvim' }
+		use { 'folke/tokyonight.nvim' }
 
 		-- File manu
 		use { 'ms-jpq/chadtree',

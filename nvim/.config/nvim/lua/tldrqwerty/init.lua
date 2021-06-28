@@ -3,4 +3,4 @@ require('tldrqwerty.vim');
 require('tldrqwerty.hotkeys');
 require('tldrqwerty.plugins.init');
 
-vim.api.nvim_command('colorscheme pinkmare');
+vim.cmd[[ colorscheme tokyonight ]]
