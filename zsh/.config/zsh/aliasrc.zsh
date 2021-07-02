@@ -12,7 +12,7 @@ alias vg="vagrant"
 alias _="sudo"
 
 ## Dir
-alias ls="ls --color"
+alias ls="ls"
 alias l="ls"
 alias ll="l -l"
 alias la="l -a"
