@@ -1,8 +1,3 @@
-local map = function(mode, key, cmd, options) 
-	if options == nil then
-		options = { noremap = false };
-	end
-	return vim.api.nvim_set_keymap(mode, key, cmd, options) 
-end
+local mapper = require('tldrqwerty.utils').mapper;
 
-map('n', '<leader>p', ':CHADopen<CR>')
+mapper('n', '<leader>p', ':CHADopen<CR>')

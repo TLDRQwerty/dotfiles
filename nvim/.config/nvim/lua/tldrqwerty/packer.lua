@@ -16,33 +16,46 @@ end
 local function install()
 	vim.cmd [[packadd packer.nvim]]
 	require('packer').startup(function(use)
-		use { 'glepnir/lspsaga.nvim' }
+		use { 'glepnir/lspsaga.nvim',
+			config=function()
+				require('tldrqwerty.plugins.lspsaga')
+			end
+		}
 		use { 'wbthomason/packer.nvim' };
-		use { 'neovim/nvim-lspconfig' };
+		use { 'neovim/nvim-lspconfig',
+			config = function()
+				require('tldrqwerty.plugins.lsp')
+			end
+		}
 		use { 'tjdevries/nlua.nvim' };
-		use { 'creativenull/diagnosticls-nvim' };
-		use { 'hrsh7th/nvim-compe' }
+		use { 'creativenull/diagnosticls-nvim',
+			config=function()
+			end
+		};
+		use { 'hrsh7th/nvim-compe',
+			config=function()
+				require('tldrqwerty.plugins.nvim-compe')
+			end
+		}
+
 		use {
 			'nvim-telescope/telescope.nvim',
-			requires = {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}
+			requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
 		}
-		use {'nvim-lua/popup.nvim' }
-		use { 'nvim-treesitter/nvim-treesitter', run = ":TSUpdate" }
+
+		use { 'nvim-treesitter/nvim-treesitter',
+			run = ":TSUpdate",
+		}
 		use { 'ray-x/lsp_signature.nvim' }
 		use { 'christoomey/vim-tmux-navigator' }
 		-- use { 'dense-analysis/ale' }
 		use { 'prettier/vim-prettier', run = "yarn install" }
 		use { 
 			'hoob3rt/lualine.nvim',
-			-- requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+			config=function()
+			end
 		}
 		use { 'editorconfig/editorconfig-vim' }
-		use {
-			'lewis6991/gitsigns.nvim',
-			requires = { 'nvim-lua/plenary.nvim' }
-		}
-
-		use { 'lewis6991/spellsitter.nvim' }
 
 		-- JavaScript
 		-- use { 'pangloss/vim-javascript' }
@@ -57,11 +70,24 @@ local function install()
 
 		use { 'sheerun/vim-polyglot' }
 
-		use { 'kdheepak/lazygit.nvim' }
-
 		use { 'jiangmiao/auto-pairs' }
 
+		-- Git
 		use { 'tpope/vim-fugitive' }
+		use { 'pwntester/octo.nvim',
+			config=function()
+				require('tldrqwerty.plugins.octo')
+			end
+		}
+		use {
+			'lewis6991/gitsigns.nvim',
+			requires = { 'nvim-lua/plenary.nvim' },
+			config = function()
+				require('gitsigns').setup()
+			end
+		}
+		use { 'kdheepak/lazygit.nvim' }
+
 
 		-- Themes
 		use { 'ray-x/aurora' }
@@ -74,9 +100,11 @@ local function install()
 		use { 'RishabhRD/nvim-rdark' }
 		use { 'sainnhe/edge' }
 		use { 'bkegley/gloombuddy',
-			requires = 'tjdevries/colorbuddy.vim' }
+			requires = 'tjdevries/colorbuddy.vim' 
+		}
 		use { 'marko-cerovac/material.nvim',
-			requires = 'tjdevries/colorbuddy.vim' }
+			requires = 'tjdevries/colorbuddy.vim' 
+		}
 		use { 'bluz71/vim-moonfly-colors' }
 		use { 'jim-at-jibba/ariake-vim-colors' }
 		use { 'Matsuuu/pinkmare' }
@@ -87,7 +115,9 @@ local function install()
 		-- File manu
 		use { 'ms-jpq/chadtree',
 			branch = 'chad',
-			run = 'python3 -m chadtree deps'
+			run = 'python3 -m chadtree deps',
+			config=function()
+			end
 		}
 
 	use { 'tiagofumo/vim-nerdtree-syntax-highlight',

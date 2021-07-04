@@ -68,3 +68,4 @@ vim.api.nvim_command("inoremap <silent><expr> <C-e>     compe#close('<C-e>')")
 vim.api.nvim_command("inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })")
 vim.api.nvim_command("inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })")
 
+
