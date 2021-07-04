@@ -1,6 +1,8 @@
 # Zsh Config
 alias vim=nvim
 
+export OS="$(uname -s)"
+
 source "$ZDOTDIR/.zshenv"
 
 # History in cache directory:
@@ -90,11 +92,35 @@ bindkey '^e' edit-command-line
 
 bindkey '^r' history-incremental-search-backward
 
-source /usr/share/nvm/init-nvm.sh
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+if [[ "$OS" == "Darwin" ]]; then
+  export PATH="/Users/radfive/.jenv/shims:${PATH}"
+  export JENV_SHELL=zsh
+  export JENV_LOADED=1
+  unset JAVA_HOME
+  source '/opt/homebrew/Cellar/jenv/0.5.4/libexec/libexec/../completions/jenv.zsh'
+  jenv rehash 2>/dev/null
+  jenv refresh-plugins
+  jenv() {
+    typeset command
+    command="$1"
+    if [ "$#" -gt 0 ]; then
+      shift
+    fi
+
+    case "$command" in
+      enable-plugin|rehash|shell|shell-options)
+        eval `jenv "sh-$command" "$@"`;;
+      *)
+        command jenv "$command" "$@";;
+    esac
+  }
+elif [[ "$OS" == "Linux" ]]; then
+  source /usr/share/nvm/init-nvm.sh
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+fi
 
 [ -s "$ZDOTDIR/aliasrc.zsh" ] && source "$ZDOTDIR/aliasrc.zsh"
-
 [ -s "$ZDOTDIR/prompt.zsh" ] && source "$ZDOTDIR/prompt.zsh"
 
 # Auto nvm
