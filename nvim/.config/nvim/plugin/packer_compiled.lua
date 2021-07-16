@@ -7,7 +7,7 @@ end
 
 vim.api.nvim_command('packadd packer.nvim')
 
-local no_errors = pcall(function()
+local no_errors, error_msg = pcall(function()
 
   local time
   local profile_info
@@ -69,76 +69,55 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["ariake-vim-colors"] = {
+  ["Navigator.nvim"] = {
+    config = { "\27LJ\1\2<\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0!tldrqwerty.plugins.navigator\frequire\0" },
     loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/ariake-vim-colors"
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/Navigator.nvim"
   },
-  aurora = {
+  ["TrueZen.nvim"] = {
+    config = { "\27LJ\1\2;\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0 tldrqwerty.plugins.true-zen\frequire\0" },
     loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/aurora"
-  },
-  ["auto-pairs"] = {
-    loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/auto-pairs"
-  },
-  ["blue-moon"] = {
-    loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/blue-moon"
-  },
-  ["boo-colorscheme-nvim"] = {
-    loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/boo-colorscheme-nvim"
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/TrueZen.nvim"
   },
   chadtree = {
-    config = { "\27LJ\1\2\v\0\0\1\0\0\0\1G\0\1\0\0" },
+    config = { "\27LJ\1\2;\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0 tldrqwerty.plugins.chadtree\frequire\0" },
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/chadtree"
   },
-  ["colorbuddy.vim"] = {
-    loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/colorbuddy.vim"
-  },
   ["diagnosticls-nvim"] = {
-    config = { "\27LJ\1\2\v\0\0\1\0\0\0\1G\0\1\0\0" },
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/diagnosticls-nvim"
   },
-  ["dracula.nvim"] = {
-    loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/dracula.nvim"
-  },
-  edge = {
-    loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/edge"
-  },
-  ["editorconfig-vim"] = {
-    loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/editorconfig-vim"
-  },
   ["gitsigns.nvim"] = {
-    config = { "\27LJ\1\0026\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\rgitsigns\frequire\0" },
+    config = { "\27LJ\1\0027\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\28tldrqwerty.git.gitsigns\frequire\0" },
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
-  gloombuddy = {
+  kommentary = {
+    config = { '\27LJ\1\2=\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0"tldrqwerty.plugins.kommentary\frequire\0' },
     loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/gloombuddy"
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/kommentary"
+  },
+  ["kosmikoa.nvim"] = {
+    config = { "\27LJ\1\2\v\0\0\1\0\0\0\1G\0\1\0\0" },
+    loaded = true,
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/kosmikoa.nvim"
   },
   ["lsp_signature.nvim"] = {
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
   },
   ["lspsaga.nvim"] = {
-    config = { "\27LJ\1\2:\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\31tldrqwerty.plugins.lspsaga\frequire\0" },
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
   ["lualine.nvim"] = {
-    config = { "\27LJ\1\2\v\0\0\1\0\0\0\1G\0\1\0\0" },
+    config = { "\27LJ\1\2:\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\31tldrqwerty.plugins.lualine\frequire\0" },
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
   ["material.nvim"] = {
+    config = { "\27LJ\1\2d\0\0\2\0\a\0\n4\0\0\0007\0\1\0%\1\3\0:\1\2\0004\0\4\0%\1\5\0>\0\2\0027\0\6\0>\0\1\1G\0\1\0\bset\rmaterial\frequire\15deep ocean\19material_style\6g\bvim\0" },
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/material.nvim"
   },
@@ -146,44 +125,44 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/nlua.nvim"
   },
+  ["nvim-autopairs"] = {
+    config = { "\27LJ\1\2A\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0&tldrqwerty.plugins.nvim-autopairs\frequire\0" },
+    loaded = true,
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
+  },
   ["nvim-compe"] = {
-    config = { '\27LJ\1\2=\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0"tldrqwerty.plugins.nvim-compe\frequire\0' },
+    config = { "\27LJ\1\0023\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\24tldrqwerty.lsp.comp\frequire\0" },
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
-  ["nvim-highlite"] = {
-    loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/nvim-highlite"
-  },
   ["nvim-lspconfig"] = {
-    config = { "\27LJ\1\0026\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\27tldrqwerty.plugins.lsp\frequire\0" },
+    config = { "\27LJ\1\0023\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\24tldrqwerty.lsp.init\frequire\0" },
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
-  ["nvim-rdark"] = {
+  ["nvim-toggleterm.lua"] = {
+    config = { '\27LJ\1\2=\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0"tldrqwerty.plugins.toggleterm\frequire\0' },
     loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/nvim-rdark"
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/nvim-toggleterm.lua"
   },
   ["nvim-treesitter"] = {
+    config = { "\27LJ\1\0029\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\30tldrqwerty.lsp.treesitter\frequire\0" },
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
-  ["oceanic-next"] = {
+  ["nvim-ts-autotag"] = {
+    config = { "\27LJ\1\2B\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0'tldrqwerty.plugins.nvim-ts-autotag\frequire\0" },
     loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/oceanic-next"
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
   ["octo.nvim"] = {
-    config = { "\27LJ\1\0027\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\28tldrqwerty.plugins.octo\frequire\0" },
+    config = { "\27LJ\1\0023\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\24tldrqwerty.git.octo\frequire\0" },
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/octo.nvim"
-  },
-  ["packer.nvim"] = {
-    loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/packer.nvim"
-  },
-  pinkmare = {
-    loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/pinkmare"
   },
   ["plenary.nvim"] = {
     loaded = true,
@@ -193,89 +172,149 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
-  ["seoul256.nvim"] = {
+  ["presence.nvim"] = {
+    config = { "\27LJ\1\2;\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0 tldrqwerty.plugins.presence\frequire\0" },
     loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/seoul256.nvim"
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/presence.nvim"
   },
-  ["solarized.nvim"] = {
+  ["surround.nvim"] = {
+    config = { "\27LJ\1\2;\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0 tldrqwerty.plugins.surround\frequire\0" },
     loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/solarized.nvim"
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/surround.nvim"
   },
-  sonokai = {
+  ["telescope-fzf-native.nvim"] = {
     loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/sonokai"
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
+    config = { "\27LJ\1\2<\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0!tldrqwerty.plugins.telescope\frequire\0" },
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["tokyonight.nvim"] = {
+    config = { "\27LJ\1\2:\0\0\2\0\3\0\0054\0\0\0007\0\1\0%\1\2\0>\0\2\1G\0\1\0\27colorscheme tokyonight\bcmd\bvim\0" },
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
   },
-  ["vim-fugitive"] = {
+  ["trouble.nvim"] = {
+    config = { "\27LJ\1\0026\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\27tldrqwerty.lsp.trouble\frequire\0" },
     loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/vim-fugitive"
-  },
-  ["vim-moonfly-colors"] = {
-    loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/vim-moonfly-colors"
-  },
-  ["vim-nerdtree-syntax-highlight"] = {
-    loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/vim-nerdtree-syntax-highlight"
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/trouble.nvim"
   },
   ["vim-polyglot"] = {
+    config = { "\27LJ\1\2F\0\0\2\0\3\0\0054\0\0\0007\0\1\0%\1\2\0>\0\2\1G\0\1\0' let g:javascript_plugin_flow = 1 \bcmd\bvim\0" },
     loaded = true,
     path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/vim-polyglot"
   },
-  ["vim-prettier"] = {
+  ["which-key.nvim"] = {
+    config = { "\27LJ\1\2<\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0!tldrqwerty.plugins.which-key\frequire\0" },
     loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/vim-prettier"
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   },
-  ["vim-tmux-navigator"] = {
+  ["zephyr-nvim"] = {
+    config = { "\27LJ\1\2\v\0\0\1\0\0\0\1G\0\1\0\0" },
     loaded = true,
-    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator"
+    path = "/home/qwerty/.local/share/nvim/site/pack/packer/start/zephyr-nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: octo.nvim
-time([[Config for octo.nvim]], true)
-try_loadstring("\27LJ\1\0027\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\28tldrqwerty.plugins.octo\frequire\0", "config", "octo.nvim")
-time([[Config for octo.nvim]], false)
+-- Config for: surround.nvim
+time([[Config for surround.nvim]], true)
+try_loadstring("\27LJ\1\2;\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0 tldrqwerty.plugins.surround\frequire\0", "config", "surround.nvim")
+time([[Config for surround.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\1\0029\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\30tldrqwerty.lsp.treesitter\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+try_loadstring("\27LJ\1\2<\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0!tldrqwerty.plugins.which-key\frequire\0", "config", "which-key.nvim")
+time([[Config for which-key.nvim]], false)
+-- Config for: zephyr-nvim
+time([[Config for zephyr-nvim]], true)
+try_loadstring("\27LJ\1\2\v\0\0\1\0\0\0\1G\0\1\0\0", "config", "zephyr-nvim")
+time([[Config for zephyr-nvim]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+try_loadstring("\27LJ\1\0026\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\27tldrqwerty.lsp.trouble\frequire\0", "config", "trouble.nvim")
+time([[Config for trouble.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\1\2:\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\31tldrqwerty.plugins.lualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
+-- Config for: kommentary
+time([[Config for kommentary]], true)
+try_loadstring('\27LJ\1\2=\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0"tldrqwerty.plugins.kommentary\frequire\0', "config", "kommentary")
+time([[Config for kommentary]], false)
+-- Config for: TrueZen.nvim
+time([[Config for TrueZen.nvim]], true)
+try_loadstring("\27LJ\1\2;\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0 tldrqwerty.plugins.true-zen\frequire\0", "config", "TrueZen.nvim")
+time([[Config for TrueZen.nvim]], false)
+-- Config for: nvim-ts-autotag
+time([[Config for nvim-ts-autotag]], true)
+try_loadstring("\27LJ\1\2B\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0'tldrqwerty.plugins.nvim-ts-autotag\frequire\0", "config", "nvim-ts-autotag")
+time([[Config for nvim-ts-autotag]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring("\27LJ\1\2<\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0!tldrqwerty.plugins.telescope\frequire\0", "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
+-- Config for: material.nvim
+time([[Config for material.nvim]], true)
+try_loadstring("\27LJ\1\2d\0\0\2\0\a\0\n4\0\0\0007\0\1\0%\1\3\0:\1\2\0004\0\4\0%\1\5\0>\0\2\0027\0\6\0>\0\1\1G\0\1\0\bset\rmaterial\frequire\15deep ocean\19material_style\6g\bvim\0", "config", "material.nvim")
+time([[Config for material.nvim]], false)
+-- Config for: nvim-compe
+time([[Config for nvim-compe]], true)
+try_loadstring("\27LJ\1\0023\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\24tldrqwerty.lsp.comp\frequire\0", "config", "nvim-compe")
+time([[Config for nvim-compe]], false)
+-- Config for: Navigator.nvim
+time([[Config for Navigator.nvim]], true)
+try_loadstring("\27LJ\1\2<\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0!tldrqwerty.plugins.navigator\frequire\0", "config", "Navigator.nvim")
+time([[Config for Navigator.nvim]], false)
+-- Config for: vim-polyglot
+time([[Config for vim-polyglot]], true)
+try_loadstring("\27LJ\1\2F\0\0\2\0\3\0\0054\0\0\0007\0\1\0%\1\2\0>\0\2\1G\0\1\0' let g:javascript_plugin_flow = 1 \bcmd\bvim\0", "config", "vim-polyglot")
+time([[Config for vim-polyglot]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\1\2A\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0&tldrqwerty.plugins.nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: tokyonight.nvim
+time([[Config for tokyonight.nvim]], true)
+try_loadstring("\27LJ\1\2:\0\0\2\0\3\0\0054\0\0\0007\0\1\0%\1\2\0>\0\2\1G\0\1\0\27colorscheme tokyonight\bcmd\bvim\0", "config", "tokyonight.nvim")
+time([[Config for tokyonight.nvim]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
-try_loadstring("\27LJ\1\0026\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\27tldrqwerty.plugins.lsp\frequire\0", "config", "nvim-lspconfig")
+try_loadstring("\27LJ\1\0023\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\24tldrqwerty.lsp.init\frequire\0", "config", "nvim-lspconfig")
 time([[Config for nvim-lspconfig]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
-try_loadstring("\27LJ\1\0026\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+try_loadstring("\27LJ\1\0027\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\28tldrqwerty.git.gitsigns\frequire\0", "config", "gitsigns.nvim")
 time([[Config for gitsigns.nvim]], false)
--- Config for: lspsaga.nvim
-time([[Config for lspsaga.nvim]], true)
-try_loadstring("\27LJ\1\2:\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\31tldrqwerty.plugins.lspsaga\frequire\0", "config", "lspsaga.nvim")
-time([[Config for lspsaga.nvim]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\1\2\v\0\0\1\0\0\0\1G\0\1\0\0", "config", "lualine.nvim")
-time([[Config for lualine.nvim]], false)
+-- Config for: kosmikoa.nvim
+time([[Config for kosmikoa.nvim]], true)
+try_loadstring("\27LJ\1\2\v\0\0\1\0\0\0\1G\0\1\0\0", "config", "kosmikoa.nvim")
+time([[Config for kosmikoa.nvim]], false)
+-- Config for: nvim-toggleterm.lua
+time([[Config for nvim-toggleterm.lua]], true)
+try_loadstring('\27LJ\1\2=\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0"tldrqwerty.plugins.toggleterm\frequire\0', "config", "nvim-toggleterm.lua")
+time([[Config for nvim-toggleterm.lua]], false)
 -- Config for: chadtree
 time([[Config for chadtree]], true)
-try_loadstring("\27LJ\1\2\v\0\0\1\0\0\0\1G\0\1\0\0", "config", "chadtree")
+try_loadstring("\27LJ\1\2;\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0 tldrqwerty.plugins.chadtree\frequire\0", "config", "chadtree")
 time([[Config for chadtree]], false)
--- Config for: nvim-compe
-time([[Config for nvim-compe]], true)
-try_loadstring('\27LJ\1\2=\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0"tldrqwerty.plugins.nvim-compe\frequire\0', "config", "nvim-compe")
-time([[Config for nvim-compe]], false)
--- Config for: diagnosticls-nvim
-time([[Config for diagnosticls-nvim]], true)
-try_loadstring("\27LJ\1\2\v\0\0\1\0\0\0\1G\0\1\0\0", "config", "diagnosticls-nvim")
-time([[Config for diagnosticls-nvim]], false)
+-- Config for: octo.nvim
+time([[Config for octo.nvim]], true)
+try_loadstring("\27LJ\1\0023\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\24tldrqwerty.git.octo\frequire\0", "config", "octo.nvim")
+time([[Config for octo.nvim]], false)
+-- Config for: presence.nvim
+time([[Config for presence.nvim]], true)
+try_loadstring("\27LJ\1\2;\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0 tldrqwerty.plugins.presence\frequire\0", "config", "presence.nvim")
+time([[Config for presence.nvim]], false)
 if should_profile then save_profiles() end
 
 end)
 
 if not no_errors then
-  vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: ".v:exception | echom "Please check your config for correctness" | echohl None')
+  vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end

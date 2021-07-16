@@ -16,113 +16,231 @@ end
 local function install()
 	vim.cmd [[packadd packer.nvim]]
 	require('packer').startup(function(use)
-		use { 'glepnir/lspsaga.nvim',
-			config=function()
-				require('tldrqwerty.plugins.lspsaga')
-			end
-		}
-		use { 'wbthomason/packer.nvim' };
-		use { 'neovim/nvim-lspconfig',
+		-- Colorschemes
+		use {
+			'folke/tokyonight.nvim',
 			config = function()
-				require('tldrqwerty.plugins.lsp')
-			end
+				vim.cmd[[colorscheme tokyonight]]
+			end,
 		}
-		use { 'tjdevries/nlua.nvim' };
-		use { 'creativenull/diagnosticls-nvim',
-			config=function()
-			end
-		};
-		use { 'hrsh7th/nvim-compe',
-			config=function()
-				require('tldrqwerty.plugins.nvim-compe')
+
+		use {
+			'marko-cerovac/material.nvim',
+			config = function()
+				vim.g.material_style = 'deep ocean'
+				require('material').set()
 			end
 		}
 
+		use {
+			'novakne/kosmikoa.nvim',
+			config = function()
+			end,
+		}
+
+		use {
+			'glepnir/zephyr-nvim',
+			config = function()
+			end,
+		}
+
+		use {
+			'bluz71/vim-moonfly-colors'
+		}
+
+		use {
+			'sainnhe/sonokai'
+		}
+
+		use {
+			'MordechaiHadad/nvim-papadark',
+			requires = {'rktjmp/lush.nvim'}
+		}
+
+		use {
+			'shaunsingh/moonlight.nvim'
+		}
+
+		use {
+			'sainnhe/everforest'
+		}
+
+		use {
+			'yashguptaz/calvera-dark.nvim'
+		}
+
+		-- Status line
+		use {
+			'hoob3rt/lualine.nvim',
+			requires = {'kyazdani42/nvim-web-devicons', opt = true},
+			config = function()
+				require('tldrqwerty.plugins.lualine');
+			end
+		}
+
+		-- Lsp
+		use {
+			'neovim/nvim-lspconfig',
+			requires = {'tjdevries/nlua.nvim'},
+			config = function()
+				require('tldrqwerty.lsp.init');
+			end
+		}
+
+		use {
+			'hrsh7th/nvim-compe',
+			config = function()
+				require('tldrqwerty.lsp.comp');
+			end
+		}
+
+		-- Unsure
+		use {
+			'folke/trouble.nvim',
+			requires = {'kyazdani42/nvim-web-devicons', opt = true},
+			config = function()
+				require('tldrqwerty.lsp.trouble');
+			end
+		}
+
+		-- Another unsure
+		use {
+			'glepnir/lspsaga.nvim',
+		}
+
+		use {
+			'creativenull/diagnosticls-nvim',
+			requires = {'neovim/nvim-lspconfig'}
+		}
+
+		use {
+			'nvim-treesitter/nvim-treesitter',
+			run = ':TSUpdate',
+			config = function()
+				require('tldrqwerty.lsp.treesitter');
+			end
+		}
+
+		use {
+			'nvim-treesitter/playground'
+		}
+
+		use {
+			'ray-x/lsp_signature.nvim'
+		}
+
+		-- Navigation
 		use {
 			'nvim-telescope/telescope.nvim',
-			requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
-		}
-
-		use { 'nvim-treesitter/nvim-treesitter',
-			run = ":TSUpdate",
-		}
-		use { 'ray-x/lsp_signature.nvim' }
-		use { 'christoomey/vim-tmux-navigator' }
-		-- use { 'dense-analysis/ale' }
-		use { 'prettier/vim-prettier', run = "yarn install" }
-		use { 
-			'hoob3rt/lualine.nvim',
-			config=function()
-			end
-		}
-		use { 'editorconfig/editorconfig-vim' }
-
-		-- JavaScript
-		-- use { 'pangloss/vim-javascript' }
-		-- use { 'MaxMEllon/vim-jsx-pretty' }
-		-- use { 'yuezk/vim-js' }
-
-		-- TypeScript
-		-- use { 'leafgarland/typescript-vim' }
-
-		-- PHP
-		-- use { '2072/PHP-Indenting-for-VIm' }
-
-		use { 'sheerun/vim-polyglot' }
-
-		use { 'jiangmiao/auto-pairs' }
-
-		-- Git
-		use { 'tpope/vim-fugitive' }
-		use { 'pwntester/octo.nvim',
-			config=function()
-				require('tldrqwerty.plugins.octo')
-			end
-		}
-		use {
-			'lewis6991/gitsigns.nvim',
-			requires = { 'nvim-lua/plenary.nvim' },
+			requires = {
+				'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim',
+				{
+					'nvim-telescope/telescope-fzf-native.nvim',
+					run = 'make',
+				}
+			},
 			config = function()
-				require('gitsigns').setup()
+				require('tldrqwerty.plugins.telescope');
 			end
 		}
-		use { 'kdheepak/lazygit.nvim' }
 
-
-		-- Themes
-		use { 'ray-x/aurora' }
-		use { 'shaunsingh/seoul256.nvim' }
-		use { 'sainnhe/sonokai' }
-		use { 'kyazdani42/blue-moon' }
-		use { 'Iron-E/nvim-highlite' }
-		use { 'rockerBOO/boo-colorscheme-nvim' }
-		use { 'mhartington/oceanic-next' }
-		use { 'RishabhRD/nvim-rdark' }
-		use { 'sainnhe/edge' }
-		use { 'bkegley/gloombuddy',
-			requires = 'tjdevries/colorbuddy.vim' 
-		}
-		use { 'marko-cerovac/material.nvim',
-			requires = 'tjdevries/colorbuddy.vim' 
-		}
-		use { 'bluz71/vim-moonfly-colors' }
-		use { 'jim-at-jibba/ariake-vim-colors' }
-		use { 'Matsuuu/pinkmare' }
-		use { 'shaunsingh/solarized.nvim' }
-		use { 'Mofiqul/dracula.nvim' }
-		use { 'folke/tokyonight.nvim' }
-
-		-- File manu
-		use { 'ms-jpq/chadtree',
+		use {
+			'ms-jpq/chadtree',
 			branch = 'chad',
 			run = 'python3 -m chadtree deps',
-			config=function()
+			config = function()
+				require('tldrqwerty.plugins.chadtree');
 			end
 		}
 
-	use { 'tiagofumo/vim-nerdtree-syntax-highlight',
-		requires = 'ms-jpq/chadtree'
-	}
+		use {
+			'numToStr/Navigator.nvim',
+			config = function()
+				require('tldrqwerty.plugins.navigator');
+			end
+		}
+
+		use {
+			'folke/which-key.nvim',
+			config = function()
+				require('tldrqwerty.plugins.which-key');
+			end
+		}
+
+		-- Git
+		use {
+			'lewis6991/gitsigns.nvim',
+			requires = {'nvim-lua/plenary.nvim'},
+			config = function()
+				require('tldrqwerty.git.gitsigns');
+			end
+		}
+
+		use {
+			'pwntester/octo.nvim',
+			config = function()
+				require('tldrqwerty.git.octo');
+			end
+		}
+
+		-- Editor
+		use {
+			'Pocco81/TrueZen.nvim',
+			config = function()
+				require('tldrqwerty.plugins.true-zen');
+			end
+		}
+
+		use {
+			'windwp/nvim-autopairs',
+			config = function()
+				require('tldrqwerty.plugins.nvim-autopairs');
+			end
+		}
+
+		use {
+			'blackCauldron7/surround.nvim',
+			config = function()
+				require('tldrqwerty.plugins.surround');
+			end
+		}
+
+		use {
+			'windwp/nvim-ts-autotag',
+			config = function()
+				require('tldrqwerty.plugins.nvim-ts-autotag');
+			end
+		}
+
+		use {
+			'b3nj5m1n/kommentary',
+			config = function()
+				require('tldrqwerty.plugins.kommentary');
+			end
+		}
+
+		use {
+			'andweeb/presence.nvim',
+			config = function()
+				require('tldrqwerty.plugins.presence');
+			end
+		}
+
+		-- Language
+		use {
+			'sheerun/vim-polyglot',
+			config = function()
+				vim.cmd([[ let g:javascript_plugin_flow = 1 ]]);
+			end
+		}
+
+		-- Terminal
+		use {
+			'akinsho/nvim-toggleterm.lua',
+			config = function()
+				require('tldrqwerty.plugins.toggleterm')
+			end,
+		}
 	end)
 end
 

@@ -1,6 +1,8 @@
 local mapper = require('tldrqwerty.utils').mapper
+local telescope = require('telescope');
 
-require('telescope').setup{
+
+telescope.setup{
 	defaults = {
 		vimgrep_arguments = {
 			'rg',
@@ -29,7 +31,9 @@ require('telescope').setup{
 		file_sorter =  require'telescope.sorters'.get_fuzzy_file,
 		file_ignore_patterns = {},
 		generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-		shorten_path = true,
+		path_display = {
+			'absolute',
+		},
 		winblend = 0,
 		border = {},
 		borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
@@ -42,13 +46,24 @@ require('telescope').setup{
 
 		-- Developer configurations: Not meant for general override
 		buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+	},
+	extensions = {
+		fzf = {
+			fuzzy = true,
+			override_generic_sorter = false,
+			override_file_sorter = true,
+			case_mode = 'smart_case'
+		}
 	}
-};
+}
+
+telescope.load_extension('fzf');
 
 mapper('n', '<leader>ff', ':Telescope find_files');
 mapper('n', '<leader>fF', ':Telescope git_files');
 mapper('n', '<leader>fg', ':Telescope live_grep');
 mapper('n', '<leader>fb', ':Telescope buffers');
+
 mapper('n', '<leader>fls', ':Telescope lsp_document_symbols');
 mapper('n', '<leader>flc', ':Telescope lsp_code_actions');
 mapper('n', '<leader>flw', ':Telescope lsp_workspace_symbols');
