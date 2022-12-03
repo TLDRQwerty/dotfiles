@@ -1,0 +1,66 @@
+[user]
+	email = charliecarolan1999@gmail.com
+	name = Charlie Carolan
+[color]
+	ui = auto
+[core]
+	editor = nvim
+	pager = delta
+[pager]
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
+[interactive]
+	diffFilter = delta --color-only
+[pull]
+	rebase = true
+	ff = only
+[log]
+	abbrevCommit = true
+[diff]
+	rename = true
+	submodule = log
+[grep]
+	lineNumber = true
+	heading = true
+	break = true
+	column = true
+[alias]
+	co = checkout
+	pl = pull
+	ps = push
+	c = commit -v
+	cm = commit -m
+	ap = add -p
+	r = restore
+	rs = restore --staged
+	s = status
+	sw = switch
+	f = fetch
+	m = merge
+	mn = merge -s ort
+	a = add
+	lg = log
+	lgp = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
+	sm = submodule
+	b = branch
+	wt = worktree
+	st = stash
+	sta = stash --include-untracked
+	rb = rebase
+[push]
+	default = current
+[delta]
+	features = line-numbers
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

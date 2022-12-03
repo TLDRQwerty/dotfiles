@@ -1,0 +1,19 @@
+# terminal emulator
+super + {_,shift} + Return
+	{alacritty,kitty}
+
+super + space
+	rofi -show drun
+
+{XF86MonBrightnessUp, XF86MonBrightnessDown}
+	xbacklight {+,-}2.5%
+
+{XF86AudioNext, XF86AudioPrev, XF86AudioPlay}
+	playerctl --player=playerctld {next, previous, play-pause}
+
+{XF86AudioRaiseVolume, XF86AudioLowerVolume}
+	pactl -- set-sink-volume 0 {+5,-5}%
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd

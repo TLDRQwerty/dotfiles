@@ -1,0 +1,13 @@
+gui:
+  mouseEvents: true
+  expandFocusedSidePanel: false
+  mainPanelSplitMode: flexable
+  sidePanelWidth: 0.3333
+  scrollPastBottom: true
+git:
+  paging:
+    useConfig: false
+    pager: delta --dark --paging=never
+    colorArg: always
+notARepository: prompt
+disableStartupPopups: false

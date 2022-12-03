@@ -1,0 +1,56 @@
+let mapleader = " "
+
+set incsearch
+set nu
+set smartcase
+
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+inoremap jj <esc>
+
+map <leader>w :w<CR>
+map <leader>q :q<CR>
+
+inoremap <c-s> :action ExpressionTypeInfo<CR>
+
+map <C-l> <C-w>l
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-h> <C-w>h
+
+map <leader>rn :action RenameElement<CR>
+
+map <leader>fa :action SearchEverywhere<CR>
+map <leader>ff :action GotoFile<CR>
+map <leader>fc :action GotoClass<CR>
+
+:set relativenumber
+:set number
+
+map <leader>tt :action RunClass<CR>
+map <leader>td :action DebugClass<CR>
+
+map <C-p> :action ActivateProjectToolWindow<CR>
+map <leader>gp :action ActivateVersionControlToolWindow<CR>
+
+map dn :action GotoNextError<CR>
+map dp :action GoToPreviousError<CR>
+
+map ca :action ShowIntentionActions<CR>
+
+map gti :action GotoImplementation<CR>
+map gts :action GotoSuperMethod<CR>
+
+map gto :action FileStructurePopup<CR>
+
+map <leader>e :action ShowErrorDescription<CR>
+
+map pi :action QuickImplementations<CR>
+map ptd :action QuickTypeDefinition<CR>
+map pd :action QuickJavaDoc<CR>
+
+map <C-s> :action ParameterInfo<CR>
+
+map <leader>f :action ReformatWithPrettierAction<CR>
