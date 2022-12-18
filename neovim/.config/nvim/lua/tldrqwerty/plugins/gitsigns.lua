@@ -1,7 +1,7 @@
 local function config()
-	local gitsigns = require('gitsigns')
+  local gitsigns = require('gitsigns')
 
-	gitsigns.setup()
+  gitsigns.setup()
 end
 
 return { config = config }

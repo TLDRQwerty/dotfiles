@@ -1,5 +1,5 @@
 local function config()
-  require('todo-comments').setup({})
+  require('git-conflict').setup()
 end
 
 return { config = config }

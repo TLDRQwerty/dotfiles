@@ -1,5 +1,5 @@
 local function config()
-  require('todo-comments').setup({})
+  require('bufferline').setup({})
 end
 
 return { config = config }
