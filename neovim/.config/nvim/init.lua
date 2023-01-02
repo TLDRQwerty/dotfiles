@@ -1,1 +1,1 @@
-require('tldrqwerty')
+require("tldrqwerty")

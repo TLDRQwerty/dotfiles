@@ -1,5 +1,5 @@
 local function config()
-  require('bufferline').setup({})
+	require("bufferline").setup({})
 end
 
 return { config = config }
