@@ -124,6 +124,18 @@ servers["astro"] = {
 	filetypes = { "astro" },
 }
 
+servers['rust_analyzer'] = {
+  settings = {
+      ['rust_analyzer'] = {
+        cargo = { allFeatures = true },
+        checkOnSave = {
+          command = 'clippy',
+          extraArgs = { '--no-deps' },
+        },
+      },
+    },
+}
+
 local function on_attach(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
