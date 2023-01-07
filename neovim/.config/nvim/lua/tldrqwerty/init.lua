@@ -7,6 +7,7 @@ end
 
 require('tldrqwerty.set')
 require('tldrqwerty.autocmd')
+require('tldrqwerty.disable_builtins')
 require('tldrqwerty.remap')
 require('tldrqwerty.plugins')
 
