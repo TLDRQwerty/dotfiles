@@ -123,6 +123,9 @@ local function init()
 				{ "L3MON4D3/LuaSnip" },
 				{ "rafamadriz/friendly-snippets" },
 
+				-- Inlay hints
+				{ "simrat39/inlay-hints.nvim" },
+
 				{
 					"glepnir/lspsaga.nvim",
 					branch = "main",
@@ -135,6 +138,8 @@ local function init()
 						"neovim/nvim-lspconfig",
 					},
 				},
+
+				{ "jose-elias-alvarez/typescript.nvim" },
 			},
 		},
 		{
@@ -221,7 +226,6 @@ local function init()
 	use({
 		"epwalsh/obsidian.nvim",
 		config = [[require('tldrqwerty.plugins.obsidian').config()]],
-		disable = false,
 	})
 
 	use("github/copilot.vim")

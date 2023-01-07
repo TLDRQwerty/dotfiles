@@ -12,6 +12,50 @@ if saga then
 	saga.init_lsp_saga()
 end
 
+local inlay_hints = safe_require("inlay-hints")
+
+if inlay_hints then
+	inlay_hints.setup({
+		renderer = "inlay-hints/render/eol",
+
+		hints = {
+			parameter = {
+				show = true,
+				highlight = "whitespace",
+			},
+			type = {
+				show = true,
+				highlight = "Whitespace",
+			},
+		},
+
+		-- Only show inlay hints for the current line
+		only_current_line = false,
+
+		eol = {
+			-- whether to align to the extreme right or not
+			right_align = false,
+
+			-- padding from the right if right_align is true
+			right_align_padding = 7,
+
+			parameter = {
+				separator = ", ",
+				format = function(hints)
+					return string.format(" <- (%s)", hints)
+				end,
+			},
+
+			type = {
+				separator = ", ",
+				format = function(hints)
+					return string.format(" => %s", hints)
+				end,
+			},
+		},
+	})
+end
+
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 cmp.setup({
 	snippet = {
@@ -111,8 +155,42 @@ servers["tailwindcss"] = {
 	},
 }
 
-servers["sumneko_lua"] = {}
-servers["tsserver"] = {}
+servers["sumneko_lua"] = {
+	settings = {
+		Lua = {
+			hint = {
+				enable = true,
+			},
+		},
+	},
+}
+
+servers["tsserver"] = {
+	settings = {
+		javascript = {
+			inlayHints = {
+				includeInlayEnumMemberValueHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayVariableTypeHints = true,
+			},
+		},
+		typescript = {
+			inlayHints = {
+				includeInlayEnumMemberValueHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayVariableTypeHints = true,
+			},
+		},
+	},
+}
 
 servers["intelephense"] = {
 	init_options = {
@@ -124,19 +202,23 @@ servers["astro"] = {
 	filetypes = { "astro" },
 }
 
-servers['rust_analyzer'] = {
-  settings = {
-      ['rust_analyzer'] = {
-        cargo = { allFeatures = true },
-        checkOnSave = {
-          command = 'clippy',
-          extraArgs = { '--no-deps' },
-        },
-      },
-    },
+servers["rust_analyzer"] = {
+	settings = {
+		["rust_analyzer"] = {
+			cargo = { allFeatures = true },
+			checkOnSave = {
+				command = "clippy",
+				extraArgs = { "--no-deps" },
+			},
+		},
+	},
 }
 
 local function on_attach(client, bufnr)
+	if inlay_hints then
+		require('inlay-hints').on_attach(client, bufnr)
+	end
+
 	local opts = { buffer = bufnr, remap = false }
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -188,21 +270,31 @@ end
 local function prefer_null_ls_fmt(client)
 	client.server_capabilities.documentHighlightProvider = false
 	client.server_capabilities.documentFormattingProvider = false
-	on_attach(client)
 end
 
 for server, c in pairs(servers) do
-	if c.prefer_null_ls then
-		if c.on_attach then
-			local old_on_attach = c.on_attach
-			c.on_attach = function(client, bufnr)
-				old_on_attach(client, bufnr)
-				prefer_null_ls_fmt(client)
-			end
-		else
-			c.on_attach = prefer_null_ls_fmt
+	-- if c.prefer_null_ls then
+	-- 	if c.on_attach then
+	-- 		local old_on_attach = c.on_attach
+	-- 		c.on_attach = function(client, bufnr)
+	-- 			old_on_attach(client, bufnr)
+	-- 			prefer_null_ls_fmt(client)
+	-- 		end
+	-- 	else
+	-- 		c.on_attach = prefer_null_ls_fmt
+	-- 	end
+	-- elseif not c.on_attach then
+	-- 	c.on_attach = on_attach
+	-- end
+
+	local maybe_old_on_attach = c.on_attach
+	c.on_attach = function(client, bufnr)
+		if maybe_old_on_attach then
+			maybe_old_on_attach(client, bufnr)
 		end
-	elseif not c.on_attach then
+		if not c.prefer_built_in then
+			prefer_null_ls_fmt(client)
+		end
 		c.on_attach = on_attach
 	end
 
@@ -213,20 +305,47 @@ for server, c in pairs(servers) do
 	lspconfig[server].setup(c)
 end
 
+-- local typescript = safe_require("typescript")
+-- if typescript then
+-- 	typescript.setup({
+-- 		disable_commands = false, -- prevent the plugin from creating Vim commands
+-- 		debug = false, -- enable debug logging for commands
+-- 		go_to_source_definition = {
+-- 			fallback = true, -- fall back to standard LSP definition on failure
+-- 		},
+-- 		server = { -- pass options to lspconfig's setup method
+-- 			on_attach = on_attach,
+-- 		},
+-- 	})
+-- end
+
 -- null-ls setup
 local null_fmt = null_ls.builtins.formatting
 local null_diag = null_ls.builtins.diagnostics
 local null_act = null_ls.builtins.code_actions
+
+local sources = {
+	null_diag.eslint,
+  null_diag.phpcs,
+  null_diag.phpstan,
+
+	null_fmt.prettier,
+	null_fmt.rustfmt,
+	null_fmt.stylua,
+	null_fmt.trim_whitespace,
+}
+
+-- local typescript_cmd = safe_require("typescript.extensions.null-ls.code-actions")
+
+-- if typescript_cmd then
+-- 	table.insert(sources, typescript_cmd)
+-- end
+
+if safe_require('gitsigns') then
+  table.insert(sources, null_act.gitsigns)
+end
+
 null_ls.setup({
-	sources = {
-		null_diag.eslint,
-
-		null_fmt.prettier,
-		null_fmt.rustfmt,
-		null_fmt.stylua,
-		null_fmt.trim_whitespace,
-
-		null_act.gitsigns,
-	},
+	sources = sources,
 	on_attach = on_attach,
 })
