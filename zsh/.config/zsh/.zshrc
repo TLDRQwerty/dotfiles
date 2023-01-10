@@ -50,9 +50,14 @@ if (( $+commands[exa] )); then
 fi
 
 if (( $+commands[fzf] )); then
-	export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+	export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+
+  export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+
+  source /usr/share/fzf/key-bindings.zsh
+  source /usr/share/fzf/completion.zsh
 else
-	bindkey '^r' history-incremental-search-backward
+  bindkey '^R' history-incremental-search-backward
 fi
 
 if (( $+commands[nvim] )); then
