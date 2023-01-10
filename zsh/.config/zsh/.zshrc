@@ -166,7 +166,8 @@ zle -N zle-keymap-select
 # Autoload nvm
 autoload -U add-zsh-hook
 load-nvmrc() {
-	if (( !$+commands[nvm] )); then
+  # Note: $+commands[nvm] doesn't work for this, nto sure why
+	if [ ! type nvm &> /dev/null ]; then
 		return
 	fi
 	if [[ -f .nvmrc && -r .nvmrc ]]; then
@@ -180,9 +181,8 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 # Autoload rbenv
-autoload -U add-zsh-hook
 load-rbenv() {
-	if (( !$+commands[rbenv] )); then
+  if (( !$+commands[rbenv] )); then
 		return
 	fi
 	if [[ -f .ruby-version && -r .ruby-version ]]; then
