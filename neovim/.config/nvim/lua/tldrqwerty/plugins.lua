@@ -167,8 +167,12 @@ local function init()
 	})
 
 	use({
-		"numToStr/Comment.nvim",
-		config = [[require('tldrqwerty.plugins.comment').config()]],
+		{
+			"numToStr/Comment.nvim",
+			config = [[require('tldrqwerty.plugins.comment').config()]],
+      wants = "nvim-ts-context-commentstring"
+		},
+		{ "JoosepAlviste/nvim-ts-context-commentstring" },
 	})
 
 	use({
