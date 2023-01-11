@@ -165,6 +165,22 @@ servers["sumneko_lua"] = {
 	},
 }
 
+servers['gopls'] = {
+  settings = {
+    gopls = {
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+    },
+  },
+}
+
 servers["tsserver"] = {
 	settings = {
 		javascript = {
@@ -202,21 +218,9 @@ servers["astro"] = {
 	filetypes = { "astro" },
 }
 
-servers["rust_analyzer"] = {
-	settings = {
-		["rust_analyzer"] = {
-			cargo = { allFeatures = true },
-			checkOnSave = {
-				command = "clippy",
-				extraArgs = { "--no-deps" },
-			},
-		},
-	},
-}
-
 local function on_attach(client, bufnr)
 	if inlay_hints then
-		require('inlay-hints').on_attach(client, bufnr)
+		inlay_hints.on_attach(client, bufnr)
 	end
 
 	local opts = { buffer = bufnr, remap = false }
@@ -319,6 +323,24 @@ end
 -- 	})
 -- end
 
+local rust_tools = safe_require("rust-tools")
+
+if rust_tools then
+	rust_tools.setup({
+		tools = {
+			on_initialized = function()
+				inlay_hints.set_all()
+			end,
+			inlay_hints = {
+				auto = false,
+			},
+		},
+		server = {
+			on_attach = on_attach,
+		},
+	})
+end
+
 -- null-ls setup
 local null_fmt = null_ls.builtins.formatting
 local null_diag = null_ls.builtins.diagnostics
@@ -326,8 +348,8 @@ local null_act = null_ls.builtins.code_actions
 
 local sources = {
 	null_diag.eslint,
-  null_diag.phpcs,
-  null_diag.phpstan,
+	null_diag.phpcs,
+	null_diag.phpstan,
 
 	null_fmt.prettier,
 	null_fmt.rustfmt,
@@ -341,8 +363,8 @@ local sources = {
 -- 	table.insert(sources, typescript_cmd)
 -- end
 
-if safe_require('gitsigns') then
-  table.insert(sources, null_act.gitsigns)
+if safe_require("gitsigns") then
+	table.insert(sources, null_act.gitsigns)
 end
 
 null_ls.setup({

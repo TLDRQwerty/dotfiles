@@ -144,7 +144,6 @@ local function init()
 		},
 		{
 			"simrat39/rust-tools.nvim",
-			disable = true,
 		},
 	})
 
