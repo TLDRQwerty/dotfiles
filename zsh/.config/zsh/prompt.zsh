@@ -36,8 +36,8 @@ function +vi-git-st() {
 	ahead=${ahead_and_behind[1]}
 	behind=${ahead_and_behind[2]}
 
-	(( $ahead )) && gitstatus+=( "PUSH ${ahead}" )
-	(( $behind )) && gitstatus+=( "PULL${behind}" )
+	(( $ahead )) && gitstatus+=( "⌃${ahead}" )
+	(( $behind )) && gitstatus+=( "⌄${behind}" )
 
 	hook_com[misc]+=${(j:/:)gitstatus}
 }
@@ -57,8 +57,8 @@ zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' check-for-staged-changes true
 zstyle ':vcs_info:git:*' get-revision true
 
-zstyle ':vcs_info:*' unstagedstr "%{$fg[red]%}UNSTAGED%{$reset_color%}"
-zstyle ':vcs_info:*' stagedstr "%{$fg[green]%}STAGED%{$reset_color%}"
+zstyle ':vcs_info:*' unstagedstr "%{$fg[red]%}*%{$reset_color%}"
+zstyle ':vcs_info:*' stagedstr "%{$fg[green]%}*%{$reset_color%}"
 
 zstyle ':vcs_info:git:*' formats '(%b) %m [%u%c]'
 zstyle ':vcs_info:git:*' actionformats '(%b) [%a - %7.7i | %m%u%c]'
