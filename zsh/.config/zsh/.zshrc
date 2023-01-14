@@ -54,8 +54,13 @@ if (( $+commands[fzf] )); then
 
   export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 
-  source /usr/share/fzf/key-bindings.zsh
-  source /usr/share/fzf/completion.zsh
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    source /usr/share/fzf/key-bindings.zsh
+    source /usr/share/fzf/completion.zsh
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    source "$(brew --prefix)/opt/fzf/key-bindings.zsh"
+    source "$(brew --prefix)/opt/fzf/completion.zsh"
+  fi
 else
   bindkey '^R' history-incremental-search-backward
 fi
