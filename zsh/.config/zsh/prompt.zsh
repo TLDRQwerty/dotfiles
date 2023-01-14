@@ -17,7 +17,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st git-stash
 		# If instead you want to show the marker only if there are untracked
 		# files in $PWD, use:
 		#[[ -n $(git ls-files --others --exclude-standard) ]] ; then
-		hook_com[staged]+="%{$fg[blue]%}N%{$reset_color%}" # signify new files with a bang
+		hook_com[staged]+="%{$fg[blue]%}+%{$reset_color%}" # signify new files with a bang
 	fi
 }
 
