@@ -9,7 +9,36 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 
 if saga then
-	saga.init_lsp_saga()
+	saga.setup({
+		ui = {
+			theme = "round",
+			winblend = 0,
+			expand = "",
+			collapse = "",
+			preview = "",
+			code_action = "",
+			diagnostic = "",
+			incoming = "",
+			outgoing = "",
+			kind = {},
+		},
+		lightbulb = {
+			enable = true,
+			enable_in_insert = false,
+			sign = true,
+			sign_priority = 40,
+			virtual_text = true,
+		},
+		symbol_in_winbar = {
+			enable = true,
+			separator = " >> ",
+			hide_keyword = true,
+			show_file = true,
+			folder_level = 2,
+			respect_root = false,
+			color_mode = false,
+		},
+	})
 end
 
 local inlay_hints = safe_require("inlay-hints")
@@ -241,6 +270,7 @@ local function on_attach(client, bufnr)
 		vim.keymap.set("n", "<leader>E", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
 
 		vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+		vim.keymap.set("n", "pd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
 	else
 		vim.keymap.set("n", "ca", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
