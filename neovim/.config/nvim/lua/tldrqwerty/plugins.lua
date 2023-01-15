@@ -125,6 +125,7 @@ local function init()
 
 				-- Inlay hints
 				{ "simrat39/inlay-hints.nvim" },
+				{ "lvimuser/lsp-inlayhints.nvim", disable = true },
 
 				{
 					"glepnir/lspsaga.nvim",
@@ -169,7 +170,7 @@ local function init()
 		{
 			"numToStr/Comment.nvim",
 			config = [[require('tldrqwerty.plugins.comment').config()]],
-      wants = "nvim-ts-context-commentstring"
+			wants = "nvim-ts-context-commentstring",
 		},
 		{ "JoosepAlviste/nvim-ts-context-commentstring" },
 	})
