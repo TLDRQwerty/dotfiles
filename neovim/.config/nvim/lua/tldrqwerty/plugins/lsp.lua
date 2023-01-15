@@ -165,48 +165,48 @@ servers["sumneko_lua"] = {
 	},
 }
 
-servers['gopls'] = {
-  settings = {
-    gopls = {
-      hints = {
-        assignVariableTypes = true,
-        compositeLiteralFields = true,
-        compositeLiteralTypes = true,
-        constantValues = true,
-        functionTypeParameters = true,
-        parameterNames = true,
-        rangeVariableTypes = true,
-      },
-    },
-  },
-}
-
-servers["tsserver"] = {
+servers["gopls"] = {
 	settings = {
-		javascript = {
-			inlayHints = {
-				includeInlayEnumMemberValueHints = true,
-				includeInlayFunctionLikeReturnTypeHints = true,
-				includeInlayFunctionParameterTypeHints = true,
-				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-				includeInlayPropertyDeclarationTypeHints = true,
-				includeInlayVariableTypeHints = true,
-			},
-		},
-		typescript = {
-			inlayHints = {
-				includeInlayEnumMemberValueHints = true,
-				includeInlayFunctionLikeReturnTypeHints = true,
-				includeInlayFunctionParameterTypeHints = true,
-				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-				includeInlayPropertyDeclarationTypeHints = true,
-				includeInlayVariableTypeHints = true,
+		gopls = {
+			hints = {
+				assignVariableTypes = true,
+				compositeLiteralFields = true,
+				compositeLiteralTypes = true,
+				constantValues = true,
+				functionTypeParameters = true,
+				parameterNames = true,
+				rangeVariableTypes = true,
 			},
 		},
 	},
 }
+
+-- servers["tsserver"] = {
+-- 	settings = {
+-- 		javascript = {
+-- 			inlayHints = {
+-- 				includeInlayEnumMemberValueHints = true,
+-- 				includeInlayFunctionLikeReturnTypeHints = true,
+-- 				includeInlayFunctionParameterTypeHints = true,
+-- 				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+-- 				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+-- 				includeInlayPropertyDeclarationTypeHints = true,
+-- 				includeInlayVariableTypeHints = true,
+-- 			},
+-- 		},
+-- 		typescript = {
+-- 			inlayHints = {
+-- 				includeInlayEnumMemberValueHints = true,
+-- 				includeInlayFunctionLikeReturnTypeHints = true,
+-- 				includeInlayFunctionParameterTypeHints = true,
+-- 				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+-- 				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+-- 				includeInlayPropertyDeclarationTypeHints = true,
+-- 				includeInlayVariableTypeHints = true,
+-- 			},
+-- 		},
+-- 	},
+-- }
 
 servers["intelephense"] = {
 	init_options = {
@@ -309,19 +309,19 @@ for server, c in pairs(servers) do
 	lspconfig[server].setup(c)
 end
 
--- local typescript = safe_require("typescript")
--- if typescript then
--- 	typescript.setup({
--- 		disable_commands = false, -- prevent the plugin from creating Vim commands
--- 		debug = false, -- enable debug logging for commands
--- 		go_to_source_definition = {
--- 			fallback = true, -- fall back to standard LSP definition on failure
--- 		},
--- 		server = { -- pass options to lspconfig's setup method
--- 			on_attach = on_attach,
--- 		},
--- 	})
--- end
+local typescript = safe_require("typescript")
+if typescript then
+	typescript.setup({
+		disable_commands = false, -- prevent the plugin from creating Vim commands
+		debug = false, -- enable debug logging for commands
+		go_to_source_definition = {
+			fallback = true, -- fall back to standard LSP definition on failure
+		},
+		server = { -- pass options to lspconfig's setup method
+			on_attach = on_attach,
+		},
+	})
+end
 
 local rust_tools = safe_require("rust-tools")
 
