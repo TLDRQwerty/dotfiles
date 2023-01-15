@@ -329,7 +329,9 @@ if rust_tools then
 	rust_tools.setup({
 		tools = {
 			on_initialized = function()
-				inlay_hints.set_all()
+				if inlay_hints then
+					inlay_hints.set_all()
+				end
 			end,
 			inlay_hints = {
 				auto = false,
