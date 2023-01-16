@@ -58,8 +58,8 @@ if (( $+commands[fzf] )); then
     source /usr/share/fzf/key-bindings.zsh
     source /usr/share/fzf/completion.zsh
   elif [[ "$OSTYPE" == "darwin"* ]]; then
-    source "$(brew --prefix)/opt/fzf/key-bindings.zsh"
-    source "$(brew --prefix)/opt/fzf/completion.zsh"
+    source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+    source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
   fi
 else
   bindkey '^R' history-incremental-search-backward
