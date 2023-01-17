@@ -379,11 +379,17 @@ local null_diag = null_ls.builtins.diagnostics
 local null_act = null_ls.builtins.code_actions
 
 local sources = {
-	null_diag.eslint,
-	null_diag.phpcs,
+	null_diag.eslint.with({
+    prefer_local = "node_modules/.bin"
+  }),
+	null_diag.phpcs.with({
+    prefer_local = "bin"
+  }),
 	null_diag.phpstan,
 
-	null_fmt.prettier,
+	null_fmt.prettier.with({
+    prefer_local = "node_modules/.bin"
+  }),
 	null_fmt.rustfmt,
 	null_fmt.stylua,
 	null_fmt.trim_whitespace,
