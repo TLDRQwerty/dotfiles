@@ -271,6 +271,7 @@ local function on_attach(client, bufnr)
 
 		vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 		vim.keymap.set("n", "pd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
+		vim.keymap.set("n", "pf", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 	else
 		vim.keymap.set("n", "ca", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
