@@ -34,6 +34,7 @@ require("lazy").setup({
 			vim.api.nvim_command([[colorscheme ayu-dark]])
 		end,
 	},
+	"JoosepAlviste/palenightfall.nvim",
 	{
 		"nvim-telescope/telescope.nvim",
 		version = "0.1.0",
@@ -103,6 +104,15 @@ require("lazy").setup({
 				{ "lvimuser/lsp-inlayhints.nvim", enabled = false },
 
 				{
+					"roobert/tailwindcss-colorizer-cmp.nvim",
+					config = function()
+						require("tailwindcss-colorizer-cmp").setup({
+							color_square_width = 2,
+						})
+					end,
+				},
+
+				{
 					"glepnir/lspsaga.nvim",
 					branch = "main",
 				},
@@ -119,6 +129,13 @@ require("lazy").setup({
 			},
 		},
 		"simrat39/rust-tools.nvim",
+	},
+
+	{
+		"luukvbaal/statuscol.nvim",
+		config = function()
+			require("statuscol").setup()
+		end,
 	},
 
 	{
