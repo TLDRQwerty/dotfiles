@@ -1,4 +1,4 @@
-local function setup()
+local function init()
 	local builtin = require("telescope.builtin")
 	vim.keymap.set("n", "<leader>fF", builtin.find_files, {})
 	vim.keymap.set("n", "<leader>ff", builtin.git_files, {})
@@ -85,4 +85,4 @@ local function config()
 	telescope.load_extension("gh")
 end
 
-return { config = config, setup = setup }
+return { config = config, init = init }

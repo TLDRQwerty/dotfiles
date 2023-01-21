@@ -1,112 +1,87 @@
-local ensure_packer = function()
-	local fn = vim.fn
-	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-		vim.cmd([[packadd packer.nvim]])
-		return true
-	end
-	return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
-
-local packer = nil
-
-local function init()
-	if packer == nil then
-		packer = require("packer")
-
-		packer.init({
-			disable_commands = true,
-			profile = {
-				enable = true,
-			},
-			display = {
-				open_fn = function()
-					return require("packer.util").float({ border = "single" })
-				end,
-			},
-		})
-	end
-
-	local use = packer.use
-	packer.reset()
-
-	use("wbthomason/packer.nvim")
-
-	use("lewis6991/impatient.nvim")
-
-	-- Themes
-	use({
-		{
-			"catppuccin/nvim",
-			as = "catppuccin",
-		},
-		"nikolvs/vim-sunbather",
-		"folke/tokyonight.nvim",
-		"jacoborus/tender.vim",
-		{ "Lokaltog/monotone.nvim", requires = {
+require("lazy").setup({
+	"wbthomason/packer.nvim",
+	"lewis6991/impatient.nvim",
+	-- Theme
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+	},
+	"nikolvs/vim-sunbather",
+	"folke/tokyonight.nvim",
+	"jacoborus/tender.vim",
+	{
+		"Lokaltog/monotone.nvim",
+		dependencies = {
 			"rktjmp/lush.nvim",
-		} },
-		{
-			"Shatur/neovim-ayu",
-			config = function()
-				vim.api.nvim_command([[colorscheme ayu-dark]])
-			end,
 		},
-	})
-
-	use({
-		{
-			"nvim-telescope/telescope.nvim",
-			tag = "0.1.0",
-			requires = {
-				"nvim-lua/popup.nvim",
-				"nvim-lua/plenary.nvim",
-				"telescope-fzf-native.nvim",
-				"nvim-telescope/telescope-ui-select.nvim",
+	},
+	{
+		"Shatur/neovim-ayu",
+		config = function()
+			vim.api.nvim_command([[colorscheme ayu-dark]])
+		end,
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		version = "0.1.0",
+		dependencies = {
+			"nvim-lua/popup.nvim",
+			"nvim-lua/plenary.nvim",
+			"telescope-fzf-native.nvim",
+			"nvim-telescope/telescope-ui-select.nvim",
+			"popup.nvim",
+			"plenary.nvim",
+			"telescope-fzf-native.nvim",
+			"telescope-github.nvim",
+			"crispgm/telescope-heading.nvim",
+			"nvim-telescope/telescope-file-browser.nvim",
+			"nvim-telescope/telescope-github.nvim",
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
 			},
-			wants = {
-				"popup.nvim",
-				"plenary.nvim",
-				"telescope-fzf-native.nvim",
-				"telescope-github.nvim",
-			},
-			setup = [[require('tldrqwerty.plugins.telescope').setup()]],
-			config = [[require('tldrqwerty.plugins.telescope').config()]],
-			module = "telescope",
 		},
-		{
-			"nvim-telescope/telescope-fzf-native.nvim",
-			run = "make",
-		},
-		"crispgm/telescope-heading.nvim",
-		"nvim-telescope/telescope-file-browser.nvim",
-		"nvim-telescope/telescope-github.nvim",
-	})
+		init = function()
+			require("tldrqwerty.plugins.telescope").init()
+		end,
+		config = function()
+			require("tldrqwerty.plugins.telescope").config()
+		end,
+	},
 
-	use({
-		{
-			"nvim-treesitter/nvim-treesitter",
-			run = ":TSUpdate",
-			config = [[require('tldrqwerty.plugins.treesitter').config()]],
-			setup = [[require('tldrqwerty.plugins.treesitter').setup()]],
-		},
-		{
-			"nvim-treesitter/nvim-treesitter-textobjects",
-			after = "nvim-treesitter",
-		},
-		{
-			"nvim-treesitter/playground",
-			after = "nvim-treesitter",
-		},
-	})
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function()
+			require("tldrqwerty.plugins.treesitter").config()
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = { "nvim-treesitter" },
+	},
+	{
+		"nvim-treesitter/playground",
+		dependencies = { "nvim-treesitter" },
+	},
 
-	use({
+	{
 		{
 			"neovim/nvim-lspconfig",
-			requires = {
+			dependencies = {
 				-- LSP Support
 				{ "williamboman/mason.nvim" },
 				{ "williamboman/mason-lspconfig.nvim" },
@@ -125,7 +100,7 @@ local function init()
 
 				-- Inlay hints
 				{ "simrat39/inlay-hints.nvim" },
-				{ "lvimuser/lsp-inlayhints.nvim", disable = true },
+				{ "lvimuser/lsp-inlayhints.nvim", enabled = false },
 
 				{
 					"glepnir/lspsaga.nvim",
@@ -134,7 +109,7 @@ local function init()
 
 				{
 					"jose-elias-alvarez/null-ls.nvim",
-					requires = {
+					dependencies = {
 						"nvim-lua/plenary.nvim",
 						"neovim/nvim-lspconfig",
 					},
@@ -143,132 +118,115 @@ local function init()
 				{ "jose-elias-alvarez/typescript.nvim" },
 			},
 		},
-		{
-			"simrat39/rust-tools.nvim",
-		},
-	})
+		"simrat39/rust-tools.nvim",
+	},
 
-	use({
+	{
 		"aserowy/tmux.nvim",
-		config = [[require('tldrqwerty.plugins.tmux').config()]],
-	})
+		config = function()
+			require("tldrqwerty.plugins.tmux").config()
+		end,
+	},
 
-	use("nvim-lualine/lualine.nvim")
+	"nvim-lualine/lualine.nvim",
 
-	use({
+	{
 		"akinsho/toggleterm.nvim",
-		config = [[require('tldrqwerty.plugins.toggleterm').config()]],
-	})
+		config = function()
+			require("tldrqwerty.plugins.toggleterm").config()
+		end,
+	},
 
-	use({
+	{
 		"lmburns/lf.nvim",
-		config = [[require('tldrqwerty.plugins.lf').config()]],
-		requires = { "plenary.nvim", "toggleterm.nvim" },
-	})
+		config = function()
+			require("tldrqwerty.plugins.lf").config()
+		end,
+		dependencies = { "plenary.nvim", "toggleterm.nvim" },
+	},
 
-	use({
-		{
-			"numToStr/Comment.nvim",
-			config = [[require('tldrqwerty.plugins.comment').config()]],
-			wants = "nvim-ts-context-commentstring",
-		},
-		{ "JoosepAlviste/nvim-ts-context-commentstring" },
-	})
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("tldrqwerty.plugins.comment").config()
+		end,
+		dependencies = "nvim-ts-context-commentstring",
+	},
 
-	use({
+	"JoosepAlviste/nvim-ts-context-commentstring",
+
+	{
 		"gelguy/wilder.nvim",
-		config = [[require('tldrqwerty.plugins.wilder').config()]],
-	})
+		config = function()
+			require("tldrqwerty.plugins.wilder").config()
+		end,
+	},
 
-	use({
-		"gpanders/editorconfig.nvim",
-	})
+	"gpanders/editorconfig.nvim",
 
-	use({
+	{
 		{
 			"lewis6991/gitsigns.nvim",
-			config = [[require('tldrqwerty.plugins.gitsigns').config()]],
+			config = function()
+				require("tldrqwerty.plugins.gitsigns").config()
+			end,
 		},
 		{
 			"akinsho/git-conflict.nvim",
-			config = [[require('tldrqwerty.plugins.git-conflict').config()]],
+			config = function()
+				require("tldrqwerty.plugins.git-conflict").config()
+			end,
 		},
-	})
+	},
 
-	use({ "rcarriga/nvim-notify" })
+	"rcarriga/nvim-notify",
 
-	use({
+	{
 		"mbbill/undotree",
-		config = [[require('tldrqwerty.plugins.undotree').config()]],
-	})
+		config = function()
+			require("tldrqwerty.plugins.undotree").config()
+		end,
+	},
 
-	use({
+	{
 		"dstein64/vim-startuptime",
 		cmd = "StartupTime",
-		config = [[vim.g.startuptime_tries = 15]],
-	})
+		config = function()
+			vim.g.startuptime_tries = 15
+		end,
+	},
 
-	use({
+	{
 		"folke/todo-comments.nvim",
-		requires = "nvim-lua/plenary.nvim",
+		dependencies = "nvim-lua/plenary.nvim",
 		event = "BufReadPost",
-		config = [[require('tldrqwerty.plugins.todo-comments').config()]],
-	})
+		config = function()
+			require("tldrqwerty.plugins.todo-comments").config()
+		end,
+	},
 
-	use({
+	{
 		"j-hui/fidget.nvim",
-		config = [[require('tldrqwerty.plugins.fidget').config()]],
-	})
+		config = function()
+			require("tldrqwerty.plugins.fidget").config()
+		end,
+	},
 
-	use({
+	{
 		"akinsho/bufferline.nvim",
-		tag = "v3.*",
-		requires = "nvim-tree/nvim-web-devicons",
-		config = [[require('tldrqwerty.plugins.bufferline').config()]],
-	})
+		version = "v3.*",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("tldrqwerty.plugins.bufferline").config()
+		end,
+	},
 
-	use({
+	{
 		"epwalsh/obsidian.nvim",
-		config = [[require('tldrqwerty.plugins.obsidian').config()]],
-	})
+		config = function()
+			require("tldrqwerty.plugins.obsidian").config()
+		end,
+	},
 
-	use("github/copilot.vim")
-
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if packer_bootstrap then
-		require("packer").sync()
-	end
-end
-
-local plugins = setmetatable({}, {
-	__index = function(_, key)
-		init()
-		return packer[key]
-	end,
+	"github/copilot.vim",
 })
-
-local create_cmd = vim.api.nvim_create_user_command
-
-create_cmd("PackerInstall", function()
-	vim.cmd([[packadd packer.nvim]])
-	require("tldrqwerty.plugins").install()
-end, {})
-create_cmd("PackerUpdate", function()
-	vim.cmd([[packadd packer.nvim]])
-	require("tldrqwerty.plugins").update()
-end, {})
-create_cmd("PackerSync", function()
-	vim.cmd([[packadd packer.nvim]])
-	require("tldrqwerty.plugins").sync()
-end, {})
-create_cmd("PackerClean", function()
-	vim.cmd([[packadd packer.nvim]])
-	require("tldrqwerty.plugins").clean()
-end, {})
-create_cmd("PackerCompile", function()
-	vim.cmd([[packadd packer.nvim]])
-	require("tldrqwerty.plugins").compile()
-end, {})
-
-return plugins
