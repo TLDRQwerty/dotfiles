@@ -34,6 +34,8 @@ require("lazy").setup({
 		end,
 	},
 	"JoosepAlviste/palenightfall.nvim",
+  "savq/melange-nvim",
+  {"jesseleite/nvim-noirbuddy", dependencies = "tjdevries/colorbuddy.nvim"},
 	{
 		"nvim-telescope/telescope.nvim",
 		version = "0.1.0",
