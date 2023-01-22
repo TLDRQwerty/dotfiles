@@ -29,13 +29,16 @@ require("lazy").setup({
 	},
 	{
 		"Shatur/neovim-ayu",
-		config = function()
-			vim.api.nvim_command([[colorscheme ayu-dark]])
-		end,
 	},
 	"JoosepAlviste/palenightfall.nvim",
-  "savq/melange-nvim",
-  {"jesseleite/nvim-noirbuddy", dependencies = "tjdevries/colorbuddy.nvim"},
+	"savq/melange-nvim",
+	{
+		"jesseleite/nvim-noirbuddy",
+		dependencies = "tjdevries/colorbuddy.nvim",
+		config = function()
+			vim.api.nvim_command([[colorscheme noirbuddy]])
+		end,
+	},
 	{
 		"nvim-telescope/telescope.nvim",
 		version = "0.1.0",
