@@ -220,6 +220,18 @@ servers["prismals"] = {
 	},
 }
 
+servers["svelte"] = {
+  settings = {
+    svelte = {
+      plugin = {
+        svelte = {
+          enable = true,
+        },
+      },
+    },
+  },
+}
+
 -- servers["tsserver"] = {
 -- 	settings = {
 -- 		javascript = {
@@ -255,6 +267,10 @@ servers["intelephense"] = {
 
 servers["astro"] = {
 	filetypes = { "astro" },
+}
+
+servers["grammarly"] = {
+  filetypes = { "markdown", "text" },
 }
 
 local function on_attach(client, bufnr)
@@ -392,6 +408,7 @@ local null_act = null_ls.builtins.code_actions
 local sources = {
 	null_diag.eslint.with({
 		prefer_local = "node_modules/.bin",
+		filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "astro", "svelte" },
 	}),
 	null_diag.phpcs.with({
 		prefer_local = "bin",
@@ -400,6 +417,7 @@ local sources = {
 
 	null_fmt.prettier.with({
 		prefer_local = "node_modules/.bin",
+		filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "astro", "svelte" },
 	}),
 	null_fmt.rustfmt,
 	null_fmt.stylua,
