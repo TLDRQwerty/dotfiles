@@ -285,10 +285,10 @@ local function on_attach(client, bufnr)
 		vim.keymap.set("n", "ca", "<cmd>Lspsaga code_action<CR>", opts)
 		vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts)
 
-		vim.keymap.set("n", "dn", function()
+		vim.keymap.set("n", "dp", function()
 			require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
 		end, { silent = true })
-		vim.keymap.set("n", "]E", function()
+		vim.keymap.set("n", "dn", function()
 			require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
 		end, { silent = true })
 
