@@ -13,8 +13,8 @@ require('tldrqwerty.plugins')
 
 require('tldrqwerty.plugins.lsp')
 
-vim.notify = function(_, m, l, o)
-  local notify = require 'notify'
-  vim.notify = notify
-  notify(_, m, l, o)
-end
+-- vim.notify = function(_, m, l, o)
+--   local notify = require 'notify'
+--   vim.notify = notify
+--   notify(_, m, l, o)
+-- end
