@@ -104,7 +104,7 @@ require("lazy").setup({
 				{ "rafamadriz/friendly-snippets" },
 
 				-- Inlay hints
-				{ "simrat39/inlay-hints.nvim" },
+				{ "simrat39/inlay-hints.nvim", enabled = false },
 				{ "lvimuser/lsp-inlayhints.nvim", enabled = false },
 
 				{
