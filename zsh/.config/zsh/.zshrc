@@ -111,6 +111,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	}
 
 	export NVM_DIR="$HOME/.nvm"
+
 	[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 	[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
@@ -134,6 +135,11 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	export XDG_CONFIG_HOME=$HOME/.config
 	export XDG_CACHE_HOME=$HOME/.cache
 	export XDG_DATA_HOME=$HOME/.local/share
+
+  alias react-native-run-ios="xcrun simctl list | grep 'Booted' | cut -d \( -f 1 | fzf | xargs -I{} npx react-native run-ios --simulator '{}'"
+  alias launch-ios-simulator="xcrun simctl list | grep 'Shutdown' | fzf | grep -oE '(\b[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\b)' | xargs -I{} xcrun simctl boot {}"
+  alias ios-log="xcrun simctl list | grep 'Booted' | fzf | grep -oE '(\b[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\b)' | xargs -I{} xcrun simctl spawn {} log stream --level debug --style compact --process IB"
+
 elif [[ "$OSTYPE" == "win32"* ]]; then
 fi
 
@@ -148,6 +154,7 @@ alias rzsh="source $HOME/.config/zsh/.zshrc"
 
 alias g="git"
 
+alias react-native-run-android="adb devices | grep -v List | cut -f 1 | fzf | xargs -I{} npx react-native run-android --deviceId {}"
 
 if (( $+commands[rbenv] )); then
 	eval "$(rbenv init - zsh)"
