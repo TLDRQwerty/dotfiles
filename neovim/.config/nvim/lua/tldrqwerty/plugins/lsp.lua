@@ -184,7 +184,7 @@ servers["tailwindcss"] = {
 	},
 }
 
-servers["sumneko_lua"] = {
+servers["lua_ls"] = {
 	settings = {
 		Lua = {
 			hint = {
