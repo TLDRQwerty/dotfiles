@@ -17,6 +17,12 @@ require("lazy").setup({
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
+		config = function()
+			require("catppuccin").setup({
+				flavor = "mocha",
+			})
+			vim.cmd.colorscheme("catppuccin")
+		end,
 	},
 	"nikolvs/vim-sunbather",
 	"folke/tokyonight.nvim",
@@ -36,7 +42,7 @@ require("lazy").setup({
 		"jesseleite/nvim-noirbuddy",
 		dependencies = "tjdevries/colorbuddy.nvim",
 		config = function()
-			vim.api.nvim_command([[colorscheme noirbuddy]])
+			-- vim.api.nvim_command([[colorscheme noirbuddy]])
 		end,
 	},
 	{
