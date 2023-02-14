@@ -60,7 +60,7 @@ zstyle ':vcs_info:git:*' get-revision true
 zstyle ':vcs_info:*' unstagedstr "%{$fg[red]%}*%{$reset_color%}"
 zstyle ':vcs_info:*' stagedstr "%{$fg[green]%}*%{$reset_color%}"
 
-zstyle ':vcs_info:git:*' formats '(%b) %m [%u%c]'
+zstyle ':vcs_info:git:*' formats '%{$fg[magenta]%}(%b)%{$reset_color%} %m [%u%c]'
 zstyle ':vcs_info:git:*' actionformats '(%b) [%a - %7.7i | %m%u%c]'
 
 precmd_vcs_info() { 
