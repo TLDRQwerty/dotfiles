@@ -49,6 +49,10 @@ if (( $+commands[exa] )); then
 	alias ls="exa"
 fi
 
+if (( $+commands[bat] )); then
+  alias cat="bat"
+fi
+
 if (( $+commands[fzf] )); then
 	export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 
