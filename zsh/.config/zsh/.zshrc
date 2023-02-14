@@ -181,3 +181,8 @@ zle -N zle-keymap-select
 
 [ -s "$ZDOTDIR/prompt.zsh" ] && source "$ZDOTDIR/prompt.zsh"
 [ -s "$ZDOTDIR/autocmd.zsh" ] && source "$ZDOTDIR/autocmd.zsh"
+
+[ -s "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" 
+
+[ -s "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp root line)
