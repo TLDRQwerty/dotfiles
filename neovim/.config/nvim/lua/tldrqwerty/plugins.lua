@@ -311,5 +311,5 @@ require("lazy").setup({
 		end,
 	},
 
-	"github/copilot.vim",
+  {"github/copilot.vim", enabled = false},
 })
