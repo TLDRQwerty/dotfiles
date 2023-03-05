@@ -128,6 +128,7 @@ require("lazy").setup({
 				{
 					"glepnir/lspsaga.nvim",
 					branch = "main",
+					enabled = false,
 				},
 
 				{
