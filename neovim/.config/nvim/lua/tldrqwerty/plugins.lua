@@ -324,5 +324,13 @@ require("lazy").setup({
 		end,
 	},
 
+	{
+		"giusgad/pets.nvim",
+		config = function()
+			require("pets").setup({})
+		end,
+		dependencies = { "MunifTanjim/nui.nvim", "giusgad/hologram.nvim" },
+	},
+
 	{ "github/copilot.vim", enabled = false },
 })
