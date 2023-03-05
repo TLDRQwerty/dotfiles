@@ -8,6 +8,8 @@ local saga = safe_require("lspsaga")
 require("mason").setup()
 require("mason-lspconfig").setup()
 
+require("neodev").setup()
+
 if saga then
 	saga.setup({
 		ui = {

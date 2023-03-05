@@ -114,6 +114,8 @@ require("lazy").setup({
 				{ "simrat39/inlay-hints.nvim", enabled = false },
 				{ "lvimuser/lsp-inlayhints.nvim", enabled = false },
 
+				{ "folke/neodev.nvim" },
+
 				{
 					"roobert/tailwindcss-colorizer-cmp.nvim",
 					config = function()
