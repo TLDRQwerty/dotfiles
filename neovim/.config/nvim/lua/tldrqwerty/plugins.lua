@@ -49,6 +49,7 @@ require("lazy").setup({
 		"nvim-telescope/telescope.nvim",
 		version = "0.1.0",
 		dependencies = {
+			{ dir = "~/Code/telescope-skim" },
 			"nvim-lua/popup.nvim",
 			"nvim-lua/plenary.nvim",
 			"telescope-fzf-native.nvim",
@@ -301,6 +302,18 @@ require("lazy").setup({
 		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
 			require("tldrqwerty.plugins.bufferline").config()
+		end,
+	},
+
+	{
+		"freddiehaddad/feline.nvim",
+		config = function()
+			local ctp_feline = require("catppuccin.groups.integrations.feline")
+			ctp_feline.setup({})
+
+			require("feline").setup({
+				components = ctp_feline.get(),
+			})
 		end,
 	},
 
