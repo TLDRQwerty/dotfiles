@@ -221,15 +221,15 @@ servers["prismals"] = {
 }
 
 servers["svelte"] = {
-  settings = {
-    svelte = {
-      plugin = {
-        svelte = {
-          enable = true,
-        },
-      },
-    },
-  },
+	settings = {
+		svelte = {
+			plugin = {
+				svelte = {
+					enable = true,
+				},
+			},
+		},
+	},
 }
 
 -- servers["tsserver"] = {
@@ -270,7 +270,7 @@ servers["astro"] = {
 }
 
 servers["grammarly"] = {
-  filetypes = { "markdown", "text" },
+	filetypes = { "markdown", "text" },
 }
 
 local function on_attach(client, bufnr)
