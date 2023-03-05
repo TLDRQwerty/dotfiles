@@ -303,6 +303,7 @@ local function on_attach(client, bufnr)
 	else
 		vim.keymap.set("n", "ca", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
 		vim.keymap.set("n", "dn", vim.diagnostic.goto_next, opts)
 		vim.keymap.set("n", "dp", vim.diagnostic.goto_prev, opts)
 
