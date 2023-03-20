@@ -1,6 +1,7 @@
 autoload -Uz compinit promptinit
 compinit
 promptinit
+fpath=($ZDOTDIR/functions $fpath)
 # General Config
 zstyle ':completion:*' menu select
 setopt globdots
@@ -77,6 +78,19 @@ fi
 
 if (( $+commands[nvim] )); then
 	alias vim="nvim"
+fi
+
+if (( $+commands[fd] )); then
+  alias find="fd"
+fi
+
+if (( $+commands[procs] )); then
+  alias ps="procs"
+  [ -s "$ZDOTDIR/functions/_procs" ] && procs --gen-completion-out zsh > $ZDOTDIR/functions/_procs
+fi
+
+if (( $+commands[sd] )); then
+  alias sed="sd"
 fi
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
