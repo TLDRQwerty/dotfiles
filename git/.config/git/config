@@ -52,7 +52,7 @@
 [push]
 	default = current
 [delta]
-	features = line-numbers
+	features = line-numbers mocha
 [delta "decorations"]
 	commit-decoration-style = bold yellow box ul
 	file-style = bold yellow ul
@@ -64,3 +64,8 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[delta "mocha"]
+  minus-style = "#f38ba8" "#11111b"
+  plus-style = "#a6e3a1" "#11111b"
+
