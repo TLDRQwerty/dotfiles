@@ -1,20 +1,17 @@
-local safe_require = require('tldrqwerty.utils').safe_require
-
-local impatient = safe_require('impatient')
-if impatient then
-  require('impatient').enable_profile()
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
 require('tldrqwerty.set')
-require('tldrqwerty.autocmd')
-require('tldrqwerty.disable_builtins')
 require('tldrqwerty.remap')
-require('tldrqwerty.plugins')
 
-require('tldrqwerty.plugins.lsp')
-
--- vim.notify = function(_, m, l, o)
---   local notify = require 'notify'
---   vim.notify = notify
---   notify(_, m, l, o)
--- end
+require("lazy").setup({{import = "tldrqwerty/plugins"}})

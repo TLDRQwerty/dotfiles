@@ -1,88 +1,142 @@
-local function init()
-	local builtin = require("telescope.builtin")
-	vim.keymap.set("n", "<leader>fF", builtin.find_files, {})
-	vim.keymap.set("n", "<leader>ff", builtin.git_files, {})
-	vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-	vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-	vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+return {
+  {
+    "nvim-telescope/telescope.nvim",
+    version = "0.1.0",
+    dependencies = {
+      { 'nvim-lua/plenary.nvim' },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        config = function()
+          require("telescope").load_extension("fzf")
+        end,
+      },
+      {
+        "nvim-telescope/telescope-github.nvim",
+        dependencies = { "telescope.nvim" },
+        config = function()
+          require("telescope").load_extension("gh")
+        end,
+        keys = {
+          {
+            "<leader>fgi",
+            function()
+              require('telescope').extensions.gh.issues()
+            end,
+          },
+          {
+            "<leader>fgp",
+            function()
+              require('telescope').extensions.gh.pull_request()
+            end,
+          }
+        }
+      }
+    },
+    keys = {
+      {
+        "<leader>fF",
+        function()
+          require("telescope.builtin").find_files({})
+        end,
+      },
+      {
+        "<leader>ff",
+        function()
+          require("telescope.builtin").git_files({})
+        end
+      },
+      {
+        "<leader>fg",
+        function()
+          require("telescope.builtin").find_grep({})
+        end
+      },
+      {
+        "<leader>fb",
+        function()
+          require("telescope.builtin").buffers({})
+        end
+      },
+      {
+        "<leader>fh",
+        function()
+          require("telescope.builtin").help_tags({})
+        end
+      },
 
-	vim.keymap.set("n", "<leader>fls", builtin.lsp_document_symbols, {})
-	vim.keymap.set("n", "<leader>flw", builtin.lsp_workspace_symbols, {})
-	vim.keymap.set("n", "<leader>fld", builtin.diagnostics, {})
-	vim.keymap.set("n", "<leader>flr", builtin.lsp_references, {})
-	vim.keymap.set("n", "<leader>fld", builtin.lsp_definitions, {})
 
-	vim.keymap.set("n", "<leader>fgb", builtin.git_branches, {})
-	vim.keymap.set("n", "<leader>fgc", builtin.git_commits, {})
-	vim.keymap.set("n", "<leader>fgbc", builtin.git_bcommits, {})
+      {
+        "<leader>fls",
+        function()
+          require("telescope.builtin").lsp_document_symbols({})
+        end
+      },
+      {
+        "<leader>flw",
+        function()
+          require("telescope.builtin").lsp_workspace_symbols({})
+        end
+      },
+      {
+        "<leader>fld",
+        function()
+          require("telescope.builtin").diagnostics({})
+        end
+      },
+      {
+        "<leader>flr",
+        function()
+          require("telescope.builtin").lsp_references({})
+        end
+      },
+      {
+        "<leader>fld",
+        function()
+          require("telescope.builtin").lsp_definitions({})
+        end
+      },
 
-	vim.keymap.set("n", "<leader>fgi", require("telescope").extensions.gh.issues, {})
-	vim.keymap.set("n", "<leader>fgr", require("telescope").extensions.gh.pull_request, {})
-end
-
-local function config()
-	local telescope = require("telescope")
-	local actions = require("telescope.actions")
-	local file_browser_actions = telescope.extensions.file_browser.actions
-
-	telescope.setup({
-		defaults = {
-			layout_strategy = "flex",
-			layout_config = { anchor = "N" },
-			scroll_strategy = "cycle",
-			theme = require("telescope.themes").get_dropdown({ layout_config = { prompt_position = "top" } }),
-			initial_mode = "insert",
-			mappings = {
-				i = {
-					["<ESC>"] = actions.close,
-					["<C-j>"] = actions.move_selection_next,
-					["<C-k>"] = actions.move_selection_previous,
-				},
-			},
-		},
-		extensions = {
-			fzf = {
-				fuzzy = true,
-				override_generic_sorter = true,
-				override_file_sorter = true,
-				case_mode = "smart_case",
-			},
-			["ui-select"] = {
-				require("telescope.themes").get_dropdown({ layout_config = { prompt_position = "top" } }),
-			},
-			heading = { treesitter = true },
-			file_browser = {
-				hijack_netwrw = true,
-				hidden = true,
-				mappings = {
-					i = {
-						["<c-n>"] = file_browser_actions.create,
-						["<c-r>"] = file_browser_actions.rename,
-						["<c-h>"] = file_browser_actions.toggle_hidden,
-						["<c-x>"] = file_browser_actions.remove,
-						["<c-p>"] = file_browser_actions.move,
-						["<c-y>"] = file_browser_actions.copy,
-						["<c-a>"] = file_browser_actions.select_all,
-					},
-				},
-			},
-		},
-		pickers = {
-			buffers = {
-				ignore_current_buffer = true,
-				-- sort_mru = true,
-				sort_lastused = true,
-				previewer = false,
-			},
-		},
-	})
-
-	telescope.load_extension("fzf")
-	telescope.load_extension("ui-select")
-	telescope.load_extension("notify")
-	telescope.load_extension("heading")
-	telescope.load_extension("file_browser")
-	telescope.load_extension("gh")
-end
-
-return { config = config, init = init }
+      {
+        "<leader>fgb",
+        function()
+          require("telescope.builtin").git_branches({})
+        end
+      },
+      {
+        "<leader>fgc",
+        function()
+          require("telescope.builtin").git_commits({})
+        end
+      },
+      {
+        "<leader>fgbc",
+        function()
+          require("telescope.builtin").git_bcommits({})
+        end
+      },
+    },
+    opts = {
+      defaults = {
+        layout_strategy = "flex",
+        layout_config = { anchor = "N" },
+        scroll_strategy = "cycle",
+        initial_mode = "insert",
+      },
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        case_mode = "smart_case",
+      },
+      pickers = {
+        buffers = {
+          ignore_current_buffer = true,
+          -- sort_mru = true,
+          sort_lastused = true,
+          previewer = false,
+        },
+      },
+    }
+  },
+}
