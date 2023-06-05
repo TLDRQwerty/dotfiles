@@ -13,5 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require('tldrqwerty.set')
 require('tldrqwerty.remap')
+require('tldrqwerty.autocmd')
 
 require("lazy").setup({{import = "tldrqwerty/plugins"}})
