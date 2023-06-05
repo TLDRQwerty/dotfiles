@@ -206,7 +206,6 @@ return {
       local null_act = null_ls.builtins.code_actions
 
       local sources = {
-        null_ls.builtins.diagnostics.eslint,
         null_diag.phpcs.with({
           prefer_local = "bin",
         }),
