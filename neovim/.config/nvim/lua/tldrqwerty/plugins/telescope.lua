@@ -49,7 +49,7 @@ return {
       {
         "<leader>fg",
         function()
-          require("telescope.builtin").find_grep({})
+          require("telescope.builtin").live_grep({})
         end
       },
       {
