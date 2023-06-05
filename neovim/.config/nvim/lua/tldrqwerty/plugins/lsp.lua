@@ -9,7 +9,7 @@ return {
       },
       {
         "williamboman/mason-lspconfig.nvim",
-        config = {
+        opts = {
           ensure_installed = {
             "tsserver",
             "lua_ls",
