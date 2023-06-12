@@ -152,6 +152,7 @@ return {
       })
       lspconfig.astro.setup({})
       lspconfig.eslint.setup({})
+      lspconfig.sourcekit.setup({})
     end,
     init = function()
       vim.api.nvim_create_autocmd("LspAttach", {
