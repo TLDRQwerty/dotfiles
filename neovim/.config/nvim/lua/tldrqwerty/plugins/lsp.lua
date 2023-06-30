@@ -184,6 +184,12 @@ return {
 
           vim.keymap.set("n", "dn", vim.diagnostic.goto_next, opts)
           vim.keymap.set("n", "dp", vim.diagnostic.goto_prev, opts)
+          vim.keymap.set("n", "d<S-n>", function()
+            vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})
+          end, opts)
+          vim.keymap.set("n", "d<S-p>", function()
+            vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})
+          end, opts)
           vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
         end,
       })
