@@ -1,9 +1,6 @@
 # terminal emulator
-super + {_,shift} + Return
-	{alacritty,kitty}
-
-super + space
-	rofi -show drun
+super + {_, shift} + Return
+	{kitty, st}
 
 {XF86MonBrightnessUp, XF86MonBrightnessDown}
 	xbacklight {+,-}2.5%
