@@ -12,6 +12,7 @@ bspc config gapless_monocle      true
 
 bspc config focus_follows_pointer true
 
+bspc rule -a 1Password state=floating follow=on center=true
 # bspc rule -a Gimp desktop='^8' state=floating follow=on
 # bspc rule -a Chromium desktop='^2'
 # bspc rule -a mplayer2 state=floating
