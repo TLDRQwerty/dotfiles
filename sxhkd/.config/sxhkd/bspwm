@@ -2,13 +2,9 @@
 # wm independent hotkeys
 #
 
-# terminal emulator
-super + Return
-	urxvt
-
 # program launcher
-super + @space
-	dmenu_run
+super + {_, shift} + @space
+	{rofi -show drun, dmenu_run}
 
 # make sxhkd reload its configuration files:
 super + Escape
