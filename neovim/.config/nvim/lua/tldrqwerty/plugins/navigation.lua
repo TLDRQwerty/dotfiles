@@ -11,7 +11,7 @@ return {
       resize = {
         enable_default_keybindings = true,
       },
-    }
+    },
   },
   {
     "lmburns/lf.nvim",
@@ -25,25 +25,26 @@ return {
         "<leader>lf",
         function()
           require("lf").start(
-          -- nil, -- this is the path to open Lf (nil means CWD)
-          -- this argument is optional see `.start` below
+            -- nil, -- this is the path to open Lf (nil means CWD)
+            -- this argument is optional see `.start` below
             {
               -- Pass options (if any) that you would like
-              dir = "",            -- directory where `lf` starts ('gwd' is git-working-directory)
+              dir = "", -- directory where `lf` starts ('gwd' is git-working-directory)
               direction = "float", -- window type: float horizontal vertical
-              border = "double",   -- border kind: single double shadow curved
-              mappings = true,     -- whether terminal buffer mapping is enabled
-            })
-        end
-      }
-    }
+              border = "double", -- border kind: single double shadow curved
+              mappings = true, -- whether terminal buffer mapping is enabled
+            }
+          )
+        end,
+      },
+    },
   },
   {
     "akinsho/toggleterm.nvim",
     opts = {},
     keys = {
       {
-        '<leader>lg',
+        "<leader>lg",
         function()
           local Terminal = require("toggleterm.terminal").Terminal
           local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
@@ -52,10 +53,10 @@ return {
           end
 
           _lazygit_toggle()
-        end
+        end,
       },
       {
-        '<leader>tf',
+        "<leader>tf",
         function()
           local Terminal = require("toggleterm.terminal").Terminal
           local float_terminal = Terminal:new({
@@ -66,10 +67,10 @@ return {
           end
 
           _float_terminal_toggle()
-        end
+        end,
       },
       {
-        '<leader>tt',
+        "<leader>tt",
         function()
           local Terminal = require("toggleterm.terminal").Terminal
           local tab_terminal = Terminal:new({
@@ -80,10 +81,10 @@ return {
           end
 
           _tab_terminal_toggle()
-        end
+        end,
       },
       {
-        '<leader>tv',
+        "<leader>tv",
         function()
           local Terminal = require("toggleterm.terminal").Terminal
           local vertical_terminal = Terminal:new({
@@ -94,10 +95,10 @@ return {
           end
 
           _vertical_terminal_toggle()
-        end
+        end,
       },
       {
-        '<leader>ts',
+        "<leader>ts",
         function()
           local Terminal = require("toggleterm.terminal").Terminal
           local terminal = Terminal:new({})
@@ -106,8 +107,62 @@ return {
           end
 
           _horizontal_terminal_toggle()
-        end
-      }
-    }
+        end,
+      },
+    },
+  },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump({
+            search = {
+              mode = function(str)
+                return "\\<" .. str
+              end,
+            },
+          })
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Flash Treesitter Search",
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
+    },
   },
 }
