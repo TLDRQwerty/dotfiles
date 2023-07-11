@@ -112,3 +112,5 @@ ${{
     fi
 }}
 
+map a :push %mkdir<space>
+map A :push %touch<space>
