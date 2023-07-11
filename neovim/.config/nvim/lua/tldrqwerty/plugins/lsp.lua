@@ -111,6 +111,9 @@ return {
       { "L3MON4D3/LuaSnip" },
       { "rafamadriz/friendly-snippets" },
     },
+    opts = {
+      inlay_hints = { enabled = true },
+    },
     setup = {},
     config = function()
       local lspconfig = require("lspconfig")
@@ -120,7 +123,34 @@ return {
           licenceKey = os.getenv("INTELEPHENSE_KEY"),
         },
       })
-      lspconfig.tsserver.setup({})
+      lspconfig.tsserver.setup({
+        settings = {
+          typescript = {
+            inlayHints = {
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
+          },
+          javascript = {
+            inlayHints = {
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
+          },
+        },
+      })
       lspconfig.grammarly.setup({})
       lspconfig.tailwindcss.setup({
         settings = {
@@ -155,6 +185,17 @@ return {
       lspconfig.sourcekit.setup({})
     end,
     init = function()
+      vim.api.nvim_create_autocmd({ "BufEnter" }, {
+        callback = function()
+          vim.lsp.inlay_hint(0, true)
+        end,
+      })
+      -- vim.api.nvim_create_autocmd({ "BufLeave" }, {
+      --   callback = function()
+      --     vim.lsp.inlay_hint(0, false)
+      --   end,
+      -- })
+
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(ev)
@@ -185,10 +226,10 @@ return {
           vim.keymap.set("n", "dn", vim.diagnostic.goto_next, opts)
           vim.keymap.set("n", "dp", vim.diagnostic.goto_prev, opts)
           vim.keymap.set("n", "d<S-n>", function()
-            vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})
+            vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
           end, opts)
           vim.keymap.set("n", "d<S-p>", function()
-            vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})
+            vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
           end, opts)
           vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
         end,
