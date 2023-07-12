@@ -185,9 +185,14 @@ return {
       lspconfig.sourcekit.setup({})
     end,
     init = function()
-      vim.api.nvim_create_autocmd({ "BufEnter" }, {
-        callback = function()
-          vim.lsp.inlay_hint(0, true)
+      vim.api.nvim_create_autocmd({ "LspAttach" }, {
+        callback = function(args)
+          local buffer = args.buf
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+          if client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint(buffer, true)
+          end
         end,
       })
       -- vim.api.nvim_create_autocmd({ "BufLeave" }, {
