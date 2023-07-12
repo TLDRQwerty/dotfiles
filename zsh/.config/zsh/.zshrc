@@ -93,6 +93,12 @@ if (( $+commands[sd] )); then
   alias sed="sd"
 fi
 
+if (( $+commands[pyenv] )); then
+  export PYENV_ROOT="$HOME/.pyenv"
+  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
+
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	export XDG_CONFIG_HOME=$HOME/.config
 	export XDG_CACHE_HOME=$HOME/.cache
