@@ -45,4 +45,10 @@ return {
       -- vim.cmd.colorscheme("catppuccin")
     end,
   },
+  {
+    "nikolvs/vim-sunbather"
+  },
+  {
+    "n1ghtmare/noirblaze-vim"
+  },
 }
