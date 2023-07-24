@@ -51,4 +51,7 @@ return {
   {
     "n1ghtmare/noirblaze-vim"
   },
+  {
+    'projekt0n/github-nvim-theme',
+  }
 }
