@@ -123,7 +123,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	[ -s "/usr/share/nvm/nvm.sh" ] && \. "/usr/share/nvm/nvm.sh"  # This loads nvm
 	[ -s "/usr/share/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/share/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	export PATH="/Users/radfive/.jenv/shims:${PATH}"
+	export PATH="$HOME/.jenv/shims:${PATH}"
 	export JENV_SHELL=zsh
 	export JENV_LOADED=1
 	unset JAVA_HOME
