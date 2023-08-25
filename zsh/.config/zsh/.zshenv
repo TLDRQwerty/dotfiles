@@ -12,5 +12,6 @@ export EDITOR='nvim'
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 export BROWSER='firefox'
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-export BROWSER='open -a firefox '
+export BROWSER='open -a arc'
 fi
+. "$HOME/.cargo/env"
