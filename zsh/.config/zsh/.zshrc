@@ -46,6 +46,10 @@ if (( $+commands[zoxide] )); then
 	alias cd="z"
 fi
 
+if (( $+commands[op] )); then
+  eval "$(op completion zsh)"; compdef _op op
+fi
+
 if (( $+commands[exa] )); then
 	alias ls="exa"
 fi
@@ -141,6 +145,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	}
 
 	export NVM_DIR="$HOME/.nvm"
+	export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts:${PATH}"
+	export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts/*:${PATH}"
+	export PATH="$HOME/.cargo/bin:${PATH}"
 
 	[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 	[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
@@ -150,10 +157,15 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
 	export ANDROID_HOME=$HOME/Library/Android/sdk
 	export PATH=$PATH:$ANDROID_HOME/emulator
-	export PATH=$PATH:$ANDROID_HOME/cmdline-tools
+	export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 	export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 	export PATH=/opt/homebrew/bin:$PATH
+
+  if type brew &>/dev/null
+  then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  fi
 
 	export PATH=$HOME/.jenv/bin:$PATH
 	if (( $+commands[jenv] ));then
@@ -171,6 +183,12 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   alias ios-log="xcrun simctl list | grep 'Booted' | fzf | grep -oE '(\b[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\b)' | xargs -I{} xcrun simctl spawn {} log stream --level debug --style compact --process IB"
 
 elif [[ "$OSTYPE" == "win32"* ]]; then
+fi
+
+if (( $+commands[pyenv] ));then
+  export PYENV_ROOT="$HOME/.pyenv"
+  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
 fi
 
 alias l="ls"
@@ -205,10 +223,11 @@ fi
 zle -N zle-keymap-select
 
 
+
 [ -s "$ZDOTDIR/prompt.zsh" ] && source "$ZDOTDIR/prompt.zsh"
 [ -s "$ZDOTDIR/autocmd.zsh" ] && source "$ZDOTDIR/autocmd.zsh"
 
-[ -s "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" 
+[ -s "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 [ -s "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp root line)
