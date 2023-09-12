@@ -8,6 +8,9 @@ return {
         opts = {},
       },
       {
+        "simrat39/rust-tools.nvim",
+      },
+      {
         "williamboman/mason-lspconfig.nvim",
         opts = {
           ensure_installed = {
@@ -123,6 +126,8 @@ return {
           licenceKey = os.getenv("INTELEPHENSE_KEY"),
         },
       })
+      local rt = require("rust-tools")
+      rt.setup()
       lspconfig.tsserver.setup({
         settings = {
           typescript = {
