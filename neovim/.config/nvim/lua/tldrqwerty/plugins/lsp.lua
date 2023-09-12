@@ -22,6 +22,7 @@ return {
             "svelte",
             "intelephense",
             "eslint",
+            "sqlls",
           },
           automatic_installation = true,
         },
@@ -188,6 +189,7 @@ return {
       lspconfig.astro.setup({})
       lspconfig.eslint.setup({})
       lspconfig.sourcekit.setup({})
+      lspconfig.sqlls.setup({})
     end,
     init = function()
       vim.api.nvim_create_autocmd({ "LspAttach" }, {
