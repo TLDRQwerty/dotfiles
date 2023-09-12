@@ -1,10 +1,10 @@
 return {
   {
     "shaunsingh/oxocarbon.nvim",
-    config = function()
-      vim.opt.background = "dark" -- set this to dark or light
-      vim.cmd.colorscheme "oxocarbon"
-    end,
+    -- config = function()
+    --   vim.opt.background = "dark" -- set this to dark or light
+    --   vim.cmd.colorscheme "oxocarbon"
+    -- end,
   },
   {
     "ellisonleao/gruvbox.nvim",
@@ -42,7 +42,7 @@ return {
       require("catppuccin").setup({
         flavor = "mocha",
       })
-      -- vim.cmd.colorscheme("catppuccin")
+      vim.cmd.colorscheme("catppuccin")
     end,
   },
   {
@@ -53,5 +53,8 @@ return {
   },
   {
     'projekt0n/github-nvim-theme',
+  },
+  {
+    "dotsilas/darcubox-nvim",
   }
 }
