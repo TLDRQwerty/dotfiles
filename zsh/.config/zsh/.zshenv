@@ -14,4 +14,6 @@ export BROWSER='firefox'
 elif [[ "$OSTYPE" == "darwin"* ]]; then
 export BROWSER='open -a arc'
 fi
-. "$HOME/.cargo/env"
+
+
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
