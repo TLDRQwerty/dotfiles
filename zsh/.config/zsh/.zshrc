@@ -177,7 +177,11 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	export XDG_CACHE_HOME=$HOME/.cache
 	export XDG_DATA_HOME=$HOME/.local/share
 
-  alias react-native-run-ios="xcrun simctl list | grep 'Booted' | cut -d \( -f 1 | fzf | xargs -I{} npx react-native run-ios --simulator '{}'"
+  alias ios-list-devices="xcrun xctrace list devices | grep -E '\(.*\)' | fzf"
+
+  alias ios-device-id="ios-list-devices | awk -F '[(]|[)]' '{print \$(NF-1)}'"
+
+  alias react-native-run-ios="ios-device-id | xargs -I{} npx react-native run-ios --udid '{}'"
   alias launch-ios-simulator="xcrun simctl list | grep 'Shutdown' | fzf | grep -oE '(\b[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\b)' | xargs -I{} xcrun simctl boot {}"
   alias ios-log="xcrun simctl list | grep 'Booted' | fzf | grep -oE '(\b[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\b)' | xargs -I{} xcrun simctl spawn {} log stream --level debug --style compact --process IB"
 
