@@ -34,6 +34,9 @@ return {
         },
       },
       {
+        "github/copilot.vim",
+      },
+      {
         "hrsh7th/nvim-cmp",
         opts = function()
           local cmp = require("cmp")
@@ -116,7 +119,7 @@ return {
       { "rafamadriz/friendly-snippets" },
     },
     opts = {
-      inlay_hints = { enabled = true },
+      inlay_hints = { enabled = false },
     },
     setup = {},
     config = function()
@@ -198,7 +201,7 @@ return {
           local client = vim.lsp.get_client_by_id(args.data.client_id)
 
           if client.server_capabilities.inlayHintProvider then
-            vim.lsp.inlay_hint(buffer, true)
+            vim.lsp.inlay_hint(buffer, false)
           end
         end,
       })
