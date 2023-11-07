@@ -162,8 +162,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
 	export PATH=/opt/homebrew/bin:$PATH
 
-  if type brew &>/dev/null
-  then
+  if (( $+commands[brew] ));then
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
   fi
 
