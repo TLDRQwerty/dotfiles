@@ -11,8 +11,6 @@ vim.o.swapfile = false
 
 vim.opt.fillchars = { eob = "~" }
 
-vim.o.completeopt="menuone,noinsert,noselect"
-
 vim.opt.list = true
 vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↴")
@@ -27,4 +25,3 @@ vim.o.relativenumber = true
 vim.o.updatetime = 50
 
 vim.opt.colorcolumn = "80"
-

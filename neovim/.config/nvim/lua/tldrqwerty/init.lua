@@ -9,10 +9,11 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
-require('tldrqwerty.set')
-require('tldrqwerty.remap')
-require('tldrqwerty.autocmd')
+require('tldrqwerty.config.options')
+require('tldrqwerty.config.keymaps')
+require('tldrqwerty.config.autocmds')
 
-require("lazy").setup({{import = "tldrqwerty/plugins"}})
+require("lazy").setup("tldrqwerty.plugins")
