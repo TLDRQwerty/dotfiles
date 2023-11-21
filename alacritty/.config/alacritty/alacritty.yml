@@ -1,0 +1,6 @@
+import:
+  - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
+
+live_config_reload: true
+env:
+  TERM: xterm-256color
