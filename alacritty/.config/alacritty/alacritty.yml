@@ -4,3 +4,6 @@ import:
 live_config_reload: true
 env:
   TERM: xterm-256color
+font:
+  normal:
+    family: HackNerdFontMono
