@@ -9,7 +9,7 @@ setopt PROMPT_SUBST
   local -a st
   st=($(git status --porcelain 2>/dev/null))
   if (( $#st )); then
-    hook_com[unstaged]+='%F{red}+'
+    hook_com[misc]+='%F{red}+'
   fi
 }
 
