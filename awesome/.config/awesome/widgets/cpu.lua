@@ -4,7 +4,6 @@ local helpers = require("widgets.helpers")
 
 local CMD = [[grep --max-count=1 '^cpu.' /proc/stat]]
 
-
 local cpuwidget = {}
 
 local function worker(_args)

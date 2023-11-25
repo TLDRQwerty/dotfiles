@@ -20,6 +20,8 @@ require("awful.hotkeys_popup.keys")
 
 local cpu_widget = require("widgets.cpu")
 local memory_widget = require("widgets.memory")
+local volume_widget = require("widgets.volume")
+local spotify_widget = require("widgets.spotify")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -113,9 +115,6 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = myma
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
-
--- Create a textclock widget
-mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -227,8 +226,17 @@ awful.screen.connect_for_each_screen(function(s)
       s.mytaglist,
       s.mypromptbox,
     },
-    s.mytasklist, -- Middle widget
-    {           -- Right widgets
+    {
+      layout = wibox.layout.fixed.horizontal,
+      s.mytasklist, -- Middle widget
+    },
+    { -- Right widgets
+      spotify_widget({
+        color = beautiful.rosewater,
+      }),
+      volume_widget({
+        color = beautiful.green,
+      }),
       cpu_widget({
         color = beautiful.red,
       }),
@@ -238,7 +246,7 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal,
       spacing = 10,
       wibox.widget.systray(),
-      mytextclock,
+      wibox.widget.textclock(),
       s.mylayoutbox,
     },
   })
@@ -475,7 +483,7 @@ awful.rules.rules = {
   {
     rule_any = {
       instance = {
-        "DTA", -- Firefox addon DownThemAll.
+        "DTA",   -- Firefox addon DownThemAll.
         "copyq", -- Includes session name in class.
         "pinentry",
       },
@@ -484,12 +492,13 @@ awful.rules.rules = {
         "Blueman-manager",
         "Gpick",
         "Kruler",
-        "MessageWin", -- kalarm.
+        "MessageWin",  -- kalarm.
         "Sxiv",
         "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
         "Wpa_gui",
         "veromix",
         "xtightvncviewer",
+        "1Password",
       },
 
       -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -498,9 +507,9 @@ awful.rules.rules = {
         "Event Tester", -- xev.
       },
       role = {
-        "AlarmWindow", -- Thunderbird's calendar.
+        "AlarmWindow",   -- Thunderbird's calendar.
         "ConfigManager", -- Thunderbird's about:config.
-        "pop-up",    -- e.g. Google Chrome's (detached) Developer Tools.
+        "pop-up",        -- e.g. Google Chrome's (detached) Developer Tools.
       },
     },
     properties = { floating = true },
@@ -548,7 +557,7 @@ client.connect_signal("request::titlebars", function(c)
       buttons = buttons,
       layout = wibox.layout.fixed.horizontal,
     },
-    { -- Middle
+    {   -- Middle
       { -- Title
         align = "center",
         widget = awful.titlebar.widget.titlewidget(c),
