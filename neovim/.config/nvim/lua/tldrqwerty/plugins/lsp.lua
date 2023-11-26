@@ -20,7 +20,18 @@ return {
             licenceKey = os.getenv("INTELEPHENSE_KEY"),
           },
         },
-        tailwindcss = {},
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              experimental = {
+                classRegex = {
+                  { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                  { "cx\\(([^)]*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                },
+              },
+            },
+          },
+        },
         cssls = {},
         cssmodules_ls = {},
         rust_analyzer = {},
@@ -48,10 +59,10 @@ return {
         rust_analyzer = function(_, opts)
           local rt = require("rust-tools")
           rt.setup({
-            server = opts
+            server = opts,
           })
         end,
-      }
+      },
     },
 
     ---@param opts PluginLspOpts
@@ -83,10 +94,10 @@ return {
           vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, o)
 
           return ret
-        end
+        end,
       })
       local servers = opts.servers
-      local cmp_nvim_lsp = require('cmp_nvim_lsp')
+      local cmp_nvim_lsp = require("cmp_nvim_lsp")
       local capabilities = vim.tbl_deep_extend(
         "force",
         {},
@@ -124,7 +135,7 @@ return {
       end
 
       mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
-    end
+    end,
   },
 
   {
@@ -135,7 +146,7 @@ return {
       ensure_installed = {
         "stylua",
         "shfmt",
-      }
-    }
-  }
+      },
+    },
+  },
 }
