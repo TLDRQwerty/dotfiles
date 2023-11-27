@@ -28,7 +28,7 @@ setopt PROMPT_SUBST
     gitstatus+=("%F{cyan}↑$ahead")
   fi
   if (( $behind )); then
-    gitstatus(+="%F{magenta}↓$behind")
+    gitstatus+=("%F{magenta}↓$behind")
   fi
   hook_com[misc]+="${(j:/:)gitstatus}"
 }
