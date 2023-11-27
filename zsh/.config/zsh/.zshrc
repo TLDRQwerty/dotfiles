@@ -187,17 +187,19 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   export ANDROID_HOME=$ANDROID_SDK_ROOT
   export PATH="$PATH:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools"
 
-  if (( $+commands[brew] )); then
-    FPATH+=($(brew --prefix)/share/zsh-completions)
+  if [[ -f /opt/homebrew/bin/brew ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
   fi
+  # if (( $+commands[brew] )); then
+  #   FPATH+=($(brew --prefix)/share/zsh-completions)
+  # fi
 
   if (( $+commands[jenv] )); then
     export PATH="$HOME/.jenv/bin:$PATH"
     eval "$(jenv init -)"
   fi
 
-    alias ios-list-devices="xcrun xctrace list devices | grep -E '\(.*\)' | fzf"
+  alias ios-list-devices="xcrun xctrace list devices | grep -E '\(.*\)' | fzf"
 
   alias ios-device-id="ios-list-devices | awk -F '[(]|[)]' '{print \$(NF-1)}'"
 
