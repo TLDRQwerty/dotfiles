@@ -20,6 +20,7 @@ return {
             licenceKey = os.getenv("INTELEPHENSE_KEY"),
           },
         },
+        flow = {},
         tailwindcss = {
           settings = {
             tailwindCSS = {
@@ -96,7 +97,13 @@ return {
           return ret
         end,
       })
+      local lspconfig = require("lspconfig")
       local servers = opts.servers
+
+      if lspconfig.util.path.exists(".flowconfig") then
+        servers['tsserver'] = nil
+      end
+
       local cmp_nvim_lsp = require("cmp_nvim_lsp")
       local capabilities = vim.tbl_deep_extend(
         "force",
@@ -126,15 +133,16 @@ return {
       local ensure_installed = {} ---@type string[]
       for server, server_opts in pairs(servers) do
         if server_opts then
-          if not vim.tbl_contains(all_mslp_servers, server) then
-            setup(server)
-          else
-            ensure_installed[#ensure_installed + 1] = server
-          end
+          -- if not vim.tbl_contains(all_mslp_servers, server) then
+          --   setup(server)
+          -- else
+          --   ensure_installed[#ensure_installed + 1] = server
+          -- end
+          setup(server)
         end
       end
 
-      mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
+      -- mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
     end,
   },
 
