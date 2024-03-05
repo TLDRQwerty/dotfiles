@@ -199,6 +199,10 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     eval "$(jenv init -)"
   fi
 
+  if (( $+commands[rbenv] )); then
+    eval "$(rbenv init -)"
+  fi
+
   alias ios-list-devices="xcrun xctrace list devices | grep -E '\(.*\)' | fzf"
 
   alias ios-device-id="ios-list-devices | awk -F '[(]|[)]' '{print \$(NF-1)}'"
