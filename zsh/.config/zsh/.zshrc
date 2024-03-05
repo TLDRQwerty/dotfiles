@@ -213,6 +213,62 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
 fi
 
+alias android-list-devices="adb devices | grep -E 'device$' | awk '{print \$1}' | fzf"
+function android-logcat() {
+  local deviceCount=$(adb devices | grep -E 'device$' | wc -l)
+
+  if [[ $deviceCount -gt 1 ]]; then
+    local device_id=$(android-list-devices)
+    adb -s $device_id logcat "$@"
+  else
+    adb logcat "$@"
+  fi
+}
+
+function android-install() {
+  local deviceCount=$(adb devices | grep -E 'device$' | wc -l)
+
+  if [[ $deviceCount -gt 1 ]]; then
+    local device_id=$(android-list-devices)
+    adb -s $device_id install "$@"
+  else
+    adb install "$@"
+  fi
+}
+
+function android-shell() {
+  local deviceCount=$(adb devices | grep -E 'device$' | wc -l)
+
+  if [[ $deviceCount -gt 1 ]]; then
+    local device_id=$(android-list-devices)
+    adb -s $device_id shell
+  else
+    adb shell
+  fi
+}
+
+function android-pull() {
+  local deviceCount=$(adb devices | grep -E 'device$' | wc -l)
+
+  if [[ $deviceCount -gt 1 ]]; then
+    local device_id=$(android-list-devices)
+    adb -s $device_id pull "$@"
+  else
+    adb pull "$@"
+  fi
+}
+
+function android-push() {
+  local deviceCount=$(adb devices | grep -E 'device$' | wc -l)
+
+  if [[ $deviceCount -gt 1 ]]; then
+    local device_id=$(android-list-devices)
+    adb -s $device_id push "$@"
+  else
+    adb push "$@"
+  fi
+}
+
 [ -s "$ZDOTDIR/prompt.zsh" ] && source "$ZDOTDIR/prompt.zsh"
 [ -s "$ZDOTDIR/autoload.zsh" ] && source "$ZDOTDIR/autoload.zsh"
 
