@@ -1,11 +1,11 @@
-import = ["/home/qwerty/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+import = ["~/dotfiles/alacritty/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
 live_config_reload = true
 
 [env]
 TERM = "xterm-256color"
 
 [font.normal]
-family = "HackNerdFontMono"
+family = "Hack Nerd Font"
 
 [[keyboard.bindings]]
 action = "IncreaseFontSize"
