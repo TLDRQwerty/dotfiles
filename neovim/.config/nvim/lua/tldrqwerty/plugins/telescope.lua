@@ -12,6 +12,11 @@ return {
 		{ "<leader>fg", "<cmd>Telescope live_grep<cr>" },
 		{ "<leader>fb", "<cmd>Telescope buffers<cr>" },
 		{ "<leader>fh", "<cmd>Telescope help_tags<cr>" },
+
+		{ "<leader>flr", "<cmd>Telescope lsp_references<cr>" },
+		{ "<leader>fld", "<cmd>Telescope lsp_definitions<cr>" },
+		{ "<leader>flD", "<cmd>Telescope lsp_declorations<cr>" },
+		{ "<leader>fli", "<cmd>Telescope lsp_implementations<cr>" },
 	},
 	opts = {},
 	config = function(_, opts)
