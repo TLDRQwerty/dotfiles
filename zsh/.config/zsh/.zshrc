@@ -19,6 +19,8 @@ export HISTSIZE=100000
 export SAVEHIST=100000
 export HISTTIMEFORMAT="[%F %T] "
 
+export EDITOR=nvim
+
 fpath=($ZDOTDIR/functions $fpath)
 
 setopt APPEND_HISTORY
@@ -185,7 +187,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
   export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
   export ANDROID_HOME=$ANDROID_SDK_ROOT
-  export PATH="$PATH:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools"
+	export PATH=${CMAKE_BIN_PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/emulator:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${PATH}
+
 
   if [[ -f /opt/homebrew/bin/brew ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
@@ -210,6 +213,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   alias react-native-run-ios="ios-device-id | xargs -I{} npx react-native run-ios --udid '{}'"
   alias launch-ios-simulator="xcrun simctl list | grep 'Shutdown' | fzf | grep -oE '(\b[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\b)' | xargs -I{} xcrun simctl boot {}"
   alias ios-log="xcrun simctl list | grep 'Booted' | fzf | grep -oE '(\b[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\b)' | xargs -I{} xcrun simctl spawn {} log stream --level debug --style compact --process IB"
+
+	export PATH="$PATH:$HOME/.cargo/bin"
 
 fi
 
