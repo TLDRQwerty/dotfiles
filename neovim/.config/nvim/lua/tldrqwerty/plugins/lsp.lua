@@ -1,3 +1,4 @@
+local augroup = require('tldrqwerty.utils').augroup
 local keymap = vim.keymap
 
 return {
@@ -25,6 +26,9 @@ return {
 						Lua = {
 							completion = {
 								callSnippet = "Replace"
+							},
+							hint = {
+								enable = true
 							}
 						}
 					}
@@ -43,6 +47,16 @@ return {
 				htmx = {},
 				svelte = {},
 				bashls = {},
+				grammarly = {},
+				intelephense = {
+					init_options = {
+						licenceKey = os.getenv("INTELEPHENSE_KEY"),
+					},
+
+				},
+			},
+			inlay_hints = {
+				enabled = true,
 			},
 			setup = {},
 			capabilities = {
@@ -51,7 +65,7 @@ return {
 		config = function(_, opts)
 			local lspconfig = require('lspconfig')
 			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("UserLpsConfig", {}),
+				group = augroup("UserLpsConfig"),
 				callback = function(ev)
 					vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
@@ -72,10 +86,20 @@ return {
 
 					keymap.set("n", "dn", vim.diagnostic.goto_next, o)
 					keymap.set("n", "dp", vim.diagnostic.goto_prev, o)
+					vim.keymap.set("n", "d<S-n>", function()
+						vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+					end, o)
+					vim.keymap.set("n", "d<S-p>", function()
+						vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+					end, o)
+
+					keymap.set("n", "ca", vim.lsp.buf.code_action, o)
 
 					keymap.set("n", "<space>f", function()
 						vim.lsp.buf.format({ async = true })
 					end, o)
+
+					local client = vim.lsp.get_client_by_id(ev.data.client_id)
 				end
 			})
 
