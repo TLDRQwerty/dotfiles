@@ -17,6 +17,7 @@ return {
 		{ "<leader>fld", "<cmd>Telescope lsp_definitions<cr>" },
 		{ "<leader>flD", "<cmd>Telescope lsp_declorations<cr>" },
 		{ "<leader>fli", "<cmd>Telescope lsp_implementations<cr>" },
+		{ "<leader>fls", "<cmd>Telescope lsp_document_symbols<cr>" },
 	},
 	opts = {},
 	config = function(_, opts)
