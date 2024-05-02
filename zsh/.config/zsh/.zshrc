@@ -105,6 +105,8 @@ if (( $+commands[pyenv] )); then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
+
+	alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 fi
 
 alias g='git'
@@ -273,6 +275,10 @@ function android-push() {
     adb push "$@"
   fi
 }
+
+if command -v pnpm &> /dev/null; then
+	eval "$(pnpm completion zsh)"
+fi
 
 [ -s "$ZDOTDIR/prompt.zsh" ] && source "$ZDOTDIR/prompt.zsh"
 [ -s "$ZDOTDIR/autoload.zsh" ] && source "$ZDOTDIR/autoload.zsh"

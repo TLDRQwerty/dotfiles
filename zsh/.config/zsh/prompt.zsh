@@ -42,9 +42,10 @@ setopt PROMPT_SUBST
 }
 
 # Enable extra hooks to run
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st git-stash
+# zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st git-stash
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-stash
 
-zstyle ':vcs_info:git:*' enable git
+zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' check-for-staged-changes true
 zstyle ':vcs_info:git:*' get-revision true
@@ -53,7 +54,7 @@ zstyle ':vcs_info:git:*' stagedstr '!'
 zstyle ':vcs_info:git:*' unstagedstr '?'
 
 zstyle ':vcs_info:*' formats ' [%b]%m%u%c'
-zstyle ':vcs_info:*' actionformats ' [%b|%a]%m%u%c'
+zstyle ':vcs_info:*' actionformats ' [%b|%a]%u%c'
 
 zstyle ':vcs_info:*' debug false
 
