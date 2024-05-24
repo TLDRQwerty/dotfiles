@@ -232,6 +232,18 @@ return {
 				{
 					{ name = "buffer" }
 				})
+		end,
+		config = function(_, opts)
+			local cmp = require('cmp')
+
+			cmp.setup.filetype({ "mysql", "sql", "plsql" }, {
+				sources = {
+					{ name = 'vim-dadbod-completion' },
+					{ name = "buffer" },
+				}
+			})
+
+			cmp.setup(opts)
 		end
 	},
 	{
@@ -239,8 +251,8 @@ return {
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { { "prettierd", "prettier" } },
-				typescript = { { "prettierd", "prettier" } },
+				-- javascript = { { "prettierd", "prettier", "eslint" } },
+				-- typescript = { { "prettierd", "prettier", "eslint" } },
 			}
 		},
 	}

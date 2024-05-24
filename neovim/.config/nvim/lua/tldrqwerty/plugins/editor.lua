@@ -19,7 +19,6 @@ return {
 	},
 	{
 		"kdheepak/lazygit.nvim",
-		opts = {},
 		cmd = {
 			"LazyGit",
 			"LazyGitConfig",
@@ -32,7 +31,7 @@ return {
 		},
 		keys = {
 			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-		}
+		},
 	},
 	{
 		"echasnovski/mini.comment",
@@ -49,5 +48,11 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 		opts = {}
+	},
+	{
+		'MeanderingProgrammer/markdown.nvim',
+		name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
+		dependencies = { 'nvim-treesitter/nvim-treesitter' },
+		opts = {},
 	}
 }
