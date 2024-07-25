@@ -85,8 +85,7 @@ if (( $+commands[fd] )); then
 fi
 
 if (( $+commands[zoxide] )); then
-  eval "$(zoxide init zsh)"
-  alias cd='z'
+  eval "$(zoxide init zsh --cmd cd)"
 fi
 
 if (( $+commands[sd] )); then
