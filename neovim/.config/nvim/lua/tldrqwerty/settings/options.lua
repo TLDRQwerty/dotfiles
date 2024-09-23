@@ -41,3 +41,5 @@ vim.opt.softtabstop = 2
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+
+vim.opt.inccommand = "nosplit"

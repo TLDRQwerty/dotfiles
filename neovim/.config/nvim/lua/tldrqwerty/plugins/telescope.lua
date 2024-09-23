@@ -1,10 +1,9 @@
 return {
 	'nvim-telescope/telescope.nvim',
-	tag = '0.1.6',
+	branch = '0.1.x',
 	dependencies = {
-		'nvim-lua/plenary.nvim',
-		"nvim-telescope/telescope-github.nvim",
-		'pwntester/octo.nvim',
+		{'nvim-lua/plenary.nvim'},
+		{ "nvim-telescope/telescope-github.nvim" },
 	},
 	keys = {
 		{ "<leader>fF",  "<cmd>Telescope find_files<cr>" },
@@ -19,19 +18,12 @@ return {
 		{ "<leader>fli", "<cmd>Telescope lsp_implementations<cr>" },
 		{ "<leader>fls", "<cmd>Telescope lsp_document_symbols<cr>" },
 	},
-	opts = {
-		defaults = {
-			layout_config = {
-				preview_cutoff = 10,
-			},
-		}
-	},
+	opts = {},
 	config = function(_, opts)
 		require('telescope').setup(opts)
 
 		if vim.fn.executable('gh') then
 			require('telescope').load_extension('gh')
-			require('telescope').load_extension('octo')
 		end
 	end
 }

@@ -1,51 +1,19 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		event = "BufRead",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects"
+			"nvim-treesitter/playground",
 		},
-		build = ":TSUpdate",
 		opts = {
-			ensure_installed = {
-				"astro",
-				"bash",
-				"html",
-				"javascript",
-				"json",
-				"lua",
-				"markdown",
-				"markdown_inline",
-				"python",
-				"query",
-				"regex",
-				"tsx",
-				"typescript",
-				"vim",
-				"yaml",
-			},
-			auto_install = true,
+			ensure_installed = "all",
 			highlight = {
 				enable = true,
-
-				additional_vim_regex_highlighting = { "php" },
+				additional_vim_regex_highlighting = false,
 			},
-
-			textobjects = {
-				lsp_interop = {
-					enable = true,
-					border = 'none',
-					floating_preview_opts = {},
-					peek_definition_code = {
-						["<leader>df"] = "@function.outer",
-						["<leader>dF"] = "@class.outer",
-					},
-				},
+			indent = {
+				enable = true,
 			},
 		},
-		config = function(_, opts)
-			local configs = require("nvim-treesitter.configs")
-
-			configs.setup(opts)
-		end
 	}
 }

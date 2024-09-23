@@ -19,7 +19,7 @@ return {
 		},
 		opts = {
 			servers = {
-				tsserver = {},
+				ts_ls = {},
 				astro = {},
 				lua_ls = {
 					settings = {
@@ -148,21 +148,14 @@ return {
 		end
 	},
 	{
-		"zbirenbaum/copilot-cmp",
-		opts = {},
-		dependencies = {
-			"zbirenbaum/copilot.lua",
-			cmd = "Copilot",
-			build = ":Copilot auth",
-			opts = {
-				suggestion = { enabled = false },
-				panel = { enabled = false },
-				filetypes = {
-					markdown = true,
-					help = true,
-				},
-			},
-		}
+		"supermaven-inc/supermaven-nvim",
+		opts = {
+			disable_inline_completion = true,
+			disable_keymaps = true,
+		},
+		config = function(_, opts)
+			require("supermaven-nvim").setup(opts)
+		end,
 	},
 	{
 		'hrsh7th/nvim-cmp',
@@ -173,7 +166,7 @@ return {
 			'hrsh7th/cmp-path',
 			'hrsh7th/cmp-cmdline',
 			'L3MON4D3/LuaSnip',
-			'copilot-cmp'
+			'supermaven-nvim'
 		},
 		opts = function(_, opts)
 			local cmp = require("cmp")
@@ -224,7 +217,7 @@ return {
 			}
 
 			opts.sources = cmp.config.sources({
-					{ name = "copilot" },
+					{ name = "supermaven" },
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "path" },
@@ -232,16 +225,26 @@ return {
 				{
 					{ name = "buffer" }
 				})
-		end,
-		config = function(_, opts)
-			local cmp = require('cmp')
 
-			cmp.setup.filetype({ "mysql", "sql", "plsql" }, {
+			opts.filetype = cmp.setup.filetype({ "mysql", "sql", "plsql" }, {
 				sources = {
 					{ name = 'vim-dadbod-completion' },
 					{ name = "buffer" },
 				}
 			})
+
+			opts.cmdline = cmp.setup.cmdline(':', {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = 'path' }
+				}, {
+					{ name = 'cmdline' }
+				}),
+				matching = { disallow_symbol_nonprefix_matching = false }
+			})
+		end,
+		config = function(_, opts)
+			local cmp = require('cmp')
 
 			cmp.setup(opts)
 		end
@@ -250,9 +253,12 @@ return {
 		'stevearc/conform.nvim',
 		opts = {
 			formatters_by_ft = {
-				lua = { "stylua" },
-				-- javascript = { { "prettierd", "prettier", "eslint" } },
-				-- typescript = { { "prettierd", "prettier", "eslint" } },
+				lua = { 'stylua' },
+				rust = { 'rustfmt', lsp_format = "fallback" },
+				javascript = { "prettierd", "prettier", stop_after_first = true },
+				javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+				typescript = { "prettierd", "prettier", stop_after_first = true },
+				typescriptreact = { "prettierd", "prettier", stop_after_first = true }
 			}
 		},
 	}
