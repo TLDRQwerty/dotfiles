@@ -95,9 +95,9 @@ return {
 
 					keymap.set("n", "ca", vim.lsp.buf.code_action, o)
 
-					keymap.set("n", "<space>f", function()
-						vim.lsp.buf.format({ async = true })
-					end, o)
+					-- keymap.set("n", "<space>f", function()
+					-- 	vim.lsp.buf.format({ async = true })
+					-- end, o)
 
 					local client = vim.lsp.get_client_by_id(ev.data.client_id)
 				end
@@ -251,15 +251,25 @@ return {
 	},
 	{
 		'stevearc/conform.nvim',
+		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 			formatters_by_ft = {
 				lua = { 'stylua' },
 				rust = { 'rustfmt', lsp_format = "fallback" },
-				javascript = { "prettierd", "prettier", stop_after_first = true },
-				javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-				typescript = { "prettierd", "prettier", stop_after_first = true },
-				typescriptreact = { "prettierd", "prettier", stop_after_first = true }
+				javascript = { "prettier", stop_after_first = true },
+				javascriptreact = { "prettier", stop_after_first = true },
+				typescript = { "prettier", stop_after_first = true },
+				typescriptreact = { "prettier", stop_after_first = true }
 			}
 		},
+		keys = {
+			{
+				"<leader>f",
+				function()
+					print('formatting')
+					require('conform').format({ async = false, timeout = 500, lsp_fallback = true })
+				end
+			},
+		}
 	}
 }
