@@ -108,6 +108,10 @@ if (( $+commands[pyenv] )); then
 	alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 fi
 
+if (( $+commands[fnm] )); then
+	eval "$(fnm env --corepack-enabled --use-on-cd --shell zsh)"
+fi
+
 alias g='git'
 alias lg='lazygit'
 
@@ -178,9 +182,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
   export PATH="$PATH:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools"
 
-  export NVM_DIR="$XDG_CACHE_HOME/nvm"
-  [ -s "/usr/share/nvm/nvm.sh" ] && source "/usr/share/nvm/nvm.sh" --no-use
-  [ -s "/usr/share/nvm/bash_completion" ] && source "/usr/share/nvm/bash_completion"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && source "/opt/homebrew/opt/nvm/nvm.sh" --no-use
