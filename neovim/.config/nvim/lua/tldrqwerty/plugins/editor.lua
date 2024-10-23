@@ -1,5 +1,9 @@
 return {
 	{
+		"aserowy/tmux.nvim",
+		opts = {}
+	},
+	{
 		"mikavilpas/yazi.nvim",
 		event = "VeryLazy",
 		keys = {

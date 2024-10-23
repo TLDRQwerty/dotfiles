@@ -24,6 +24,7 @@
   "supermaven-nvim": { "branch": "main", "commit": "074a83a74ad8a7b6f605df83e2583775aaeb4cfc" },
   "telescope-github.nvim": { "branch": "master", "commit": "ee95c509901c3357679e9f2f9eaac3561c811736" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
+  "tmux.nvim": { "branch": "main", "commit": "65ee9d6e6308afcd7d602e1320f727c5be63a947" },
   "vim-dadbod": { "branch": "master", "commit": "7888cb7164d69783d3dce4e0283decd26b82538b" },
   "vim-dadbod-completion": { "branch": "master", "commit": "880f7e9f2959e567c718d52550f9fae1aa07aa81" },
   "vim-dadbod-ui": { "branch": "master", "commit": "f29c85ab42861c6ef683289b0c6a51e0d436dcf6" },
