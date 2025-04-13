@@ -77,7 +77,6 @@ fi
 
 if (( $+commands[bat] )); then
   alias cat='bat --color=always'
-  export BAT_THEME="Catppuccin Mocha"
 fi
 
 if (( $+commands[fd] )); then
