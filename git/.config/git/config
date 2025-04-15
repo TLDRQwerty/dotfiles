@@ -51,21 +51,9 @@
 	rb = rebase
 [push]
 	default = current
+
+[include]
+	path = ~/.config/git/catppuccin.gitconfig
+
 [delta]
-	features = line-numbers mocha
-[delta "decorations"]
-	commit-decoration-style = bold yellow box ul
-	file-style = bold yellow ul
-	file-decoration-style = none
-[init]
-	defaultBranch = main
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-
-[delta "mocha"]
-  minus-style = "#f38ba8" "#11111b"
-  plus-style = "#a6e3a1" "#11111b"
-
+	features = catppuccin-mocha
