@@ -1,13 +1,30 @@
 return {
 	{
-		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
+		"mikavilpas/yazi.nvim",
+		event = "VeryLazy",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
+			{ "folke/snacks.nvim", lazy = true }
+		},
+		keys = {
+			{
+				"<leader>-",
+				mode = { "n", "v" },
+				"<cmd>Yazi<cr>",
+				desc = "Open yazi at the current file",
+			},
+		}
+	},
+	{
+		'nvim-telescope/telescope.nvim',
+		tag = '0.1.8',
+		dependencies = {
+			{
+				'nvim-lua/plenary.nvim', lazy = true
+			},
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			{
 				"pwntester/octo.nvim",
-				dependencies = { "plenary.nvim","nvim-tree/nvim-web-devicons" },
+				dependencies = { "plenary.nvim", "nvim-tree/nvim-web-devicons" },
 				opts = {},
 			},
 			{
@@ -103,6 +120,19 @@ return {
 				end,
 				desc = "Telescope lsp type definitions",
 			},
+
+			{
+				"<leader>fgi",
+				function ()
+					require("telescope").extensions.gh.issues()
+				end
+			},
+			{
+				"<leader>fgr",
+				function()
+					require("telescope").extensions.gh.pull_request()
+				end
+			}
 		},
 		setup = function()
 			require("telescope").load_extension("fzf")
@@ -110,4 +140,8 @@ return {
 			require("telescope").load_extension("gh")
 		end,
 	},
+	{
+		"aserowy/tmux.nvim",
+		opts = {}
+	}
 }

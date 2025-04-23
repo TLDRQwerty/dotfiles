@@ -1,1 +1,1 @@
-require("tldrqwerty.config")
+require('tldrqwerty.config')
