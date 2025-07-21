@@ -10,7 +10,9 @@ return {
 		opts = {
 			setup = {},
 			servers = {
+				tinymist = {},
 				ts_ls = {},
+				rust_analyzer = {},
 				astro = {},
 				lua_ls = {},
 				eslint = {},
