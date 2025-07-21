@@ -10,9 +10,9 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 export EDITOR='nvim'
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	export BROWSER='firefox'
+	export BROWSER='zen-browser'
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	export BROWSER='open -a arc'
+	export BROWSER='zsn-browser'
 fi
 
 
