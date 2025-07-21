@@ -19,8 +19,6 @@ export HISTSIZE=100000
 export SAVEHIST=100000
 export HISTTIMEFORMAT="[%F %T] "
 
-export EDITOR=nvim
-
 fpath=($ZDOTDIR/functions $fpath)
 
 setopt APPEND_HISTORY
@@ -122,6 +120,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
   export ANDROID_SDK_ROOT="/opt/android-sdk/"
   export ANDROID_HOME="$ANDROID_SDK_ROOT"
+  export ANDROID_AVD_HOME="$XDG_DATA_HOME/android/avd"
 
   export PATH="$PATH:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools"
 
