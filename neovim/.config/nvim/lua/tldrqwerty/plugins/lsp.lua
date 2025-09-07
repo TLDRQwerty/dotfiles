@@ -3,8 +3,8 @@ return {
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			{ "williamboman/mason.nvim",          opts = {} },
-			{ "williamboman/mason-lspconfig.nvim" },
+			{ "mason-org/mason.nvim",          opts = {} },
+			{ "mason-org/mason-lspconfig.nvim" },
 			{ "cmp-nvim-lsp" },
 		},
 		opts = {
@@ -84,7 +84,7 @@ return {
 			end
 
 			local mlsp = require("mason-lspconfig")
-			local all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
+			local all_mslp_servers = vim.tbl_keys(require("mason-lspconfig").get_mappings().lspconfig_to_package)
 			local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 			local capabilities = vim.tbl_deep_extend(
