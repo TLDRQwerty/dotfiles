@@ -54,3 +54,5 @@ map pd :action QuickJavaDoc<CR>
 map <C-s> :action ParameterInfo<CR>
 
 map <leader>f :action ReformatWithPrettierAction<CR>
+
+map <leader>flo :action FileStructurePopup<CR>
