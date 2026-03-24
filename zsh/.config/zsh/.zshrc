@@ -124,6 +124,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
   export PATH="$PATH:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools"
 
+  export PATH="$PATH:$HOME/.cargo/bin"
+
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && source "/opt/homebrew/opt/nvm/nvm.sh" --no-use
