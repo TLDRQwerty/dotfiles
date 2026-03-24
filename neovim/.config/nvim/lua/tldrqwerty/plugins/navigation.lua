@@ -3,7 +3,7 @@ return {
 		"mikavilpas/yazi.nvim",
 		event = "VeryLazy",
 		dependencies = {
-			{ "folke/snacks.nvim", lazy = true }
+			{ "folke/snacks.nvim", lazy = true },
 		},
 		keys = {
 			{
@@ -12,136 +12,109 @@ return {
 				"<cmd>Yazi<cr>",
 				desc = "Open yazi at the current file",
 			},
-		}
+		},
 	},
 	{
-		'nvim-telescope/telescope.nvim',
-		tag = '0.1.8',
+		"nvim-telescope/telescope.nvim",
+		version = "*",
+		opts = function()
+			require("telescope").load_extension("gh")
+			require("telescope").load_extension("fzf")
+		end,
 		dependencies = {
+			{ "nvim-telescope/telescope-github.nvim" },
 			{
-				'nvim-lua/plenary.nvim', lazy = true
-			},
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-			{
-				"pwntester/octo.nvim",
-				dependencies = { "plenary.nvim", "nvim-tree/nvim-web-devicons" },
-				opts = {},
-			},
-			{
-				"nvim-telescope/telescope-github.nvim",
-				dependencies = { "plenary.nvim" },
-				opts = {},
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install",
 			},
 		},
-		lazy = true,
-		cmd = { "Telescope" },
 		keys = {
 			{
 				"<leader>ff",
 				function()
 					require("telescope.builtin").git_files()
 				end,
-				desc = "Telescope git find files",
+				desc = "Find files",
 			},
 			{
 				"<leader>fF",
 				function()
 					require("telescope.builtin").find_files()
 				end,
-				desc = "Telescope find files",
+				desc = "Find files",
 			},
 			{
 				"<leader>fg",
 				function()
 					require("telescope.builtin").live_grep()
 				end,
-				desc = "Telescope live grep",
+				desc = "Live grep",
 			},
 			{
 				"<leader>fb",
 				function()
 					require("telescope.builtin").buffers()
 				end,
-				desc = "Telescope find buffers",
+				desc = "Find buffers",
 			},
 			{
-				"<leader>fls",
+				"<leader>fh",
 				function()
-					require("telescope.builtin").lsp_document_symbols()
+					require("telescope.builtin").help_tags()
 				end,
-				desc = "Telescope lsp document symbols",
+				desc = "Help tags",
 			},
-			{
-				"<leader>fli",
-				function()
-					require("telescope.builtin").lsp_implementations()
-				end,
-				desc = "Telescope lsp implementations",
-			},
+
 			{
 				"<leader>flr",
 				function()
 					require("telescope.builtin").lsp_references()
 				end,
-				desc = "Telescope lsp references",
+				desc = "LSP references",
 			},
 			{
 				"<leader>fld",
 				function()
 					require("telescope.builtin").lsp_definitions()
 				end,
-				desc = "Telescope lsp definitions",
+				desc = "LSP definitions",
+			},
+			{
+				"<leader>fli",
+				function()
+					require("telescope.builtin").lsp_implementations()
+				end,
+				desc = "LSP implementations",
+			},
+			{
+				"<leader>fls",
+				function()
+					require("telescope.builtin").lsp_document_symbols()
+				end,
+				desc = "LSP document symbols",
 			},
 			{
 				"<leader>flc",
 				function()
 					require("telescope.builtin").lsp_code_actions()
 				end,
-				desc = "Telescope lsp code actions",
-			},
-			{
-				"<leader>flw",
-				function()
-					require("telescope.builtin").lsp_workspace_symbols()
-				end,
-				desc = "Telescope lsp workspace symbols",
-			},
-			{
-				"<leader>flg",
-				function()
-					require("telescope.builtin").lsp_dynamic_workspace_symbols()
-				end,
-				desc = "Telescope lsp dynamic workspace symbols",
-			},
-			{
-				"<leader>flt",
-				function()
-					require("telescope.builtin").lsp_type_definitions()
-				end,
-				desc = "Telescope lsp type definitions",
+				desc = "LSP code actions",
 			},
 
 			{
 				"<leader>fgi",
-				function ()
+				function()
 					require("telescope").extensions.gh.issues()
-				end
+				end,
+				desc = "Find GitHub issues",
 			},
 			{
-				"<leader>fgr",
+				"<leader>fgp",
 				function()
 					require("telescope").extensions.gh.pull_request()
-				end
-			}
+				end,
+				desc = "Find GitHub PRs",
+			},
 		},
-		setup = function()
-			require("telescope").load_extension("fzf")
-			require("telescope").load_extension("octo")
-			require("telescope").load_extension("gh")
-		end,
 	},
-	{
-		"aserowy/tmux.nvim",
-		opts = {}
-	}
 }

@@ -1,4 +1,4 @@
-require('tldrqwerty.config.hotkeys')
-require('tldrqwerty.config.vim')
-require('tldrqwerty.config.filetypes')
-require('tldrqwerty.config.lazy')
+require("tldrqwerty.config.hotkeys")
+require("tldrqwerty.config.autocmd")
+require("tldrqwerty.config.vim")
+require("tldrqwerty.config.lazy")

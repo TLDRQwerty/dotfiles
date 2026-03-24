@@ -22,3 +22,5 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 vim.opt.inccommand = "nosplit"
+
+vim.o.winborder = "solid"

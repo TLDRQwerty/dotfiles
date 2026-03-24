@@ -1,21 +1,10 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			{ "mason-org/mason.nvim",          opts = {} },
-			{ "mason-org/mason-lspconfig.nvim" },
-			{ "cmp-nvim-lsp" },
-		},
 		opts = {
-			setup = {},
 			servers = {
-				tinymist = {},
-				ts_ls = {},
-				rust_analyzer = {},
-				astro = {},
 				lua_ls = {},
-				eslint = {},
+				ts_ls = {},
 				tailwindcss = {
 					settings = {
 						classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
@@ -25,29 +14,48 @@ return {
 						experimental = {
 							classRegex = {
 								"tw`([^`]*)", -- tw`...`
-								"tw=\"([^\"]*)", -- <div tw="..." />
-								"tw={\"([^\"}]*)", -- <div tw={"..."} />
+								'tw="([^"]*)', -- <div tw="..." />
+								'tw={"([^"}]*)', -- <div tw={"..."} />
 								"tw\\.\\w+`([^`]*)", -- tw.xxx`...`
-								"tw\\(.*?\\)`([^`]*)"
-							}
-						}
-					}
+								"tw\\(.*?\\)`([^`]*)",
+							},
+						},
+					},
 				},
 				intelephense = {
 					init_options = {
 						licenceKey = vim.fn.expand("$HOME/.config/intelephense/licence_key"),
 					},
 				},
-				flow = {},
+				rust_analyzer = {},
+				eslint = {},
+				tinymist = {},
 			},
 		},
 		config = function(_, opts)
 			local augroup = require("tldrqwerty.helpers").augroup
+			local mason_lspconfig = require("mason-lspconfig")
+			local servers = opts.servers or {}
+
+			-- Ensure all servers are installed
+			mason_lspconfig.setup({
+				ensure_installed = vim.tbl_keys(servers),
+			})
+
+			-- Setup each server with its config
+			for name, config in pairs(servers) do
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				vim.lsp.config(name, config)
+				vim.lsp.enable(name)
+			end
+
+			-- Optionally enable copilot if you want
+			vim.lsp.enable("copilot")
 
 			vim.api.nvim_create_autocmd("LspAttach", {
-				group = augroup("LspConfig"),
-				callback = function(ev)
-					local o = { buffer = ev.buf, silent = true }
+				group = augroup("lsp_attach"),
+				callback = function(args)
+					local o = { buffer = args.buf, silent = true }
 					local keymap = vim.keymap
 
 					keymap.set("n", "K", vim.lsp.buf.hover, o)
@@ -64,8 +72,12 @@ return {
 
 					keymap.set("n", "<C-s>", vim.lsp.buf.signature_help, o)
 
-					keymap.set("n", "dn", function() vim.diagnostic.jump({ count = 1, float = true }) end, o)
-					keymap.set("n", "dp", function() vim.diagnostic.jump({ count = -1, float = true }) end, o)
+					keymap.set("n", "dn", function()
+						vim.diagnostic.jump({ count = 1, float = true })
+					end, o)
+					keymap.set("n", "dp", function()
+						vim.diagnostic.jump({ count = -1, float = true })
+					end, o)
 
 					keymap.set("n", "d<S-n>", function()
 						vim.diagnostic.jump({ count = 1, float = true, severity = vim.diagnostic.severity.ERROR })
@@ -75,54 +87,15 @@ return {
 					end, o)
 
 					keymap.set("n", "ca", vim.lsp.buf.code_action, o)
+
+					keymap.set("n", "f", vim.lsp.buf.format, o)
 				end,
 			})
-
-			local servers = opts.servers
-
-			local lspconfig = require('lspconfig')
-			if vim.uv.fs_stat('.flowconfig') then
-				servers['ts_ls'] = nil
-			end
-
-			local mlsp = require("mason-lspconfig")
-			local all_mslp_servers = vim.tbl_keys(require("mason-lspconfig").get_mappings().lspconfig_to_package)
-			local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-			local capabilities = vim.tbl_deep_extend(
-				"force",
-				{},
-				vim.lsp.protocol.make_client_capabilities(),
-				cmp_nvim_lsp.default_capabilities(),
-				opts.capabilities or {}
-			)
-
-			local function setup(server_name)
-				local server_opts = vim.tbl_extend("force", {
-					capabilities = capabilities,
-				}, servers[server_name] or {})
-
-				if opts.setup[server_name] then
-					if opts.setup[server_name](server_name, server_opts) then
-						return
-					end
-				end
-
-
-				require("lspconfig")[server_name].setup(server_opts)
-			end
-
-			local ensure_installed = {}
-			for server, server_opts in pairs(servers) do
-				if vim.tbl_contains(all_mslp_servers, server) then
-					ensure_installed[#ensure_installed + 1] = server
-				else
-					setup(server)
-				end
-			end
-
-			mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup }, automatic_installation = true })
 		end,
+		dependencies = {
+			{ "mason-org/mason.nvim", opts = {} },
+			{ "mason-org/mason-lspconfig.nvim" },
+		},
 	},
 	{
 		"folke/lazydev.nvim",
@@ -136,10 +109,17 @@ return {
 		},
 	},
 	{
-		'stevearc/conform.nvim',
+		"stevearc/conform.nvim",
 		event = "BufWritePre",
+		cmd = { "ConformInfo" },
 		keys = {
-			{ "<leader>f", function() require("conform").format({ async = true }) end, desc = "Format" },
+			{
+				"<leader>f",
+				function()
+					require("conform").format({ async = true })
+				end,
+				desc = "Format",
+			},
 		},
 		opts = {
 			formatters_by_ft = {
@@ -162,32 +142,27 @@ return {
 		config = function(_, opts)
 			opts.formatters = opts.formatters or {}
 
-			table.insert(opts.formatters, {
-			})
+			opts.formatters.phpstan = {
+				command = "phpstan",
+				args = { "analyze", "--error-format=raw", "--no-progress", "$FILENAME" },
+				stdin = false,
+				cwd = require("conform.util").root_file({
+					"composer.json",
+					"phpstan.neon",
+					"phstan.neon.dist",
+				}),
+			}
 
-			require("conform").setup({
-				phpstan = {
-					command = "./bin/sail ",
-					args = { "phpstan", "analyze", "--error-format=raw", "--no-progress", "$FILENAME" },
-					stdin = false,
-					cwd = require("conform.util").root_file({
-						"composer.json",
-						"phpstan.neon",
-						"phstan.neon.dist",
-					}),
-				},
-				php_cs_fixer = {
-					command = "./bin/sail ",
-					args = { "php-cs-fixer", "fix", "$FILENAME", "--quiet" },
-					cwd = require("conform.util").root_file({
-						"composer.json",
-						".php-cs-fixer.dist.php",
-					}),
-				},
-				formatters_by_ft = opts.formatters_by_ft,
-				defaault_format_opts = opts.default_format_opts,
-				init = opts.init,
-			})
-		end
+			opts.formatters.php_cs_fixer = {
+				command = "php-cs-fixer",
+				args = { "fix", "$FILENAME", "--quiet" },
+				cwd = require("conform.util").root_file({
+					"composer.json",
+					".php-cs-fixer.dist.php",
+				}),
+			}
+
+			require("conform").setup(opts)
+		end,
 	},
 }

@@ -1,14 +1,16 @@
 return {
 	{
 		"tpope/vim-dadbod",
+		event = "VeryLazy",
 		dependencies = {
 			"kristijanhusak/vim-dadbod-ui",
 			"kristijanhusak/vim-dadbod-completion",
 		},
-		cmd = { "DBUI" }
+		cmd = { "DBUI" },
 	},
 	{
 		"nvim-neotest/neotest",
+		event = "VeryLazy",
 		dependencies = {
 			"nvim-neotest/nvim-nio",
 			"nvim-lua/plenary.nvim",
@@ -22,22 +24,30 @@ return {
 		},
 		opts = {
 			discovery = {
-				enabled = true
-			}
+				enabled = true,
+			},
 		},
 		keys = {
-			{ "<leader>s", function() require("neotest").run.run() end },
-			{ "<leader>S", function() require("neotest").output.open { enter = true } end },
+			{
+				"<leader>s",
+				function()
+					require("neotest").run.run()
+				end,
+			},
+			{
+				"<leader>S",
+				function()
+					require("neotest").output.open({ enter = true })
+				end,
+			},
 		},
 		config = function(_, opts)
 			opts.adapters = opts.adapters or {}
-			table.insert(opts.adapters, {
-			})
 
 			require("neotest").setup({
 				discovery = opts.discovery,
 				adapters = {
-					require('neotest-jest')({
+					require("neotest-jest")({
 						jestCommand = "npx jest --",
 						jestConfigFile = "jest.config.ts",
 						env = { CI = true },
@@ -48,6 +58,15 @@ return {
 					require("neotest-phpunit"),
 				},
 			})
-		end
-	}
+		end,
+	},
+	{
+		"mfussenegger/nvim-dap",
+		event = "VeryLazy",
+		dependencies = {
+			{ "rcarriga/nvim-dap-ui", dependencies = "nvim-neotest/nvim-nio" },
+			"jay-babu/mason-nvim-dap.nvim",
+			"theHamsta/nvim-dap-virtual-text",
+		},
+	},
 }

@@ -1,116 +1,84 @@
 return {
-	{
-		"hrsh7th/nvim-cmp",
-		version = false,
-		event = { "InsertEnter" },
-		lazy = true,
+	{ -- optional blink completion source for require statements and module annotations
+		"saghen/blink.cmp",
+		version = "1.*",
 		dependencies = {
-			{ "hrsh7th/cmp-nvim-lsp",     lazy = true },
-			{ "hrsh7th/cmp-buffer",       lazy = true },
-			{ "hrsh7th/cmp-path",         lazy = true },
-			{ "hrsh7th/cmp-cmdline",      lazy = true },
-			{ "supermaven-nvim",          lazy = true },
-
-			{ "saadparwaiz1/cmp_luasnip", lazy = true },
+			{
+				"giuxtaposition/blink-cmp-copilot",
+			},
+			-- Snippet engines and collections
+			{
+				"echasnovski/mini.snippets",
+				dependency = "rafamadriz/friendly-snippets",
+				version = false,
+				config = function(_, opts)
+					local gen_loader = require("mini.snippets").gen_loader
+					opts.snippets = { gen_loader.from_lang() }
+					require("mini.snippets").setup(opts)
+				end,
+			},
 		},
-		opts = function(_, opts)
-			opts.sources = opts.sources or {}
-
-			table.insert(opts.sources, {
-				name = "supermaven",
-				group_index = 0,
-			})
-
-			table.insert(opts.sources, {
-				name = "lazydev",
-				group_index = 0,
-			})
-
-			table.insert(opts.sources, {
-				name = "nvim_lsp",
-			})
-
-			table.insert(opts.sources, {
-				name = "path",
-			})
-
-			table.insert(opts.sources, {
-				name = "buffer",
-			})
-
-			local cmp = require("cmp")
-
-			opts.mapping = cmp.mapping.preset.insert({
-				["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-				["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-				["<C-b>"] = cmp.mapping.scroll_docs(-4),
-				["<C-f>"] = cmp.mapping.scroll_docs(4),
-				["<C-Space>"] = cmp.mapping.complete(),
-				["<C-e>"] = cmp.mapping.abort(),
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
-			})
-
-			opts.preselect = cmp.PreselectMode.Item
-
-			opts.snippet = opts.snippet or {}
-			table.insert(opts.snippet, {
-				expand = function(args) require("luasnip").lsp_expand(args.body) end,
-			})
-
-			opts.completion = opts.completion or {}
-			opts.completion = table.insert(opts.completion, {
-				completeopt = "menu,menuone,noinsert",
-			})
-		end,
-		config = function(_, opts)
-			local cmp = require("cmp")
-			cmp.setup({
-				mapping = opts.mapping,
-				sources = opts.sources,
-				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
-				},
-				preselect = opts.preselect,
-			})
-
-			cmp.setup.filetype("gitcommit", {
-				{ { name = "cmp_git" } },
-				{ { name = "buffer" } }
-			})
-
-			cmp.setup.cmdline(":", {
-				completion = {
-					completeopt = "menu,menuone,noselect",
-				},
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = cmp.config.sources({
-					{ name = "path", keyword_length = 2 },
-				}, {
-					{ name = "cmdline", keyword_length = 2 },
-				}),
-			})
-
-			cmp.setup.cmdline({ "/", "?" }, {
-				completion = {
-					completeopt = "menu,menuone,noselect",
-				},
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = {
-					{ name = "buffer", keyword_length = 2 },
-				},
-			})
-		end
-	},
-	{
-		"supermaven-inc/supermaven-nvim",
 		opts = {
-			disable_keymaps = true,
-			disable_inline_completion = true,
-		}
+			snippets = { preset = "mini_snippets" },
+			completion = {
+				list = {
+					selection = {
+						preselect = false,
+						auto_insert = false,
+					},
+				},
+				documentation = {
+					auto_show = true,
+				},
+				ghost_text = { enabled = true },
+			},
+			signature = { enabled = true },
+			sources = {
+				-- add lazydev to your completion providers
+				default = { "lazydev", "lsp", "path", "snippets", "buffer", "copilot" },
+				providers = {
+					lazydev = {
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
+						-- make lazydev completions top priority (see `:h blink.cmp`)
+						score_offset = 100,
+					},
+					copilot = {
+						name = "copilot",
+						module = "blink-cmp-copilot",
+						score_offset = 101,
+						async = true,
+					},
+				},
+			},
+			keymap = {
+				preset = "none",
+
+				["<C-p>"] = { "select_prev", "fallback" },
+				-- ["<C-n>"] = { "select_next", "fallback" },
+
+				["<C-b>"] = { "scroll_documentation_up", "fallback" },
+				["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+				["<C-Space>"] = { "show", "fallback" },
+				["<C-e>"] = { "hide", "fallback" },
+
+				["<CR>"] = { "accept", "fallback" },
+
+				-- Optional: accept with Ctrl-n like native feel
+				["<C-n>"] = { "select_next", "accept" },
+
+				["<Tab>"] = {
+					"snippet_forward",
+					function() -- sidekick next edit suggestion
+						return require("sidekick").nes_jump_or_apply()
+					end,
+					-- function() -- if you are using Neovim's native inline completions
+					-- 	return vim.lsp.inline_completion.get()
+					-- end,
+					"fallback",
+				},
+			},
+		},
 	},
-	{
-		"petertriho/cmp-git",
-		opts = {}
-	}
 }
