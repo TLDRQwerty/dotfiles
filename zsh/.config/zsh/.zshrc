@@ -125,6 +125,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   export PATH="$PATH:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools"
 
   export PATH="$PATH:$HOME/.cargo/bin"
+  export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   export NVM_DIR="$HOME/.nvm"
