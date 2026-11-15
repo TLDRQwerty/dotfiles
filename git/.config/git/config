@@ -3,6 +3,8 @@
 	name = Charlie Carolan
 [color]
 	ui = auto
+[init]
+  defaultBranch = main
 [core]
 	editor = nvim
 	pager = delta
