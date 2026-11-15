@@ -1,84 +1,50 @@
-return {
-	{ -- optional blink completion source for require statements and module annotations
-		"saghen/blink.cmp",
-		version = "1.*",
-		dependencies = {
-			{
-				"giuxtaposition/blink-cmp-copilot",
-			},
-			-- Snippet engines and collections
-			{
-				"echasnovski/mini.snippets",
-				dependency = "rafamadriz/friendly-snippets",
-				version = false,
-				config = function(_, opts)
-					local gen_loader = require("mini.snippets").gen_loader
-					opts.snippets = { gen_loader.from_lang() }
-					require("mini.snippets").setup(opts)
-				end,
+vim.pack.add({
+	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
+	{ src = "https://github.com/nvim-mini/mini.pairs" },
+})
+
+---@module 'blink.cmp'
+---@type blink.cmp.Config
+require("blink.cmp").setup({
+	completion = {
+		accept = {
+			auto_brackets = {
+				enabled = true,
 			},
 		},
-		opts = {
-			snippets = { preset = "mini_snippets" },
-			completion = {
-				list = {
-					selection = {
-						preselect = false,
-						auto_insert = false,
-					},
-				},
-				documentation = {
-					auto_show = true,
-				},
-				ghost_text = { enabled = true },
+    list = {
+      selection = {
+        preselect = false,
+        auto_insert = false
+      }
+    },
+		menu = {
+			border = "none",
+			draw = {
+				treesitter = { "lsp" },
 			},
-			signature = { enabled = true },
-			sources = {
-				-- add lazydev to your completion providers
-				default = { "lazydev", "lsp", "path", "snippets", "buffer", "copilot" },
-				providers = {
-					lazydev = {
-						name = "LazyDev",
-						module = "lazydev.integrations.blink",
-						-- make lazydev completions top priority (see `:h blink.cmp`)
-						score_offset = 100,
-					},
-					copilot = {
-						name = "copilot",
-						module = "blink-cmp-copilot",
-						score_offset = 101,
-						async = true,
-					},
-				},
-			},
-			keymap = {
-				preset = "none",
-
-				["<C-p>"] = { "select_prev", "fallback" },
-				-- ["<C-n>"] = { "select_next", "fallback" },
-
-				["<C-b>"] = { "scroll_documentation_up", "fallback" },
-				["<C-f>"] = { "scroll_documentation_down", "fallback" },
-
-				["<C-Space>"] = { "show", "fallback" },
-				["<C-e>"] = { "hide", "fallback" },
-
-				["<CR>"] = { "accept", "fallback" },
-
-				-- Optional: accept with Ctrl-n like native feel
-				["<C-n>"] = { "select_next", "accept" },
-
-				["<Tab>"] = {
-					"snippet_forward",
-					function() -- sidekick next edit suggestion
-						return require("sidekick").nes_jump_or_apply()
-					end,
-					-- function() -- if you are using Neovim's native inline completions
-					-- 	return vim.lsp.inline_completion.get()
-					-- end,
-					"fallback",
-				},
-			},
+		},
+		documentation = {
+			auto_show = true,
+			auto_show_delay_ms = 200,
 		},
 	},
+	keymap = {
+		preset = "none",
+		["<C-b>"] = { "scroll_documentation_up", "fallback" },
+		["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+		["<C-Space>"] = { "show", "fallback" },
+		["<C-e>"] = { "hide", "fallback" },
+
+		["<CR>"] = { "fallback" },
+		["<C-n>"] = { "select_next", "fallback" },
+		["<C-p>"] = { "select_prev", "fallback" },
+		["<C-m>"] = { "accept", "fallback" },
+	},
+})
+
+local mini_pairs_opts = {
+	modes = { insert = true, command = true, terminal = false },
 }
+require("mini.pairs").setup(mini_pairs_opts)

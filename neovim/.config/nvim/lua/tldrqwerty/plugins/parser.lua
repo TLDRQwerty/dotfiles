@@ -1,24 +1,22 @@
-return {
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		event = { "BufReadPre", "BufNewFile" },
-		lazy = false,
-		opts = {
-			ensure_installed = "all",
-			highlight = {
-				enable = true,
-				disable = function(lang, bufnr)
-					return vim.api.nvim_buf_line_count(bufnr) > 5000
-				end,
-			},
-		},
-	},
-	{
-		"MeanderingProgrammer/render-markdown.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
-		---@module 'render-markdown'
-		---@type render.md.UserConfig
-		opts = {},
-	},
-}
+vim.api.nvim_create_autocmd("PackChanged", {
+	group = vim.api.nvim_create_augroup("nvim-treesitter-pack", { clear = true }),
+	callback = function(event)
+    --- @type string, string
+		local name, kind = event.data.spec.name, event.data.kind
+		if name ~= "nvim-treesitter" or (kind ~= "install" and kind ~= "update") then
+			return
+		end
+
+		if not event.data.active then
+			vim.cmd.packadd("nvim-treesitter")
+		end
+		vim.cmd("TSUpdate")
+	end,
+})
+
+vim.pack.add({
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+})
+
+require("nvim-treesitter").setup({})
+require("nvim-treesitter").install({ "all" })

@@ -1,18 +1,13 @@
-return {
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		priority = 1000,
-		opts = {
-			flavour = "auto",
-		},
-		config = function(_, opts)
-			require("catppuccin").setup(opts)
-			vim.cmd.colorscheme("catppuccin")
-		end,
-	},
-	{
-		"aserowy/tmux.nvim",
-		opts = {},
+vim.pack.add({ { src = "https://github.com/catppuccin/nvim", name = "catppuccin" } })
+
+---@type CatppuccinOptions
+local catppuccin_opts = {
+	flavour = "auto",
+	background = {
+		light = "latte",
+		dark = "mocha",
 	},
 }
+require("catppuccin").setup(catppuccin_opts)
+
+vim.cmd.colorscheme("catppuccin-nvim")
