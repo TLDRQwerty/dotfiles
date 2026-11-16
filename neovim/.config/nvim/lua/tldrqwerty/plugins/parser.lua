@@ -16,7 +16,13 @@ vim.api.nvim_create_autocmd("PackChanged", {
 
 vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 })
+
+---@module 'render-markdown'
+---@type render.md.UserConfig
+local render_markdown_opts = {}
+require("render-markdown").setup(render_markdown_opts)
 
 require("nvim-treesitter").setup({})
 require("nvim-treesitter").install({ "all" })

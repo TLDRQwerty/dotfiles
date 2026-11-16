@@ -8,6 +8,10 @@ vim.o.title = true
 
 vim.o.cursorline = true
 vim.o.wrap = false
+vim.o.colorcolumn = "80"
+
+vim.o.list = true
+vim.opt.listchars:append({ space = "⋅", eol = "↴", trail = "-" })
 
 vim.o.scrolloff = 10
 vim.o.sidescrolloff = 8
