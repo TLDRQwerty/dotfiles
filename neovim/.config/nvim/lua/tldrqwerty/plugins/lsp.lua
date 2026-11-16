@@ -25,13 +25,11 @@ local mason_tool_installer_opts = {
 }
 require("mason-tool-installer").setup(mason_tool_installer_opts)
 
-local capabilities = {
-	workspace = {
-		fileOperations = {
-			didRename = true,
-			willRename = true,
-		},
-	},
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+capabilities.workspace.fileOperations = {
+    didRename = true,
+    willRename = true,
 }
 vim.lsp.config("*", {
 	capabilities = require("blink.cmp").get_lsp_capabilities(capabilities),
@@ -83,4 +81,5 @@ vim.lsp.enable({
 	"tailwindcss",
 	"rust_analyzer",
 	"intelephense",
+	"sourcekit",
 })
